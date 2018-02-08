@@ -20,6 +20,7 @@ public class MsgSystemDaoImpl extends GenericDaoImpl implements MsgSystemDao {
     /**
      * 添加系统消息
      */
+    @Override
     public Long addMsgSystem(MsgSystem msgSystem) throws Exception {
         return this.insert("MsgSystemMapper.addMsgSystem", msgSystem);
     }
@@ -31,6 +32,7 @@ public class MsgSystemDaoImpl extends GenericDaoImpl implements MsgSystemDao {
      * @return
      * @throws Exception
      */
+    @Override
     public List<MsgSystem> queryMsgSystemList(MsgSystem msgSystem, PageEntity page) throws Exception {
         return this.queryForListPage("MsgSystemMapper.queryMsgSystemList", msgSystem, page);
     }
@@ -38,6 +40,7 @@ public class MsgSystemDaoImpl extends GenericDaoImpl implements MsgSystemDao {
     /**
      * 通过id删除系统消息
      */
+    @Override
     public Long delMsgSystemById(String ids) throws Exception {
         return this.update("MsgSystemMapper.delMsgSystemById", ids);
     }
@@ -48,6 +51,7 @@ public class MsgSystemDaoImpl extends GenericDaoImpl implements MsgSystemDao {
      * @return
      * @throws Exception
      */
+    @Override
     public List<MsgSystem> queryMSListByLT(Date lastTime) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("lastTime", lastTime);
@@ -57,6 +61,7 @@ public class MsgSystemDaoImpl extends GenericDaoImpl implements MsgSystemDao {
     /**
      * 更新过期的系统消息的字段为过期
      */
+    @Override
     public void updateMsgSystemPastTime(Date lastTime) throws Exception {
         this.update("MsgSystemMapper.updateMsgSystemPastTime", lastTime);
     }

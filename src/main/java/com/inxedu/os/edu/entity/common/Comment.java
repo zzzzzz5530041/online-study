@@ -10,7 +10,6 @@ import lombok.Data;
  * @author www.inxedu.com
  *
  */
-@Data
 public class Comment {
 	private int commentId;//评论Id
 	private int userId;//用户id
@@ -33,6 +32,159 @@ public class Comment {
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date beginCreateTime;//查询 开始时间
+
+	public int getCommentId() {
+		return commentId;
+	}
+
+	public void setCommentId(int commentId) {
+		this.commentId = commentId;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public int getpCommentId() {
+		return pCommentId;
+	}
+
+	public void setpCommentId(int pCommentId) {
+		this.pCommentId = pCommentId;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Date getAddTime() {
+		return addTime;
+	}
+
+	public void setAddTime(Date addTime) {
+		this.addTime = addTime;
+	}
+
+	public int getOtherId() {
+		return otherId;
+	}
+
+	public void setOtherId(int otherId) {
+		this.otherId = otherId;
+	}
+
+	public int getPraiseCount() {
+		return praiseCount;
+	}
+
+	public void setPraiseCount(int praiseCount) {
+		this.praiseCount = praiseCount;
+	}
+
+	public int getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+	public int getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
+	}
+
+	public String getPicImg() {
+		return picImg;
+	}
+
+	public void setPicImg(String picImg) {
+		this.picImg = picImg;
+	}
+
+	public int getCommentNumber() {
+		return commentNumber;
+	}
+
+	public void setCommentNumber(int commentNumber) {
+		this.commentNumber = commentNumber;
+	}
+
+	public int getLimitNumber() {
+		return limitNumber;
+	}
+
+	public void setLimitNumber(int limitNumber) {
+		this.limitNumber = limitNumber;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
+	public Date getBeginCreateTime() {
+		return beginCreateTime;
+	}
+
+	public void setBeginCreateTime(Date beginCreateTime) {
+		this.beginCreateTime = beginCreateTime;
+	}
+
+	public Date getEndCreateTime() {
+		return endCreateTime;
+	}
+
+	public void setEndCreateTime(Date endCreateTime) {
+		this.endCreateTime = endCreateTime;
+	}
+
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date endCreateTime;//查询 结束时间
 }

@@ -27,6 +27,7 @@ public class CourseNoteServiceImpl implements CourseNoteService {
 	 *            要添加的CourseNote
 	 * @return id
 	 */
+	@Override
 	public String addCourseNote(CourseNote courseNote) {
 		if (ObjectUtils.isNull(getCourseNoteByKpointIdAndUserId(courseNote.getKpointId(), courseNote.getUserId()))) {
 			courseNoteDao.addCourseNote(courseNote);
@@ -42,6 +43,7 @@ public class CourseNoteServiceImpl implements CourseNoteService {
 	 * @param id
 	 *            要删除的id
 	 */
+	@Override
 	public void deleteCourseNoteById(Long id) {
 		courseNoteDao.deleteCourseNoteById(id);
 	}
@@ -52,6 +54,7 @@ public class CourseNoteServiceImpl implements CourseNoteService {
 	 * @param courseNote
 	 *            要修改的CourseNote
 	 */
+	@Override
 	public void updateCourseNote(CourseNote courseNote) {
 		courseNoteDao.updateCourseNote(courseNote);
 	}
@@ -63,6 +66,7 @@ public class CourseNoteServiceImpl implements CourseNoteService {
 	 *            要查询的id
 	 * @return CourseNote
 	 */
+	@Override
 	public CourseNote getCourseNoteById(Long id) {
 		return courseNoteDao.getCourseNoteById(id);
 	}
@@ -72,6 +76,7 @@ public class CourseNoteServiceImpl implements CourseNoteService {
 	 * 
 	 * @return CourseNote
 	 */
+	@Override
 	public CourseNote getCourseNoteByKpointIdAndUserId(Long kpointId, Long userId) {
 		return courseNoteDao.getCourseNoteByKpointIdAndUserId(kpointId, userId);
 	}
@@ -83,6 +88,7 @@ public class CourseNoteServiceImpl implements CourseNoteService {
 	 *            查询条件
 	 * @return List<CourseNote>
 	 */
+	@Override
 	public List<CourseNote> getCourseNoteList(CourseNote courseNote) {
 		return courseNoteDao.getCourseNoteList(courseNote);
 	}
@@ -94,6 +100,7 @@ public class CourseNoteServiceImpl implements CourseNoteService {
 	 * @param page
 	 * @return
 	 */
+	@Override
 	public List<QueryCourseNote> getCourseNoteListPage(QueryCourseNote queryCourseNote, PageEntity page) {
 		return courseNoteDao.getCourseNoteListPage(queryCourseNote, page);
 	}
@@ -103,6 +110,7 @@ public class CourseNoteServiceImpl implements CourseNoteService {
 	 * 
 	 * @param courseNote
 	 */
+	@Override
 	public void updateCourseNoteListStatus(CourseNote courseNote) {
 		courseNoteDao.updateCourseNoteListStatus(courseNote);
 	}
@@ -113,6 +121,7 @@ public class CourseNoteServiceImpl implements CourseNoteService {
 	 * @param id
 	 * @return
 	 */
+	@Override
 	public QueryCourseNote getQueryCourseNoteById(Long id) {
 		return courseNoteDao.getQueryCourseNoteById(id);
 	}
@@ -124,6 +133,7 @@ public class CourseNoteServiceImpl implements CourseNoteService {
 	 * @param page
 	 * @return
 	 */
+	@Override
 	public List<QueryCourseNote> getUserCourseNoteByUserId(Long userId, PageEntity page) {
 		return courseNoteDao.getUserCourseNoteByUserId(userId, page);
 	}

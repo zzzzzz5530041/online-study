@@ -33,16 +33,18 @@ public class LimitIntercepterForWebsite extends HandlerInterceptorAdapter{
  	 private WebsiteNavigateService websiteNavigateService;
  	 @Autowired
  	 private WebsiteImagesService websiteImagesService;
- 	
+
+    @Override
      public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
          super.afterCompletion(request, response, handler, ex);
      }
 
-     
+    @Override
      public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
          super.postHandle(request, response, handler, modelAndView);
      }
-     
+
+    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
          try{
         		// 获得banner图

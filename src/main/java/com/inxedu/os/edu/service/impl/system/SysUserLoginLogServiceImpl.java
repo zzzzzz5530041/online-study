@@ -18,11 +18,13 @@ public class SysUserLoginLogServiceImpl implements SysUserLoginLogService{
 
 	@Autowired
 	private SysUserLoginLogDao sysUserLoginLogDao;
-	
+
+	@Override
 	public int createLoginLog(SysUserLoginLog loginLog) {
 		return sysUserLoginLogDao.createLoginLog(loginLog);
 	}
-	
+
+	@Override
 	public List<SysUserLoginLog> queryUserLogPage(int userId, PageEntity page) {
 		return sysUserLoginLogDao.queryUserLogPage(userId, page);
 	}

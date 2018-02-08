@@ -24,24 +24,25 @@ import com.inxedu.os.edu.service.website.WebsiteCourseDetailService;
 public class WebsiteCourseDetailServiceImpl implements WebsiteCourseDetailService {
 	@Autowired
 	private WebsiteCourseDetailDao websiteCourseDetailDao;
-	
+
+	@Override
 	public void createWebsiteCourseDetail(String detail) {
 		websiteCourseDetailDao.createWebsiteCourseDetail(detail);
 		EHCacheUtil.remove(CacheConstans.RECOMMEND_COURSE);
 	}
 
-	
+	@Override
 	public List<WebsiteCourseDetailDTO> queryCourseDetailPage(WebsiteCourseDetailDTO dto, PageEntity page) {
 		return websiteCourseDetailDao.queryCourseDetailPage(dto, page);
 	}
 
-	
+	@Override
 	public void deleteDetailById(int id) {
 		websiteCourseDetailDao.deleteDetailById(id);
 		EHCacheUtil.remove(CacheConstans.RECOMMEND_COURSE);
 	}
 
-	
+	@Override
 	public void updateSort(int id, int sort) {
 		Map<String,Integer> map =new HashMap<String, Integer>();
 		map.put("id", id);
@@ -50,7 +51,7 @@ public class WebsiteCourseDetailServiceImpl implements WebsiteCourseDetailServic
 		EHCacheUtil.remove(CacheConstans.RECOMMEND_COURSE);
 	}
 
-	
+	@Override
 	public List<WebsiteCourseDetail> queryDetailListByrecommendId(int recommendId) {
 		return websiteCourseDetailDao.queryDetailListByrecommendId(recommendId);
 	}

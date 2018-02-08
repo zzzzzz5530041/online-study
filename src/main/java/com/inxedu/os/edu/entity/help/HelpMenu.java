@@ -15,10 +15,9 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class HelpMenu implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+
+	private static final long serialVersionUID = 8155213718558768429L;
 	private Long id;
 	/**
 	 * 默认0一级菜单，非0二级菜单
@@ -40,6 +39,63 @@ public class HelpMenu implements Serializable{
 	 * 排序
 	 */
 	private String sort;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public String getLinkBuilding() {
+		return linkBuilding;
+	}
+
+	public void setLinkBuilding(String linkBuilding) {
+		this.linkBuilding = linkBuilding;
+	}
+
 	private String linkBuilding; // 外链
 }
 

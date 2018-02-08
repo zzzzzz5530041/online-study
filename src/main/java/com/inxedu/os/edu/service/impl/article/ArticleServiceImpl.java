@@ -22,22 +22,27 @@ public class ArticleServiceImpl implements ArticleService {
 	@Autowired
 	private ArticleDao articleDao;
 
+	@Override
 	public int createArticle(Article article) {
 		return articleDao.createArticle(article);
 	}
 
+	@Override
 	public void addArticleContent(ArticleContent content) {
 		articleDao.addArticleContent(content);
 	}
 
+	@Override
 	public void updateArticle(Article article) {
 		articleDao.updateArticle(article);
 	}
 
+	@Override
 	public void updateArticleContent(ArticleContent content) {
 		articleDao.updateArticleContent(content);
 	}
 
+	@Override
 	public void deleteArticleByIds(String[] articleIds) {
 		if (articleIds != null && articleIds.length > 0) {
 			String ids = "";
@@ -53,10 +58,12 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 	}
 
+	@Override
 	public Article queryArticleById(int articleId) {
 		return articleDao.queryArticleById(articleId);
 	}
 
+	@Override
 	public String queryArticleContentByArticleId(int articleId) {
 		return articleDao.queryArticleContentByArticleId(articleId);
 	}
@@ -64,10 +71,12 @@ public class ArticleServiceImpl implements ArticleService {
 	/**
 	 * 分页查询文章列表
 	 */
+	@Override
 	public List<Article> queryArticlePage(QueryArticle query, PageEntity page) {
 		return articleDao.queryArticlePage(query, page);
 	}
 
+	@Override
 	public void updateArticleNum(Map<String, String> map) {
 		articleDao.updateArticleNum(map);
 	}
@@ -75,10 +84,12 @@ public class ArticleServiceImpl implements ArticleService {
 	/**
 	 * 公共多条件查询文章资讯列表,用于前台
 	 */
+	@Override
 	public List<Article> queryArticleList(QueryArticle queryArticle) {
 		return articleDao.queryArticleList(queryArticle);
 	}
 
+	@Override
 	public int queryAllArticleCount() {
 		return articleDao.queryAllArticleCount();
 	}

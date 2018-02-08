@@ -24,14 +24,16 @@ public class StatisticsDayDaoImpl extends GenericDaoImpl implements StatisticsDa
      * @param date
      * @return
      */
+	@Override
 	public void addStatisticsDay(Date date) {
          this.insert("StatisticsDayMapper.createStatisticsDay",date);
     }
 	 /**
      * 日期批量添加StatisticsDay web
-     * @param date
+     * @param dates
      * @return
      */
+	 @Override
     public void addStatisticsDayBatch(List<Date> dates){
     	for(Date date:dates){
     		this.insert("StatisticsDayMapper.createStatisticsDay",date);
@@ -40,17 +42,19 @@ public class StatisticsDayDaoImpl extends GenericDaoImpl implements StatisticsDa
     
     /**
      * 更新StatisticsDay sns
-     * @param date
+     * @param statisticsDay
      * @return
      */
+	@Override
 	public void updateStatisticsDay(StatisticsDay statisticsDay) {
          this.update("StatisticsDayMapper.updateStatisticsDay",statisticsDay);
     }
 	 /**
      * 日期批量更新StatisticsDay sns
-     * @param date
+     * @param statisticsDays
      * @return
      */
+	 @Override
     public void updateStatisticsDayBatch(List<StatisticsDay> statisticsDays){
     	for(StatisticsDay statisticsDay:statisticsDays){
     		this.update("StatisticsDayMapper.updateStatisticsDay",statisticsDay);
@@ -60,18 +64,20 @@ public class StatisticsDayDaoImpl extends GenericDaoImpl implements StatisticsDa
 	/**
 	 * 按年查询网站统计
 	 * 
-	 * @param queryUser
+	 * @param year
 	 * @return
 	 */
+	@Override
 	public List<StatisticsDay> getStatisticsByYear(String year){
 		return this.selectList("StatisticsDayMapper.getStatisticsByYear", year);
 	}
 	/**
 	 * 按月查询网站统计
 	 * 
-	 * @param queryUser
+	 * @param year
 	 * @return
 	 */
+	@Override
 	public List<StatisticsDay> getStatisticsByMonth(String month,String year){
 		if(Integer.parseInt(month)<10){
 			month="0"+month;
@@ -87,20 +93,22 @@ public class StatisticsDayDaoImpl extends GenericDaoImpl implements StatisticsDa
 	 * @return
 	 * @throws Exception
 	 */
+	@Override
 	public StatisticsDay getStatisticsSumMsg(){
 		return this.selectOne("StatisticsDayMapper.getStatisticsSumMsg", 0);
 	}
 	/**
 	 * 查询最近30条的统计数据
-	 * @param date
+	 * @param days
 	 */
+	@Override
 	public List<StatisticsDay> getStatisticThirty(int days){
 		return this.selectList("StatisticsDayMapper.getStatisticThirty",days);
 	}
 	/**
 	 * 查询指定时间段的统计数据
-	 * @param date
 	 */
+	@Override
 	public List<StatisticsDay> getStatisticsByDate(String startTime,String endTime){
 		Map<String,Object> map=new HashMap<String, Object>();
 		map.put("startTime", startTime);
@@ -109,8 +117,8 @@ public class StatisticsDayDaoImpl extends GenericDaoImpl implements StatisticsDa
 	}
 	/**
 	 * 删除指定时间段的统计数据
-	 * @param date
 	 */
+	@Override
 	public void delStatisticsByDate(String startTime,String endTime){
 		Map<String,Object> map=new HashMap<String, Object>();
 		map.put("startTime", startTime);
@@ -120,6 +128,7 @@ public class StatisticsDayDaoImpl extends GenericDaoImpl implements StatisticsDa
 	/**
 	 * 删除指定日期统计
 	 */
+	@Override
 	public void delStatisticsDay(Date date) {
 		this.delete("StatisticsDayMapper.delStatisticsDay", date);
 	}
@@ -130,18 +139,21 @@ public class StatisticsDayDaoImpl extends GenericDaoImpl implements StatisticsDa
 	 * @param date
 	 * @return
 	 */
+	@Override
 	public int getTodayLoginNum(Date date){
 		return this.selectOne("StatisticsDayMapper.statistics_loginNumToday",date);
 	}
 	/**
 	 * 获取日期的注册人数
 	 */
+	@Override
 	public int getTodayRegisteredNum(Date date) {
 		return this.selectOne("StatisticsDayMapper.statistics_registeredNumToday", date);
 	}
 	/**
 	 * 获取日期的订单数
 	 */
+	@Override
 	public Map<String, Object> getTodayOrderNum(Date date) {
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("orderNum", this.selectOne("StatisticsDayMapper.statistics_orderNumToday", date));

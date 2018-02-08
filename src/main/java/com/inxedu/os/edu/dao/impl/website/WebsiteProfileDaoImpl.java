@@ -12,8 +12,8 @@ import java.util.List;
  * */
  @Repository("websiteProfileDao")
 public class WebsiteProfileDaoImpl extends GenericDaoImpl implements WebsiteProfileDao {
-	
-	
+
+	@Override
 	public WebsiteProfile getWebsiteProfileByType(String type) {
 		return this.selectOne("WebsiteProfileMapper.getWebsiteProfileByType", type);
 	}
@@ -21,14 +21,17 @@ public class WebsiteProfileDaoImpl extends GenericDaoImpl implements WebsiteProf
 	/**
 	 * 添加查询网站配置
 	 */
+	@Override
 	public void addWebsiteProfileByType(WebsiteProfile websiteProfile){
 		this.insert("WebsiteProfileMapper.addWebsiteProfileByType",websiteProfile);
 	}
+
+	@Override
 	public void updateWebsiteProfile(WebsiteProfile websiteProfile) {
 		this.update("WebsiteProfileMapper.updateWebsiteProfile", websiteProfile);
 	}
 
-	
+	@Override
 	public List<WebsiteProfile> getWebsiteProfileList() {
 		return this.selectList("WebsiteProfileMapper.getWebsiteProfileList", null);
 	}

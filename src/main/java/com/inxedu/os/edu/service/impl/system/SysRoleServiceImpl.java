@@ -18,22 +18,23 @@ public class SysRoleServiceImpl implements SysRoleService{
 
 	@Autowired
 	private SysRoleDao sysRoleDao;
-	
+
+	@Override
 	public int createRoel(SysRole sysRole) {
 		return sysRoleDao.createRoel(sysRole);
 	}
 
-	
+	@Override
 	public void updateRole(SysRole sysRole) {
 		sysRoleDao.updateRole(sysRole);
 	}
 
-	
+	@Override
 	public List<SysRole> queryAllRoleList() {
 		return sysRoleDao.queryAllRoleList();
 	}
 
-	
+	@Override
 	public void deleteRoleByIds(String ids) {
 		if(ids!=null && ids.trim().length()>0){
 			if(ids.trim().endsWith(",")){
@@ -43,12 +44,12 @@ public class SysRoleServiceImpl implements SysRoleService{
 		}
 	}
 
-	
+	@Override
 	public void deleteRoleFunctionByRoleId(int roleId) {
 		sysRoleDao.deleteRoleFunctionByRoleId(roleId);
 	}
 
-	
+	@Override
 	public void createRoleFunction(String value) {
 		if(value!=null && value.trim().length()>0){
 			if(value.endsWith(",")){
@@ -58,7 +59,7 @@ public class SysRoleServiceImpl implements SysRoleService{
 		}
 	}
 
-	
+	@Override
 	public List<Integer> queryRoleFunctionIdByRoleId(int roleId) {
 		return sysRoleDao.queryRoleFunctionIdByRoleId(roleId);
 	}

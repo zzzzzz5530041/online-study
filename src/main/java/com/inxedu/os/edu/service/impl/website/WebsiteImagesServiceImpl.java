@@ -26,36 +26,36 @@ public class WebsiteImagesServiceImpl implements WebsiteImagesService {
 	@Autowired
 	private WebsiteImagesDao websiteImagesDao;
 
-	
+	@Override
 	public int creasteImage(WebsiteImages image) {
 		EHCacheUtil.remove(CacheConstans.BANNER_IMAGES);
 		return websiteImagesDao.creasteImage(image);
 	}
 
-	
+	@Override
 	public List<Map<String,Object>> queryImagePage(WebsiteImages image,
 			PageEntity page) {
 		return websiteImagesDao.queryImagePage(image, page);
 	}
 
-	
+	@Override
 	public WebsiteImages queryImageById(int imageId) {
 		return websiteImagesDao.queryImageById(imageId);
 	}
 
-	
+	@Override
 	public void deleteImages(String imageIds) {
 		websiteImagesDao.deleteImages(imageIds);
 		EHCacheUtil.remove(CacheConstans.BANNER_IMAGES);
 	}
 
-	
+	@Override
 	public void updateImage(WebsiteImages image) {
 		websiteImagesDao.updateImage(image);
 		EHCacheUtil.remove(CacheConstans.BANNER_IMAGES);
 	}
 
-	
+	@Override
 	public Map<String,List<WebsiteImages>> queryImagesByType() {
 		//从缓存中查询图片数据
 		@SuppressWarnings("unchecked")

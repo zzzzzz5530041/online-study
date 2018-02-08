@@ -19,23 +19,23 @@ import com.inxedu.os.edu.entity.course.FavouriteCourseDTO;
  @Repository("courseFavoritesDao")
 public class CourseFavoritesDaoImpl extends GenericDaoImpl implements CourseFavoritesDao {
 
-	
+	@Override
 	public void createCourseFavorites(CourseFavorites cf) {
 		this.insert("CourseFavoritesMapper.createCourseFavorites", cf);
 		
 	}
 
-	
+	@Override
 	public void deleteCourseFavoritesById(String ids) {
 		this.delete("CourseFavoritesMapper.deleteCourseFavoritesById", ids);
 	}
 
-	
+	@Override
 	public int checkFavorites(Map<String, Object> map) {
 		return this.selectOne("CourseFavoritesMapper.checkFavorites", map);
 	}
 
-	
+	@Override
 	public List<FavouriteCourseDTO> queryFavoritesPage(int userId, PageEntity page) {
 		return this.queryForListPage("CourseFavoritesMapper.queryFavoritesPage", userId, page);
 	}

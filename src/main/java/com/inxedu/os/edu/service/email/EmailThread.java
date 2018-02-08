@@ -20,11 +20,44 @@ public class EmailThread implements Runnable{
     private String content;
     //标题
     private String title;
-    @Getter
-    private static int sumNum=0;
-    @Getter
-    private static List<String> list = new ArrayList();
-    public EmailThread(List<String> list,String content,String title,EmailService emailService) {
+    private int sumNum=0;
+
+    public int getSumNum() {
+        return sumNum;
+    }
+
+    public void setSumNum(int sumNum) {
+        this.sumNum = sumNum;
+    }
+
+    public List<String> getList() {
+        return list;
+    }
+
+    public void setList(List<String> list) {
+        this.list = list;
+    }
+
+    private  List<String> list = new ArrayList();
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+    public EmailThread(List<String> list, String content, String title, EmailService emailService) {
         this.content = content;
         this.title = title;
         this.list.addAll(list);
@@ -34,6 +67,7 @@ public class EmailThread implements Runnable{
     public EmailThread() {
     }
 
+    @Override
     public void run() {
         try {
             //每100个邮箱批量发一次，发完休息1秒，直到发完为止

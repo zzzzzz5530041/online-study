@@ -34,6 +34,7 @@ public class UserEmailMsgServiceImpl implements UserEmailMsgService {
      * @return
      */
 
+	@Override
     public List<UserEmailMsg> queryUserEmailMsgList(UserEmailMsg userEmailMsg,
 													PageEntity page) {
         return userEmailMsgDao.queryUserEmailMsgList(userEmailMsg, page);
@@ -45,6 +46,7 @@ public class UserEmailMsgServiceImpl implements UserEmailMsgService {
      * @param id
      * @return
      */
+	@Override
     public UserEmailMsg queryUserEmailMsgById(Long id) {
         return userEmailMsgDao.queryUserEmailMsgById(id);
     }
@@ -55,6 +57,7 @@ public class UserEmailMsgServiceImpl implements UserEmailMsgService {
      * @param userEmailMsg
      * @return
      */
+	@Override
     public void addUserEmailMsg(List<UserEmailMsg> userEmailMsg) {
         userEmailMsgDao.addUserEmailMsg(userEmailMsg);
     }
@@ -62,6 +65,7 @@ public class UserEmailMsgServiceImpl implements UserEmailMsgService {
     /**
      * 更新 UserEmailMsg
      */
+	@Override
     public void updateUserEmailMsgById(UserEmailMsg userEmailMsg){
         userEmailMsgDao.updateUserEmailMsgById(userEmailMsg);
     }
@@ -70,6 +74,7 @@ public class UserEmailMsgServiceImpl implements UserEmailMsgService {
     /**
      * 删除发送邮件记录
      */
+	@Override
     public void delUserEmailMsgById(Long id){
         userEmailMsgDao.delUserEmailMsgById(id);
     }
@@ -77,6 +82,7 @@ public class UserEmailMsgServiceImpl implements UserEmailMsgService {
     /**
      * 发送邮件和短信定时service
      */
+	@Override
     public void queryTimingSendEmailMsg()throws Exception{
         UserEmailMsg userEmailMsg = new UserEmailMsg();
         userEmailMsg.setSendTime(new Date());
@@ -99,6 +105,7 @@ public class UserEmailMsgServiceImpl implements UserEmailMsgService {
     /**
      * 起四个线程批量发送邮件
      */
+	@Override
     public void batchSendEmail(String[] mailto, String text, String title,int num){
         if(ObjectUtils.isNotNull(mailto)){
             List<String> list = new ArrayList<String>();
@@ -118,6 +125,7 @@ public class UserEmailMsgServiceImpl implements UserEmailMsgService {
 	 * 
 	 * @param emailStr
 	 */
+	@Override
 	public Map<String, Object> checkEmail(String emailStr) {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		emailStr = emailStr.replaceAll("\r\n", "");// 去除空格回车
@@ -161,6 +169,7 @@ public class UserEmailMsgServiceImpl implements UserEmailMsgService {
 	 * @param mobileArr
 	 *            字符串
 	 */
+	@Override
 	public Map<String, Object> checkMobile(String mobileArr) {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		mobileArr = mobileArr.replaceAll("\r\n", "");// 去除空格回车

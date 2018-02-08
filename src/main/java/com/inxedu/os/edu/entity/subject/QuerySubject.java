@@ -14,10 +14,8 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = false)
 public class QuerySubject implements Serializable {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = -1912600357482790771L;
+
+    private static final long serialVersionUID = -4092000925140956072L;
     /**
      * 专业id
      */
@@ -48,4 +46,60 @@ public class QuerySubject implements Serializable {
     // private int level;
     //图片
     private String image;
+
+    public int getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public int getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

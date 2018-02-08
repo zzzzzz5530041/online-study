@@ -33,6 +33,7 @@ public class UserMobileMsgServiceImpl implements UserMobileMsgService {
      * @param page
      * @return
      */
+    @Override
     public List<UserMobileMsg> queryUserMobileMsgList(UserMobileMsg userMobileMsg, PageEntity page) {
         return userMobileMsgDao.queryUserMobileMsgList(userMobileMsg, page);
     }
@@ -43,6 +44,7 @@ public class UserMobileMsgServiceImpl implements UserMobileMsgService {
      * @param id
      * @return
      */
+    @Override
     public UserMobileMsg queryUserMobileMsgById(Long id) {
         return userMobileMsgDao.queryUserMobileMsgById(id);
     }
@@ -50,6 +52,7 @@ public class UserMobileMsgServiceImpl implements UserMobileMsgService {
     /**
      * 删除短信
      */
+    @Override
     public void delUserMobileMsg(Long id){
     	userMobileMsgDao.delUserMobileMsg(id);
     }
@@ -58,6 +61,7 @@ public class UserMobileMsgServiceImpl implements UserMobileMsgService {
      * 修改短信
      * @param userMobileMsg
      */
+    @Override
     public void updateUserMobileMsg(UserMobileMsg userMobileMsg){
     	userMobileMsgDao.updateUserMobileMsg(userMobileMsg);
     }
@@ -68,6 +72,7 @@ public class UserMobileMsgServiceImpl implements UserMobileMsgService {
      * @param userMobileMsg
      * @return
      */
+    @Override
     public void addUserMobileMsg(List<UserMobileMsg> userMobileMsg) {
         userMobileMsgDao.addUserMobileMsg(userMobileMsg);
     }
@@ -75,6 +80,7 @@ public class UserMobileMsgServiceImpl implements UserMobileMsgService {
     /**
      * 起多个线程批量发送手机
      */
+    @Override
     public void batchSendMobileMsg(String text,String[] mailto,int num){
         if(ObjectUtils.isNotNull(mailto)){
             List<String> list = new ArrayList<String>();
@@ -92,6 +98,7 @@ public class UserMobileMsgServiceImpl implements UserMobileMsgService {
     /**
      * 查询和当前时间相等的短信记录 发送
      */
+    @Override
     public List<UserMobileMsg> queryNowMobileMsgList(Date nowDate){
     	return userMobileMsgDao.queryNowMobileMsgList(nowDate);
     }
@@ -99,6 +106,7 @@ public class UserMobileMsgServiceImpl implements UserMobileMsgService {
     /**
      * 修改短信发送状态
      */
+    @Override
     public void updateMsgStatus(Long id){
     	userMobileMsgDao.updateMsgStatus(id);
     }
@@ -106,6 +114,7 @@ public class UserMobileMsgServiceImpl implements UserMobileMsgService {
     /**
      * 定时发送  调用的方法
      */
+    @Override
     public void timingSendMsg(Date nowDate) throws Exception{
 		List<UserMobileMsg> mobileMsgs=this.queryNowMobileMsgList(nowDate);
         if(ObjectUtils.isNotNull(mobileMsgs)){

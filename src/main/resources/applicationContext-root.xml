@@ -6,8 +6,7 @@
     <import resource="applicationContext-ds.xml"/>
 
     <!-- 配置文件加载 -->
-    <bean id="propertyConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <value>classpath:/project.properties</value>
@@ -24,4 +23,6 @@
             </map>
         </property>
     </bean>
+
+
 </beans>

@@ -22,20 +22,18 @@ public interface StatisticsDayDao {
     public void addStatisticsDay(Date date);
     /**
      * 日期批量添加StatisticsDay
-     * @param date
+     * @param dates
      * @return
      */
     public void addStatisticsDayBatch(List<Date> dates);
     
     /**
      * 更新StatisticsDay sns
-     * @param date
      * @return
      */
 	public void updateStatisticsDay(StatisticsDay statisticsDay);
 	 /**
      * 日期批量更新StatisticsDay sns
-     * @param date
      * @return
      */
     public void updateStatisticsDayBatch(List<StatisticsDay> statisticsDays);
@@ -43,14 +41,12 @@ public interface StatisticsDayDao {
     /**
 	 * 按年查询网站统计
 	 * 
-	 * @param queryUser
 	 * @return
 	 */
 	public List<StatisticsDay> getStatisticsByYear(String year);
 	/**
 	 * 按月查询网站统计
 	 * 
-	 * @param queryUser
 	 * @return
 	 */
 	public List<StatisticsDay> getStatisticsByMonth(String month, String year);
@@ -64,17 +60,14 @@ public interface StatisticsDayDao {
 	public StatisticsDay getStatisticsSumMsg();
 	/**
 	 * 查询指定时间段的统计数据
-	 * @param date
 	 */
 	public List<StatisticsDay> getStatisticsByDate(String startTime, String endTime);
 	/**
 	 * 删除指定时间段的统计数据
-	 * @param date
 	 */
 	public void delStatisticsByDate(String startTime, String endTime);
 	/**
 	 * 查询最近30条的统计数据
-	 * @param date
 	 */
 	public List<StatisticsDay> getStatisticThirty(int days);
 	/**

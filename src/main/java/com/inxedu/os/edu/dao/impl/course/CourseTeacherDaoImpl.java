@@ -13,13 +13,12 @@ import com.inxedu.os.edu.dao.course.CourseTeacherDao;
 @Repository("courseTeacherDao")
 public class CourseTeacherDaoImpl extends GenericDaoImpl implements CourseTeacherDao {
 
-	
+	@Override
 	public void addCourseTeacher(String value) {
 		this.insert("CourseTeacherMapper.createCourseTeacher", value);
-		
 	}
 
-	
+	@Override
 	public void deleteCourseTeacher(int courseId) {
 		this.delete("CourseTeacherMapper.deleteCourseTeacher", courseId);
 	}

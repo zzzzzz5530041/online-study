@@ -35,9 +35,9 @@ public class StatisticsDayServiceImpl implements StatisticsDayService{
 	private Map<String,Object> userMsg= new HashMap<String,Object>();
     /**
      * 定时添加StatisticsDayDay
-     * @param date
      * @return
      */
+	@Override
     public void addStatisticsDayAuto(){
     	Calendar c = Calendar.getInstance();		
     	c.setTime(new Date());		
@@ -58,6 +58,7 @@ public class StatisticsDayServiceImpl implements StatisticsDayService{
     /**
      * 查询网站统计
      */
+	@Override
 	public Map<String,Object> getStatisticsMsg(String month, String year){
 		
 		if (month!=null &&month!= "") {
@@ -118,16 +119,15 @@ public class StatisticsDayServiceImpl implements StatisticsDayService{
 	}
 	/**
 	 * 查询指定时间段的统计数据
-	 * @param date
 	 */
+	@Override
 	public List<StatisticsDay> getStatisticsByDate(String startTime,String endTime){
 		return statisticsDayDao.getStatisticsByDate(startTime,endTime);
 	}
 	/**
 	 * 动态查询活跃度
-	 * @param date
 	 */
-	@SuppressWarnings("unchecked")
+	@Override
 	public List<StatisticsDay> getStatisticThirty(int days){
 
 		List<StatisticsDay> statistics= (List<StatisticsDay>) EHCacheUtil.get(CacheConstans.WEB_STATISTICS_THIRTY+days);
@@ -142,8 +142,8 @@ public class StatisticsDayServiceImpl implements StatisticsDayService{
 	}
 	/**
 	 * 删除指定时间段的统计数据
-	 * @param date
 	 */
+	@Override
 	public void delStatisticsByDate(String startTime,String endTime){
 		statisticsDayDao.delStatisticsByDate(startTime,endTime);
 		EHCacheUtil.remove(CacheConstans.WEB_STATISTICS);
@@ -153,8 +153,8 @@ public class StatisticsDayServiceImpl implements StatisticsDayService{
 	}
 	/**
 	 * 生成指定时间段的统计数据
-	 * @param date
 	 */
+	@Override
 	public void createStatisticsByDate(Date startDate,Date endDate){ 
 		Calendar cal = Calendar.getInstance(); 
 		List<Date> dates=new ArrayList<Date>();
@@ -188,6 +188,7 @@ public class StatisticsDayServiceImpl implements StatisticsDayService{
 	 * @param date
 	 * @return
 	 */
+	@Override
 	public int getTodayLoginNum(Date date){
 		return statisticsDayDao.getTodayLoginNum(date);
 	}
@@ -195,12 +196,14 @@ public class StatisticsDayServiceImpl implements StatisticsDayService{
 	/**
 	 * 获取日期的注册人数
 	 */
+	@Override
 	public int getTodayRegisteredNum(Date date) {
 		return statisticsDayDao.getTodayRegisteredNum(date);
 	}
 	/**
 	 * 获取日期的订单数
 	 */
+	@Override
 	public Map<String, Object> getTodayOrderNum(Date date) {
 		return statisticsDayDao.getTodayOrderNum(date);
 	}

@@ -19,63 +19,63 @@ import java.util.Map;
 @Repository("userDao")
 public class UserDaoImpl extends GenericDaoImpl implements UserDao{
 
-	
+	@Override
 	public int createUser(User user) {
 		this.insert("UserMapper.createUser", user);
 		return user.getUserId();
 	}
 
-	
+	@Override
 	public User queryUserById(int userId) {
 		return this.selectOne("UserMapper.queryUserById", userId);
 	}
 
-	
+	@Override
 	public int checkMobile(String mobile) {
 		return this.selectOne("UserMapper.checkMobile", mobile);
 	}
 
-	
+	@Override
 	public int checkEmail(String email) {
 		return this.selectOne("UserMapper.checkEmail", email);
 	}
 
-	
+	@Override
 	public User getLoginUser(Map<String, Object> map) {
 		return this.selectOne("UserMapper.getLoginUser", map);
 	}
 
-	
+	@Override
 	public void updateUserPwd(User user) {
 		this.update("UserMapper.updateUserPwd", user);
 	}
 
-	
+	@Override
 	public List<User> queryUserListPage(QueryUser query, PageEntity page) {
 		return this.queryForListPage("UserMapper.queryUserListPage", query, page);
 	}
 
-	
+	@Override
 	public void updateUserStates(User user) {
 		this.update("UserMapper.updateUserStates", user);
 	}
 
-	
+	@Override
 	public void updateUser(User user) {
 		this.update("UserMapper.updateUser", user);
 	}
 
-	
+	@Override
 	public void updateImg(User user) {
 		this.update("UserMapper.updateImg", user);
 	}
 
-	
+	@Override
 	public int queryAllUserCount() {
 		return this.selectOne("UserMapper.queryAllUserCount", null);
 	}
 
-	
+	@Override
 	public User queryUserByEmailOrMobile(String emailOrMobile) {
 		return this.selectOne("UserMapper.queryUserByEmailOrMobile", emailOrMobile);
 	}
@@ -90,6 +90,7 @@ public class UserDaoImpl extends GenericDaoImpl implements UserDao{
      * 通过标识更新未读数加一
      * 
      */
+	@Override
     public void updateUnReadMsgNumAddOne(String falg,Long cusId){
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("falg", falg);
@@ -101,6 +102,7 @@ public class UserDaoImpl extends GenericDaoImpl implements UserDao{
      * 通过标识更新未读数清零
      * 
      */
+	@Override
     public void updateUnReadMsgNumReset(String falg,Long cusId){
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("falg", falg);

@@ -15,7 +15,6 @@ public interface StatisticsDayService {
 
 	 /**
      * 定时添加StatisticsDay
-     * @param date
      * @return
      */
     public void addStatisticsDayAuto();
@@ -30,22 +29,18 @@ public interface StatisticsDayService {
 	public Map<String, Object> getStatisticsMsg(String month, String year);
 	/**
 	 * 查询最近30条的统计数据
-	 * @param date
 	 */
 	public List<StatisticsDay> getStatisticThirty(int days);
 	/**
 	 * 查询指定时间段的统计数据
-	 * @param date
 	 */
 	public List<StatisticsDay> getStatisticsByDate(String startTime, String endTime);
 	/**
 	 * 删除指定时间段的统计数据
-	 * @param date
 	 */
 	public void delStatisticsByDate(String startTime, String endTime);
 	/**
 	 * 生成指定时间段的统计数据
-	 * @param date
 	 */
 	public void createStatisticsByDate(Date startTime, Date endTime);
 

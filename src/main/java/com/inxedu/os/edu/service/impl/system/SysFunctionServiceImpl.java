@@ -19,20 +19,23 @@ public class SysFunctionServiceImpl implements SysFunctionService{
 
 	@Autowired
 	private SysFunctionDao sysFunctionDao;
-	
+
+	@Override
 	public List<SysFunction> queryAllSysFunction() {
 		return sysFunctionDao.queryAllSysFunction();
 	}
-	
+
+	@Override
 	public int cresateSysFunction(SysFunction sysFunction) {
 		return sysFunctionDao.cresateSysFunction(sysFunction);
 	}
-	
+
+	@Override
 	public void updateFunction(SysFunction sysFunction) {
 		sysFunctionDao.updateFunction(sysFunction);
 		
 	}
-	
+	@Override
 	public void updateFunctionParentId(int parentId, int functionId) {
 		Map<String,Object> paramrs=new HashMap<String, Object>();
 		paramrs.put("parentId", parentId);
@@ -40,7 +43,8 @@ public class SysFunctionServiceImpl implements SysFunctionService{
 		sysFunctionDao.updateFunctionParentId(paramrs);
 		
 	}
-	
+
+	@Override
 	public void deleteFunctionByIds(String ids) {
 		if(ids!=null && ids.trim().length()>0){
 			if(ids.trim().endsWith(",")){
@@ -49,8 +53,8 @@ public class SysFunctionServiceImpl implements SysFunctionService{
 			sysFunctionDao.deleteFunctionByIds(ids);
 		}
 	}
-	
-	
+
+	@Override
 	public List<SysFunction> querySysUserFunction(int userId) {
 		return sysFunctionDao.querySysUserFunction(userId);
 	}

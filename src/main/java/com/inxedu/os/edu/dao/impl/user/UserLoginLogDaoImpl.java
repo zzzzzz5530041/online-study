@@ -16,13 +16,13 @@ import com.inxedu.os.edu.entity.user.UserLoginLog;
 @Repository("userLoginLogDao")
 public class UserLoginLogDaoImpl extends GenericDaoImpl implements UserLoginLogDao {
 
-	
+	@Override
 	public int createLoginLog(UserLoginLog loginLog) {
 		this.insert("UserLoginLogMapper.createLoginLog", loginLog);
 		return loginLog.getLogId();
 	}
 
-	
+	@Override
 	public List<UserLoginLog> queryUserLogPage(int userId, PageEntity page) {
 		return this.queryForListPage("UserLoginLogMapper.queryUserLogPage", userId, page);
 	}

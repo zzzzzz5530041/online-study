@@ -19,11 +19,13 @@ public class UserLoginLogServiceImpl implements UserLoginLogService{
 
 	@Autowired
 	private UserLoginLogDao userLoginLogDao;
-	
+
+	@Override
 	public int createLoginLog(UserLoginLog loginLog) {
 		return userLoginLogDao.createLoginLog(loginLog);
 	}
-	
+
+	@Override
 	public List<UserLoginLog> queryUserLogPage(int userId, PageEntity page) {
 		return userLoginLogDao.queryUserLogPage(userId, page);
 	}

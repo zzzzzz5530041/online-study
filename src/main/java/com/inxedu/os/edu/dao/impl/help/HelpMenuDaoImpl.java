@@ -18,6 +18,7 @@ public class HelpMenuDaoImpl extends GenericDaoImpl implements HelpMenuDao {
 	 * 查询所有一级菜单 
 	 * @return HelpMenu
 	 */
+    @Override
     public List<HelpMenu> getHelpMenuOne(){
     	return this.selectList("HelpMenuMapper.getHelpMenuOneAll", 0);
     }
@@ -25,6 +26,7 @@ public class HelpMenuDaoImpl extends GenericDaoImpl implements HelpMenuDao {
 	 * 根据一级菜单ID查询二级菜单 
 	 * @return HelpMenu
 	 */
+    @Override
 	public List<HelpMenu> getHelpMenuTwoByOne(Long id){
 		return this.selectList("HelpMenuMapper.getHelpMenuTwoByOneId", id);
 	}
@@ -32,6 +34,7 @@ public class HelpMenuDaoImpl extends GenericDaoImpl implements HelpMenuDao {
      * 删除菜单
      * @param id
      */
+    @Override
     public void delHelpMenuById(Long id){
     	this.delete("HelpMenuMapper.delHelpMenuById", id);
     }
@@ -39,6 +42,7 @@ public class HelpMenuDaoImpl extends GenericDaoImpl implements HelpMenuDao {
      * 更新菜单
      * @param helpMenu
      */
+    @Override
     public void updateHelpMenuById(HelpMenu helpMenu){
     	this.update("HelpMenuMapper.updateHelpMenuById", helpMenu);
     }
@@ -47,6 +51,7 @@ public class HelpMenuDaoImpl extends GenericDaoImpl implements HelpMenuDao {
      * @param helpMenu
      * @return id
      */
+    @Override
     public Long createHelpMenu(HelpMenu helpMenu){
     	return this.insert("HelpMenuMapper.createHelpMenu", helpMenu);
     }
@@ -55,6 +60,7 @@ public class HelpMenuDaoImpl extends GenericDaoImpl implements HelpMenuDao {
      * @param id
      * @return
      */
+    @Override
     public HelpMenu getHelpMenuById(Long id){
     	return this.selectOne("HelpMenuMapper.getHelpMenuById", id);
     }

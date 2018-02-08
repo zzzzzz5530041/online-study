@@ -25,6 +25,7 @@ public class MsgSystemServiceImpl implements MsgSystemService {
     @Autowired
     private MsgReceiveService msgReceiveService;
 
+    @Override
     public Long addMsgSystem(MsgSystem msgSystem) throws Exception {
         return msgSystemDao.addMsgSystem(msgSystem);
     }
@@ -34,6 +35,7 @@ public class MsgSystemServiceImpl implements MsgSystemService {
      * @param msgSystem
      * @throws Exception
      */
+    @Override
     public List<MsgSystem> queryMsgSystemList(MsgSystem msgSystem, PageEntity page) throws Exception {
         return msgSystemDao.queryMsgSystemList(msgSystem, page);
     }
@@ -43,6 +45,7 @@ public class MsgSystemServiceImpl implements MsgSystemService {
      * @return
      * @throws Exception
      */
+    @Override
     public void delMsgSystemById(String ids) throws Exception {
         msgSystemDao.delMsgSystemById(ids);
     }
@@ -51,6 +54,7 @@ public class MsgSystemServiceImpl implements MsgSystemService {
      * 查询大于传入的时间的系统系统消息
      * @throws Exception
      */
+    @Override
     public List<MsgSystem> queryMSListByLT(Date lastTime) throws Exception {
         return msgSystemDao.queryMSListByLT(lastTime);
     }
@@ -59,6 +63,7 @@ public class MsgSystemServiceImpl implements MsgSystemService {
      * 检查系统消息过期更新字段 删除过期的站内信
      * @throws Exception
      */
+    @Override
     public void updatePast() throws Exception {
         SimpleDateFormat dft = new SimpleDateFormat("yyyy-MM-dd");
         Date beginDate = new Date();

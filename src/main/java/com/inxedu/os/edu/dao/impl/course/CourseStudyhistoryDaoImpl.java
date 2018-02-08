@@ -16,26 +16,32 @@ import java.util.List;
  @Repository("courseStudyhistoryDao")
 public class CourseStudyhistoryDaoImpl extends GenericDaoImpl implements CourseStudyhistoryDao{
 
+    @Override
     public Long addCourseStudyhistory(CourseStudyhistory courseStudyhistory) {
         return this.insert("CourseStudyhistoryMapper.createCourseStudyhistory",courseStudyhistory);
     }
 
+    @Override
     public void deleteCourseStudyhistoryById(Long id){
         this.delete("CourseStudyhistoryMapper.deleteCourseStudyhistoryById",id);
     }
 
+    @Override
     public void updateCourseStudyhistory(CourseStudyhistory courseStudyhistory) {
         this.update("CourseStudyhistoryMapper.updateCourseStudyhistory",courseStudyhistory);
     }
 
+    @Override
     public List<CourseStudyhistory> getCourseStudyhistoryList(CourseStudyhistory courseStudyhistory) {
         return this.selectList("CourseStudyhistoryMapper.getCourseStudyhistoryList",courseStudyhistory);
     }
 
+    @Override
 	public List<CourseStudyhistory> getCourseStudyhistoryListByCouId(Long courseId) {
 		return this.selectList("CourseStudyhistoryMapper.getCourseStudyhistoryListByCouId", courseId);
 	}
 
+    @Override
 	public int getCourseStudyhistoryCountByCouId(Long courseId) {
 		return (Integer)this.selectOne("CourseStudyhistoryMapper.getCourseStudyhistoryCountByCouId", courseId);
 	}

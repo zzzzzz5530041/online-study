@@ -14,10 +14,33 @@ import java.util.List;
  */
 public class SmsBatchThread implements Runnable{
     private String content;
-    @Getter
-    private static int sumNum=0;
-    @Getter
-    private static List<String> list = new ArrayList();
+    private  int sumNum=0;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getSumNum() {
+        return sumNum;
+    }
+
+    public void setSumNum(int sumNum) {
+        this.sumNum = sumNum;
+    }
+
+    public List<String> getList() {
+        return list;
+    }
+
+    public void setList(List<String> list) {
+        this.list = list;
+    }
+
+    private  List<String> list = new ArrayList();
     public SmsBatchThread(List<String> list,String content) {
         this.content = content;
         this.list.addAll(list);

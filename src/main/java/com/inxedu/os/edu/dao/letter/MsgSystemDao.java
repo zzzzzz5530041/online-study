@@ -16,7 +16,6 @@ public interface MsgSystemDao {
     /**
      * 添加系统消息
      *
-     * @param msgSender
      * @return
      * @throws Exception
      */

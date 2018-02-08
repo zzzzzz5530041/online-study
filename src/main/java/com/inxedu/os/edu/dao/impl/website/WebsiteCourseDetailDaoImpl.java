@@ -20,27 +20,27 @@ import com.inxedu.os.edu.entity.website.WebsiteCourseDetailDTO;
  @Repository("websiteCourseDetailDao")
 public class WebsiteCourseDetailDaoImpl extends GenericDaoImpl implements WebsiteCourseDetailDao {
 
-	
+	@Override
 	public void createWebsiteCourseDetail(String detail) {
 		this.insert("WebsiteCourseDetailMapper.createWebsiteCourseDetail", detail);
 	}
 
-	
+	@Override
 	public List<WebsiteCourseDetailDTO> queryCourseDetailPage(WebsiteCourseDetailDTO dto, PageEntity page) {
 		return this.queryForListPage("WebsiteCourseDetailMapper.queryCourseDetailPage", dto, page);
 	}
 
-	
+	@Override
 	public void deleteDetailById(int id) {
 		this.delete("WebsiteCourseDetailMapper.deleteDetailById", id);
 	}
 
-	
+	@Override
 	public void updateSort(Map<String, Integer> map) {
 		this.update("WebsiteCourseDetailMapper.updateSort", map);
 	}
 
-	
+	@Override
 	public List<WebsiteCourseDetail> queryDetailListByrecommendId(int recommendId) {
 		return this.selectList("WebsiteCourseDetailMapper.queryDetailListByrecommendId", recommendId);
 	}

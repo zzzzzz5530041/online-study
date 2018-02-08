@@ -4,19 +4,17 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author www.inxedu.com
  *
  */
-@Data
 @EqualsAndHashCode(callSuper = false)
 public class StatisticsDay implements Serializable{
+
+    private static final long serialVersionUID = -1667710529821277065L;
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
 	 * 主键id
 	 */
 	private Long id;
@@ -48,4 +46,68 @@ public class StatisticsDay implements Serializable{
      * 每日课程数
      */
     private Long dailyCourseNumber;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getStatisticsTime() {
+        return statisticsTime;
+    }
+
+    public void setStatisticsTime(Date statisticsTime) {
+        this.statisticsTime = statisticsTime;
+    }
+
+    public Long getLoginNum() {
+        return loginNum;
+    }
+
+    public void setLoginNum(Long loginNum) {
+        this.loginNum = loginNum;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Long getRegisteredNum() {
+        return registeredNum;
+    }
+
+    public void setRegisteredNum(Long registeredNum) {
+        this.registeredNum = registeredNum;
+    }
+
+    public Long getVideoViewingNum() {
+        return videoViewingNum;
+    }
+
+    public void setVideoViewingNum(Long videoViewingNum) {
+        this.videoViewingNum = videoViewingNum;
+    }
+
+    public Long getDailyUserNumber() {
+        return dailyUserNumber;
+    }
+
+    public void setDailyUserNumber(Long dailyUserNumber) {
+        this.dailyUserNumber = dailyUserNumber;
+    }
+
+    public Long getDailyCourseNumber() {
+        return dailyCourseNumber;
+    }
+
+    public void setDailyCourseNumber(Long dailyCourseNumber) {
+        this.dailyCourseNumber = dailyCourseNumber;
+    }
 }

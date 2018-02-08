@@ -16,13 +16,13 @@ import java.util.List;
 @Repository("sysUserLoginLogDao")
 public class SysUserLoginLogDaoImpl extends GenericDaoImpl implements SysUserLoginLogDao {
 
-	
+	@Override
 	public int createLoginLog(SysUserLoginLog loginLog) {
 		this.insert("SysUserLoginLogMapper.createLoginLog", loginLog);
 		return loginLog.getLogId();
 	}
 
-	
+	@Override
 	public List<SysUserLoginLog> queryUserLogPage(int userId, PageEntity page) {
 		return this.queryForListPage("SysUserLoginLogMapper.queryUserLogPage", userId, page);
 	}

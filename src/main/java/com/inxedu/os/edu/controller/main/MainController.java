@@ -249,6 +249,7 @@ public class MainController extends BaseController{
 
 		//按sort排序
 		Collections.sort(childFunction, new Comparator<SysFunction>() {
+			@Override
 			public int compare(SysFunction arg0, SysFunction arg1) {
 				if(arg0.getSort()>arg1.getSort()){
 					return -1;

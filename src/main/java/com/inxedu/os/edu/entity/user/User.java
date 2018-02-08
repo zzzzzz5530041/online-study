@@ -11,7 +11,8 @@ import java.util.Date;
  */
 @Data
 public class User implements Serializable{
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 4148293496557689873L;
 	/**学员ID*/
 	private int userId;
 	/**手机号*/
@@ -42,6 +43,134 @@ public class User implements Serializable{
 	private int sysMsgNum;
     /**上传统计系统消息时间*/
     private Date lastSystemTime;
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getShowName() {
+		return showName;
+	}
+
+	public void setShowName(String showName) {
+		this.showName = showName;
+	}
+
+	public int getSex() {
+		return sex;
+	}
+
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public int getIsavalible() {
+		return isavalible;
+	}
+
+	public void setIsavalible(int isavalible) {
+		this.isavalible = isavalible;
+	}
+
+	public String getPicImg() {
+		return picImg;
+	}
+
+	public void setPicImg(String picImg) {
+		this.picImg = picImg;
+	}
+
+	public String getBannerUrl() {
+		return bannerUrl;
+	}
+
+	public void setBannerUrl(String bannerUrl) {
+		this.bannerUrl = bannerUrl;
+	}
+
+	public int getMsgNum() {
+		return msgNum;
+	}
+
+	public void setMsgNum(int msgNum) {
+		this.msgNum = msgNum;
+	}
+
+	public int getSysMsgNum() {
+		return sysMsgNum;
+	}
+
+	public void setSysMsgNum(int sysMsgNum) {
+		this.sysMsgNum = sysMsgNum;
+	}
+
+	public Date getLastSystemTime() {
+		return lastSystemTime;
+	}
+
+	public void setLastSystemTime(Date lastSystemTime) {
+		this.lastSystemTime = lastSystemTime;
+	}
+
+	public long getLoginTimeStamp() {
+		return loginTimeStamp;
+	}
+
+	public void setLoginTimeStamp(long loginTimeStamp) {
+		this.loginTimeStamp = loginTimeStamp;
+	}
 
 	private long loginTimeStamp;//登录时的当前时间戳
 }

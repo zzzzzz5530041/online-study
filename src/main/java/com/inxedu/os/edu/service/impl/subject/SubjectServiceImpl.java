@@ -21,14 +21,17 @@ public class SubjectServiceImpl implements SubjectService {
 	@Autowired
 	private SubjectDao subjectDao;
 
+	@Override
 	public int createSubject(Subject subject) {
 		return subjectDao.createSubject(subject);
 	}
 
+	@Override
 	public List<Subject> getSubjectList(QuerySubject query) {
 		return subjectDao.getSubjectList(query);
 	}
 
+	@Override
 	public void updateSubjectParentId(int subjectId, int parentId) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("subjectId", subjectId);
@@ -36,16 +39,19 @@ public class SubjectServiceImpl implements SubjectService {
 		subjectDao.updateSubjectParentId(map);
 	}
 
+	@Override
 	public void updateSubject(Subject subject) {
 		subjectDao.updateSubject(subject);
 	}
 	/**
 	 * 修改排序
 	 */
+	@Override
 	public void updateSubjectSort(Subject subject){
 		subjectDao.updateSubjectSort(subject);
 	}
 
+	@Override
 	public void deleteSubject(int subjectId) {
 		subjectDao.deleteSubject(subjectId);
 	}

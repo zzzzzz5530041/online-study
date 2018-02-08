@@ -25,6 +25,7 @@ public class HelpMenuServiceImpl implements HelpMenuService {
 	 * 查询所有菜单 
 	 * @return HelpMenu
 	 */
+	@Override
     public List<List<HelpMenu>> getHelpMenuAll(){
     	@SuppressWarnings("unchecked")
 		List<List<HelpMenu>> helpMenus=(List<List<HelpMenu>>) EHCacheUtil.get(CacheConstans.HELP_CENTER);
@@ -53,6 +54,7 @@ public class HelpMenuServiceImpl implements HelpMenuService {
 	 * 查询所有一级菜单 
 	 * @return helpMenu
 	 */
+	@Override
     public List<HelpMenu> getHelpMenuOne(){
     	return helpMenuDao.getHelpMenuOne();
     }
@@ -60,6 +62,7 @@ public class HelpMenuServiceImpl implements HelpMenuService {
 	 * 根据一级菜单ID查询二级菜单 
 	 * @return helpMenu
 	 */
+	@Override
 	public List<HelpMenu> getHelpMenuTwoByOne(Long id){
 		return helpMenuDao.getHelpMenuTwoByOne(id);
 	}
@@ -67,6 +70,7 @@ public class HelpMenuServiceImpl implements HelpMenuService {
      * 删除菜单
      * @param id
      */
+	@Override
     public void delHelpMenuById(Long id){
     	helpMenuDao.delHelpMenuById(id);
     	EHCacheUtil.remove(CacheConstans.HELP_CENTER);
@@ -75,6 +79,7 @@ public class HelpMenuServiceImpl implements HelpMenuService {
      * 更新菜单
      * @param helpMenu
      */
+	@Override
     public void updateHelpMenuById(HelpMenu helpMenu){
     	helpMenuDao.updateHelpMenuById(helpMenu);
 		EHCacheUtil.remove(CacheConstans.HELP_CENTER);
@@ -84,6 +89,7 @@ public class HelpMenuServiceImpl implements HelpMenuService {
      * @param helpMenu
      * @return id
      */
+	@Override
     public Long createHelpMenu(HelpMenu helpMenu){
 		EHCacheUtil.remove(CacheConstans.HELP_CENTER);
     	return helpMenuDao.createHelpMenu(helpMenu);
@@ -94,6 +100,7 @@ public class HelpMenuServiceImpl implements HelpMenuService {
      * @param id
      * @return
      */
+	@Override
     public HelpMenu getHelpMenuById(Long id){
     	return helpMenuDao.getHelpMenuById(id);
     }

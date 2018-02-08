@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class IntercepterWebLogin extends HandlerInterceptorAdapter{
 
-
+	@Override
 	public boolean preHandle(HttpServletRequest request,
 							 HttpServletResponse response, Object handler) throws Exception {
 		User user = SingletonLoginUtils.getLoginUser(request);
@@ -25,7 +25,7 @@ public class IntercepterWebLogin extends HandlerInterceptorAdapter{
 		return true;
 	}
 
-
+	@Override
 	public void postHandle(HttpServletRequest request,
 						   HttpServletResponse response, Object handler,
 						   ModelAndView modelAndView) throws Exception {
@@ -33,7 +33,7 @@ public class IntercepterWebLogin extends HandlerInterceptorAdapter{
 		super.postHandle(request, response, handler, modelAndView);
 	}
 
-
+	@Override
 	public void afterCompletion(HttpServletRequest request,
 								HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
@@ -41,7 +41,7 @@ public class IntercepterWebLogin extends HandlerInterceptorAdapter{
 		super.afterCompletion(request, response, handler, ex);
 	}
 
-
+	@Override
 	public void afterConcurrentHandlingStarted(HttpServletRequest request,
 											   HttpServletResponse response, Object handler) throws Exception {
 		// TODO Auto-generated method stub

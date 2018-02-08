@@ -17,12 +17,12 @@ public class CourseTeacherServiceImpl implements CourseTeacherService {
  	@Autowired
     private CourseTeacherDao courseTeacherDao;
 
-	
+	@Override
 	public void addCourseTeacher(String value) {
 		courseTeacherDao.addCourseTeacher(value);
 	}
 
-	
+	@Override
 	public void deleteCourseTeacher(int courseId) {
 		courseTeacherDao.deleteCourseTeacher(courseId);
 	}

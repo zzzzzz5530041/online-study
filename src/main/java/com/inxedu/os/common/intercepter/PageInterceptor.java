@@ -32,6 +32,7 @@ public class PageInterceptor implements Interceptor {
     public PageInterceptor() {
     }
 
+    @Override
     public Object intercept(Invocation invocation) throws Throwable {
         MappedStatement mappedStatement = (MappedStatement)invocation.getArgs()[0];
         Object parameter = invocation.getArgs()[1];
@@ -120,10 +121,12 @@ public class PageInterceptor implements Interceptor {
         return "SELECT COUNT(*) FROM (" + sql + ") aliasForPage";
     }
 
+    @Override
     public Object plugin(Object target) {
         return Plugin.wrap(target, this);
     }
 
+    @Override
     public void setProperties(Properties properties) {
     }
 
@@ -134,6 +137,7 @@ public class PageInterceptor implements Interceptor {
             this.boundSql = boundSql;
         }
 
+        @Override
         public BoundSql getBoundSql(Object parameterObject) {
             return this.boundSql;
         }

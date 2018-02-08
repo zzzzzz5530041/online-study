@@ -17,28 +17,35 @@ import com.inxedu.os.edu.entity.subject.Subject;
 @Repository("subjectDao")
 public class SubjectDaoImpl extends GenericDaoImpl implements SubjectDao {
 
+	@Override
 	public int createSubject(Subject subject) {
 		this.insert("SubjectMapper.createSubject", subject);
 		return subject.getSubjectId();
 	}
 
+	@Override
 	public List<Subject> getSubjectList(QuerySubject query) {
 		return this.selectList("SubjectMapper.getSubjectList", query);
 	}
 
+	@Override
 	public void updateSubjectParentId(Map<String, Object> map) {
 		this.update("SubjectMapper.updateSubjectParentId", map);
 	}
 
+	@Override
 	public void updateSubject(Subject subject) {
 		this.update("SubjectMapper.updateSubject", subject);
 	}
 	/**
 	 * 修改排序
 	 */
+	@Override
 	public void updateSubjectSort(Subject subject){
 		this.update("SubjectMapper.updateSubjectSort", subject);
 	}
+
+	@Override
 	public void deleteSubject(int subjectId) {
 		this.update("SubjectMapper.deleteSubject", subjectId);
 	}

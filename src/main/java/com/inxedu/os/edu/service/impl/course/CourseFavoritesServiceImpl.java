@@ -21,16 +21,18 @@ public class CourseFavoritesServiceImpl implements CourseFavoritesService {
 
 	@Autowired
 	private CourseFavoritesDao courseFavoritesDao;
-	
+
+	@Override
 	public void createCourseFavorites(CourseFavorites cf) {
 		courseFavoritesDao.createCourseFavorites(cf);
 	}
-	
+
+	@Override
 	public void deleteCourseFavoritesById(String ids) {
 		courseFavoritesDao.deleteCourseFavoritesById(ids);
 	}
 
-	
+	@Override
 	public boolean checkFavorites(int userId, int courseId) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
@@ -42,7 +44,7 @@ public class CourseFavoritesServiceImpl implements CourseFavoritesService {
 		return false;
 	}
 
-	
+	@Override
 	public List<FavouriteCourseDTO> queryFavoritesPage(int userId,PageEntity page) {
 		return courseFavoritesDao.queryFavoritesPage(userId, page);
 	}

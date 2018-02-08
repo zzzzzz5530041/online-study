@@ -16,50 +16,50 @@ import java.util.Map;
  */
 @Repository("sysUserDao")
 public class SysUserDaoImpl extends GenericDaoImpl implements SysUserDao{
-	
-	
+
+	@Override
 	public int createSysUser(SysUser sysuser) {
 		this.insert("SysUserMapper.createSysUser", sysuser);
 		return sysuser.getUserId();
 	}
 
-	
+	@Override
 	public void updateSysUser(SysUser sysuser) {
 		this.update("SysUserMapper.updateSysUser", sysuser);
 	}
 
-	
+	@Override
 	public SysUser querySysUserByUserId(int userId) {
 		return this.selectOne("SysUserMapper.querySysUserByUserId", userId);
 	}
 
-	
+	@Override
 	public List<SysUser> querySysUserPage(QuerySysUser querySysUser,
 			PageEntity page) {
 		return this.queryForListPage("SysUserMapper.querySysUserPage", querySysUser, page);
 	}
 
-	
+	@Override
 	public int validateLoginName(String userLoginName) {
 		return this.selectOne("SysUserMapper.validateLoginName", userLoginName);
 	}
 
-	
+	@Override
 	public SysUser queryLoginUser(SysUser sysUser) {
 		return this.selectOne("SysUserMapper.queryLoginUser", sysUser);
 	}
 
-	
+	@Override
 	public void updateUserPwd(SysUser sysUser) {
 		this.update("SysUserMapper.updateUserPwd", sysUser);
 	}
 
-	
+	@Override
 	public void updateDisableOrstartUser(Map<String, Object> map) {
 		this.update("SysUserMapper.updateDisableOrstartUser", map);
 	}
 
-	
+	@Override
 	public void updateUserLoginLog(Map<String, Object> map) {
 		this.update("SysUserMapper.updateUserLoginLog", map);
 	}

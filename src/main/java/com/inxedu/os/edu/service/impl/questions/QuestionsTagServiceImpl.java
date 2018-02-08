@@ -20,17 +20,17 @@ public class QuestionsTagServiceImpl implements QuestionsTagService {
     @Autowired
     private QuestionsTagDao questionsTagDao;
 
-	
+	@Override
 	public int createQuestionsTag(QuestionsTag questionsTag) {
 		return questionsTagDao.createQuestionsTag(questionsTag);
 	}
 
-	
+	@Override
 	public List<QuestionsTag> getQuestionsTagList(QuestionsTag query) {
 		return questionsTagDao.getQuestionsTagList(query);
 	}
 
-	
+	@Override
 	public void updateQuestionsTagParentId(int questionsTagId, int parentId) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("questionsTagId", questionsTagId);
@@ -38,12 +38,12 @@ public class QuestionsTagServiceImpl implements QuestionsTagService {
 		questionsTagDao.updateQuestionsTagParentId(map);
 	}
 
-	
+	@Override
 	public void updateQuestionsTag(QuestionsTag questionsTag) {
 		questionsTagDao.updateQuestionsTag(questionsTag);
 	}
 
-	
+	@Override
 	public void deleteQuestionsTag(int questionsTagId) {
 		questionsTagDao.deleteQuestionsTag(questionsTagId);
 	}

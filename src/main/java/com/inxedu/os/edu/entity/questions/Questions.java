@@ -12,9 +12,8 @@ import lombok.Data;
  * 问答
  * @author www.inxedu.com
  */
-@Data
 public class Questions implements Serializable {
-	private static final long serialVersionUID = 7687324559966427231L;
+    private static final long serialVersionUID = 7164486172128536474L;
     private Long id;// 主键
     private Long cusId;// 创建者
     private String title;// 标题
@@ -36,6 +35,171 @@ public class Questions implements Serializable {
     private Long questionsTagId;//问答标签id
     private Date beginCreateTime;//查询 开始添加时间
     private Date endCreateTime;//查询 结束添加时间
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getCusId() {
+        return cusId;
+    }
+
+    public void setCusId(Long cusId) {
+        this.cusId = cusId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getReplyCount() {
+        return replyCount;
+    }
+
+    public void setReplyCount(int replyCount) {
+        this.replyCount = replyCount;
+    }
+
+    public int getBrowseCount() {
+        return browseCount;
+    }
+
+    public void setBrowseCount(int browseCount) {
+        this.browseCount = browseCount;
+    }
+
+    public int getPraiseCount() {
+        return praiseCount;
+    }
+
+    public void setPraiseCount(int praiseCount) {
+        this.praiseCount = praiseCount;
+    }
+
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public String getOrderFalg() {
+        return orderFalg;
+    }
+
+    public void setOrderFalg(String orderFalg) {
+        this.orderFalg = orderFalg;
+    }
+
+    public String getModelTime() {
+        return modelTime;
+    }
+
+    public void setModelTime(String modelTime) {
+        this.modelTime = modelTime;
+    }
+
+    public String getShowName() {
+        return showName;
+    }
+
+    public void setShowName(String showName) {
+        this.showName = showName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPicImg() {
+        return picImg;
+    }
+
+    public void setPicImg(String picImg) {
+        this.picImg = picImg;
+    }
+
+    public List<QuestionsComment> getQuestionsCommentList() {
+        return questionsCommentList;
+    }
+
+    public void setQuestionsCommentList(List<QuestionsComment> questionsCommentList) {
+        this.questionsCommentList = questionsCommentList;
+    }
+
+    public List<QuestionsTagRelation> getQuestionsTagRelationList() {
+        return questionsTagRelationList;
+    }
+
+    public void setQuestionsTagRelationList(List<QuestionsTagRelation> questionsTagRelationList) {
+        this.questionsTagRelationList = questionsTagRelationList;
+    }
+
+    public Long getQuestionsTagId() {
+        return questionsTagId;
+    }
+
+    public void setQuestionsTagId(Long questionsTagId) {
+        this.questionsTagId = questionsTagId;
+    }
+
+    public Date getBeginCreateTime() {
+        return beginCreateTime;
+    }
+
+    public void setBeginCreateTime(Date beginCreateTime) {
+        this.beginCreateTime = beginCreateTime;
+    }
+
+    public Date getEndCreateTime() {
+        return endCreateTime;
+    }
+
+    public void setEndCreateTime(Date endCreateTime) {
+        this.endCreateTime = endCreateTime;
+    }
+
+    public Long getCommentUserId() {
+        return commentUserId;
+    }
+
+    public void setCommentUserId(Long commentUserId) {
+        this.commentUserId = commentUserId;
+    }
+
     private Long commentUserId;//用于查询我的回答
     
     public void setAddTime(Date addTime) {
@@ -48,8 +212,9 @@ public class Questions implements Serializable {
 		if (oldDate!=null) {
 			Date newDate = new Date();
 			long second = (newDate.getTime() - oldDate.getTime()) / 1000L;
-			if (second <= 60L)
-				return second + "秒前";
+			if (second <= 60L) {
+                return second + "秒前";
+            }
 			if ((60L < second) && (second <= 3600L)) {
 				second /= 60L;
 				return second + "分钟前";

@@ -22,6 +22,7 @@ public class UserMobileMsgDaoImpl extends GenericDaoImpl implements UserMobileMs
      * @param page
      * @return
      */
+    @Override
     public List<UserMobileMsg> queryUserMobileMsgList(UserMobileMsg userMobileMsg, PageEntity page) {
         return this.queryForListPage("UserMobileMsgMapper.queryUserMobileMsgList", userMobileMsg, page);
     }
@@ -32,6 +33,7 @@ public class UserMobileMsgDaoImpl extends GenericDaoImpl implements UserMobileMs
      * @param id
      * @return
      */
+    @Override
     public UserMobileMsg queryUserMobileMsgById(Long id) {
         return this.selectOne("UserMobileMsgMapper.queryUserMobileMsgById", id);
     }
@@ -39,6 +41,7 @@ public class UserMobileMsgDaoImpl extends GenericDaoImpl implements UserMobileMs
     /**
      * 删除短信
      */
+    @Override
     public void delUserMobileMsg(Long id){
     	this.delete("UserMobileMsgMapper.delUserMobileMsg", id);
     }
@@ -47,6 +50,7 @@ public class UserMobileMsgDaoImpl extends GenericDaoImpl implements UserMobileMs
      * 修改短信
      * @param userMobileMsg
      */
+    @Override
     public void updateUserMobileMsg(UserMobileMsg userMobileMsg) {
 		this.update("UserMobileMsgMapper.updateUserMobileMsg", userMobileMsg);
 	}
@@ -55,6 +59,7 @@ public class UserMobileMsgDaoImpl extends GenericDaoImpl implements UserMobileMs
      * 添加发送用户短信记录
      * @return
      */
+    @Override
     public Long addUserMobileMsg(List<UserMobileMsg> userMobileMsgList) {
         return this.insert("UserMobileMsgMapper.addUserMobileMsg", userMobileMsgList);
     }
@@ -63,6 +68,7 @@ public class UserMobileMsgDaoImpl extends GenericDaoImpl implements UserMobileMs
      * 查询和当前时间相等的短信记录 发送
      * @return
      */
+    @Override
     public List<UserMobileMsg> queryNowMobileMsgList(Date nowDate){
     	return this.selectList("UserMobileMsgMapper.queryNowMobileMsgList", nowDate);
     }
@@ -70,6 +76,7 @@ public class UserMobileMsgDaoImpl extends GenericDaoImpl implements UserMobileMs
     /**
      * 修改短信发送状态
      */
+    @Override
     public void updateMsgStatus(Long id){
     	this.update("UserMobileMsgMapper.updateMsgStatus", id);
     }

@@ -52,6 +52,7 @@ public class MsgReceiveServiceImpl implements MsgReceiveService {
      * @return List<QueryMsgReceive> 站内信的list
      * @throws Exception
      */
+    @Override
     public List<QueryMsgReceive> queryMsgReceiveByInbox(MsgReceive msgReceive, PageEntity page) throws Exception {
     	//查询用户信息
    	    User user  = userService.queryUserById((Integer.parseInt(msgReceive.getReceivingCusId().toString())));
@@ -93,6 +94,7 @@ public class MsgReceiveServiceImpl implements MsgReceiveService {
     /**
      * 删除站内信过期消息
      */
+    @Override
     public Long delMsgReceivePast(Date time) throws Exception {
         return msgReceiveDao.delMsgReceivePast(time);
     }
@@ -103,6 +105,7 @@ public class MsgReceiveServiceImpl implements MsgReceiveService {
      * @param msgReceive 站内信实体 通过站内信的id
      * @throws Exception
      */
+    @Override
     public Long delMsgReceiveInbox(MsgReceive msgReceive) throws Exception {
         return msgReceiveDao.delMsgReceiveInbox(msgReceive);// 更新站内信的状态 删除收件箱
     }
@@ -113,6 +116,7 @@ public class MsgReceiveServiceImpl implements MsgReceiveService {
      * @param msgReceive 站内信实体
      * @throws Exception
      */
+    @Override
     public void updateAllReadMsgReceiveInbox(MsgReceive msgReceive) throws Exception {
         msgReceiveDao.updateAllReadMsgReceiveInbox(msgReceive);// 更新收件箱所有信为已读
     }
@@ -124,6 +128,7 @@ public class MsgReceiveServiceImpl implements MsgReceiveService {
      * @param cusId   用户id
      * @throws Exception
      */
+    @Override
     public String addSystemMessageByCusId(String content, Long cusId) throws Exception {
         
         User userExpandDto = userService.queryUserById(Integer.parseInt(cusId.toString()));
@@ -158,6 +163,7 @@ public class MsgReceiveServiceImpl implements MsgReceiveService {
      * @return 返回该用户四种类型每个的未读消息的数量和总的未读数量
      * @throws Exception
      */
+    @Override
     public Map<String, String> queryUnReadMsgReceiveNumByCusId(Long cusId) throws Exception {
         @SuppressWarnings("unchecked")
 		Map<String,String> map =new HashMap<String,String>();
@@ -188,6 +194,7 @@ public class MsgReceiveServiceImpl implements MsgReceiveService {
      * @param msgReceive 传入type 传入type和站内信收信人id
      * @throws Exception
      */
+    @Override
     public void updateAllMsgReceiveReadByType(MsgReceive msgReceive) throws Exception {
         msgReceiveDao.updateAllMsgReceiveReadByType(msgReceive);// 更新消息为已读
     }
@@ -197,6 +204,7 @@ public class MsgReceiveServiceImpl implements MsgReceiveService {
      *
      * @param msgReceiveList 消息的list
      */
+    @Override
     public Long addMsgReceiveBatch(List<MsgReceive> msgReceiveList) {
         return msgReceiveDao.addMsgReceiveBatch(msgReceiveList);
     }

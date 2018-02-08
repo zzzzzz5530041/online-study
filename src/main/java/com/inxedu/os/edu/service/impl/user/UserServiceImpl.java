@@ -35,16 +35,17 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserDao userDao;
 
+	@Override
 	public int createUser(User user) {
 		return userDao.createUser(user);
 	}
 
-	
+	@Override
 	public User queryUserById(int userId) {
 		return userDao.queryUserById(userId);
 	}
 
-	
+	@Override
 	public boolean checkMobile(String mobile) {
 		int count = userDao.checkMobile(mobile);
 		if(count>0){
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserService{
 		return false;
 	}
 
-	
+	@Override
 	public boolean checkEmail(String email) {
 		int count = userDao.checkEmail(email);
 		if(count>0){
@@ -62,7 +63,7 @@ public class UserServiceImpl implements UserService{
 		return false;
 	}
 
-	
+	@Override
 	public User getLoginUser(String account,String password) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("account", account);
@@ -70,44 +71,43 @@ public class UserServiceImpl implements UserService{
 		return userDao.getLoginUser(map);
 	}
 
-	
+	@Override
 	public void updateUserPwd(User user) {
 		userDao.updateUserPwd(user);
 		
 	}
 
-	
+	@Override
 	public List<User> queryUserListPage(QueryUser query, PageEntity page) {
 		return userDao.queryUserListPage(query, page);
 	}
 
-	
+	@Override
 	public void updateUserStates(User user) {
-		userDao.updateUserStates(user);
-		
+
 	}
 
-	
+	@Override
 	public void updateUser(User user) {
 		userDao.updateUser(user);
 	}
 
-	
+	@Override
 	public void updateImg(User user) {
 		userDao.updateImg(user);
 	}
 
-	
+	@Override
 	public int queryAllUserCount() {
 		return userDao.queryAllUserCount();
 	}
 
-	
+	@Override
 	public User queryUserByEmailOrMobile(String emailOrMobile) {
 		return userDao.queryUserByEmailOrMobile(emailOrMobile);
 	}
 
-
+	@Override
 	public Map<String, User> queryCustomerInCusIds(List<Long> cusIds) throws Exception {
 		if(ObjectUtils.isNotNull(cusIds)){
             Map<String, User> map = new HashMap<String, User>();
@@ -125,7 +125,7 @@ public class UserServiceImpl implements UserService{
         }
 	}
 
-
+	@Override
 	public Map<String, User> getUserExpandByUids(String uids) throws Exception {
 		String [] arrays=uids.split(",");
         List<Long> list = new ArrayList<Long>();
@@ -137,21 +137,22 @@ public class UserServiceImpl implements UserService{
         return queryCustomerInCusIds(list);
 	}
 
-
+	@Override
 	public void updateUnReadMsgNumAddOne(String falg, Long cusId) {
 		userDao.updateUnReadMsgNumAddOne(falg, cusId);
 	}
 
+	@Override
 	public void updateUnReadMsgNumReset(String falg, Long cusId) {
 		userDao.updateUnReadMsgNumReset(falg, cusId);
 	}
 
-
+	@Override
 	public void updateCusForLST(Long cusId, Date date) {
 		userDao.updateCusForLST(cusId, date);
 	}
 
-
+	@Override
 	public String updateImportExcel(HttpServletRequest request,MultipartFile myFile,Integer mark) throws Exception {
 		String msg="";
  		HSSFWorkbook wookbook = new HSSFWorkbook(myFile.getInputStream());
@@ -274,6 +275,7 @@ public class UserServiceImpl implements UserService{
 	/**
 	 * 缓存用户信息
 	 */
+	@Override
 	public void setLoginInfo(HttpServletRequest request, int userId,String autoThirty){
 		User user =this.queryUserById(userId);
 		//用户密码不能让别人看到
@@ -295,6 +297,7 @@ public class UserServiceImpl implements UserService{
 	 * @param page   分页参数
 	 * @return
 	 */
+	@Override
 	public List<User> getUserListPage(User user, PageEntity page) {
 		return userDao.getUserListPage(user, page);
 	}

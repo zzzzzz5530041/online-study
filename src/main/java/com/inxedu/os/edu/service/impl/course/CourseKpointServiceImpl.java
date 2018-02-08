@@ -20,27 +20,28 @@ public class CourseKpointServiceImpl implements CourseKpointService {
 
  	@Autowired
     private CourseKpointDao courseKpointDao;
- 	
+
+	@Override
     public int addCourseKpoint(CourseKpoint courseKpoint){
     	return courseKpointDao.addCourseKpoint(courseKpoint);
     }
 
-	
+	@Override
 	public List<CourseKpoint> queryCourseKpointByCourseId(int courseId) {
 		return courseKpointDao.queryCourseKpointByCourseId(courseId);
 	}
 
-	
+	@Override
 	public CourseKpointDto queryCourseKpointById(int kpointId) {
 		return courseKpointDao.queryCourseKpointById(kpointId);
 	}
 
-	
+	@Override
 	public void updateKpoint(CourseKpoint kpoint) {
 		courseKpointDao.updateKpoint(kpoint);
 	}
 
-	
+	@Override
 	public void deleteKpointByIds(String ids) {
 		if(ids!=null && ids.trim().length()>0){
 			if(ids.trim().endsWith(",")){
@@ -50,7 +51,7 @@ public class CourseKpointServiceImpl implements CourseKpointService {
 		}
 	}
 
-	
+	@Override
 	public void updateKpointParentId(int kpointId, int parentId) {
 		Map<String,Integer> map = new HashMap<String, Integer>();
 		map.put("kpointId", kpointId);

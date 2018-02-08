@@ -44,7 +44,7 @@ public class AdminCommentController extends BaseController {
 		try {
 			page.setPageSize(10);
 			//查询评论一级
-			comment.setPCommentId(0);
+			comment.setpCommentId(0);
 			List<Comment> commentList = commentService.getCommentByPage(comment, page);// 查询评论
 			request.setAttribute("commentList", commentList);// 评论list
 			request.setAttribute("comment", comment);// 查询评论条件

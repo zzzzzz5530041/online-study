@@ -14,41 +14,41 @@ import java.util.List;
 @Repository("sysRoleDao")
 public class SysRoleDaoImpl extends GenericDaoImpl implements SysRoleDao{
 
-	
+	@Override
 	public int createRoel(SysRole sysRole) {
 		this.insert("SysRoleMapper.createRoel", sysRole);
 		return sysRole.getRoleId();
 	}
 
-	
+	@Override
 	public void updateRole(SysRole sysRole) {
 		this.update("SysRoleMapper.updateRole", sysRole);
 	}
 
-	
+	@Override
 	public List<SysRole> queryAllRoleList() {
 		return this.selectList("SysRoleMapper.queryAllRoleList", null);
 	}
 
-	
+	@Override
 	public void deleteRoleByIds(String ids) {
 		this.delete("SysRoleMapper.deleteRoleByIds", ids);
 		
 	}
 
-	
+	@Override
 	public void deleteRoleFunctionByRoleId(int roleId) {
 		this.delete("SysRoleMapper.deleteRoleFunctionByRoleId", roleId);
 		
 	}
 
-	
+	@Override
 	public void createRoleFunction(String value) {
 		this.insert("SysRoleMapper.createRoleFunction", value);
 		
 	}
 
-	
+	@Override
 	public List<Integer> queryRoleFunctionIdByRoleId(int roleId) {
 		return this.selectList("SysRoleMapper.queryRoleFunctionIdByRoleId", roleId);
 	}

@@ -11,11 +11,13 @@ public class MySessionListener implements HttpSessionListener {
 	//全站在线人数
 	public static int num = 0;
 	//创建session的时候+1
+	@Override
 	public void sessionCreated(HttpSessionEvent event) {
 		num++;
 		System.out.println("全站在线人数:"+num);
 	}
 	//销毁session的时候-1
+	@Override
 	public void sessionDestroyed(HttpSessionEvent event) {
 		if(num>0){
 			num--;

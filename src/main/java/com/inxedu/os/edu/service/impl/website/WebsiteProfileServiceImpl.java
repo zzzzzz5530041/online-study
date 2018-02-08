@@ -26,7 +26,7 @@ public class WebsiteProfileServiceImpl implements WebsiteProfileService {
 	private WebsiteProfileDao websiteProfileDao;
 	private Gson gson=new Gson();
 
-	
+	@Override
 	public void updateWebsiteProfile(WebsiteProfile websiteProfile) throws Exception {
 		Map<String, Object> map = getWebsiteProfileByType(websiteProfile.getType());
 		//如果不存在则添加
@@ -37,8 +37,8 @@ public class WebsiteProfileServiceImpl implements WebsiteProfileService {
 		websiteProfileDao.updateWebsiteProfile(websiteProfile);
 		EHCacheUtil.remove(CacheConstans.WEBSITE_PROFILE+websiteProfile.getType());
 	}
-	
-	
+
+	@Override
 	public Map<String, Object> getWebsiteProfileList() throws Exception {
 		//获得所有配置
 		@SuppressWarnings("unchecked")
@@ -74,8 +74,8 @@ public class WebsiteProfileServiceImpl implements WebsiteProfileService {
 			return "";
 		}
 	}
-	
-	
+
+	@Override
 	public Map<String, Object> getWebsiteProfileByType(String type) {
 		//根据类型获得数据 从cache获取
 		String websiteProfileStr=(String) EHCacheUtil.get(CacheConstans.WEBSITE_PROFILE+type);

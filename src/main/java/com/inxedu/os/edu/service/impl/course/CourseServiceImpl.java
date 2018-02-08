@@ -26,22 +26,27 @@ public class CourseServiceImpl implements CourseService {
 	@Autowired
 	private CourseDao courseDao;
 
+	@Override
 	public int addCourse(Course course) {
 		return courseDao.addCourse(course);
 	}
 
+	@Override
 	public List<CourseDto> queryCourseListPage(QueryCourse query, PageEntity page) {
 		return courseDao.queryCourseListPage(query, page);
 	}
 
+	@Override
 	public Course queryCourseById(int courseId) {
 		return courseDao.queryCourseById(courseId);
 	}
 
+	@Override
 	public void updateCourse(Course course) {
 		courseDao.updateCourse(course);
 	}
 
+	@Override
 	public void updateAvaliableCourse(int courseId, int type) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("courseId", courseId);
@@ -50,6 +55,7 @@ public class CourseServiceImpl implements CourseService {
 
 	}
 
+	@Override
 	public Map<String, List<CourseDto>> queryRecommenCourseList() {
 		@SuppressWarnings("unchecked")
 		Map<String, List<CourseDto>> recMap = (Map<String, List<CourseDto>>) EHCacheUtil.get(CacheConstans.RECOMMEND_COURSE);
@@ -76,14 +82,17 @@ public class CourseServiceImpl implements CourseService {
 		return recMap;
 	}
 
+	@Override
 	public List<CourseDto> queryCourseList(QueryCourse query) {
 		return courseDao.queryCourseList(query);
 	}
 
+	@Override
 	public List<CourseDto> queryWebCourseListPage(QueryCourse queryCourse, PageEntity page) {
 		return courseDao.queryWebCourseListPage(queryCourse, page);
 	}
 
+	@Override
 	public List<CourseDto> queryInterfixCourseLis(int subjectId, int count, int courseId) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("count", count);
@@ -92,14 +101,17 @@ public class CourseServiceImpl implements CourseService {
 		return courseDao.queryInterfixCourseList(map);
 	}
 
+	@Override
 	public List<CourseDto> queryMyCourseList(int userId, PageEntity page) {
 		return courseDao.queryMyCourseList(userId, page);
 	}
 
+	@Override
 	public int queryAllCourseCount() {
 		return courseDao.queryAllCourseCount();
 	}
 
+	@Override
 	public List<Map<String, Object>> queryMyCourseListByMap(int userId, int count) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
@@ -107,10 +119,12 @@ public class CourseServiceImpl implements CourseService {
 		return courseDao.queryMyCourseListByMap(map);
 	}
 
+	@Override
 	public List<CourseDto> queryRecommenCourseListByRecommendId(Long recommendId, Long count) {
 		return courseDao.queryRecommenCourseListByRecommendId(recommendId, count);
 	}
 
+	@Override
 	public List<CourseDto> queryCourse(QueryCourse queryCourse) {
 		return courseDao.queryCourse(queryCourse);
 	}
@@ -120,6 +134,7 @@ public class CourseServiceImpl implements CourseService {
 	 * @param type pageViewcount浏览数 pageBuycount购买数
 	 * @param courseId 课程id
 	 */
+	@Override
 	public void updateCourseCount(String type,int courseId){
 		this.courseDao.updateCourseCount(type,courseId);
 	}

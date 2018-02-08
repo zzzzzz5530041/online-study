@@ -79,7 +79,7 @@ public class AppCourseController extends BaseController{
 			
 			/*================查询条件=================*/
 			QueryCourse queryCourse=new QueryCourse();
-			queryCourse.setIsavaliable(1);//1.正常课程2.删除课程
+			queryCourse.setIsavaliable(1);
 			queryCourse.setTeacherId(teacherId);//讲师Id
 			queryCourse.setCourseName(courseName);//课程名称
 			queryCourse.setSubjectId(subjectId);//专业Id

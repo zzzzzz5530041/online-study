@@ -27,42 +27,41 @@ public class WebsiteNavigateServiceImpl implements WebsiteNavigateService {
     private WebsiteNavigateDao websiteNavigateDao;
     private Gson gson=new Gson();
 
-    
+	@Override
 	public List<WebsiteNavigate> getWebsiteNavigate(WebsiteNavigate websiteNavigate){
 		return websiteNavigateDao.getWebsiteNavigate(websiteNavigate);
 	}
-    
-    
+
+	@Override
 	public void addWebsiteNavigate(WebsiteNavigate websiteNavigate){
 		websiteNavigateDao.addWebsiteNavigate(websiteNavigate);
 		EHCacheUtil.remove(CacheConstans.WEBSITE_NAVIGATE);
 	}
 
-    
+	@Override
 	public void freezeWebsiteNavigate(WebsiteNavigate websiteNavigate){
 		websiteNavigateDao.freezeWebsiteNavigate(websiteNavigate);
 		EHCacheUtil.remove(CacheConstans.WEBSITE_NAVIGATE);
 	}
 
-    
+	@Override
 	public void delWebsiteNavigate(int id){
 		websiteNavigateDao.delWebsiteNavigate(id);
 		EHCacheUtil.remove(CacheConstans.WEBSITE_NAVIGATE);
 	}
 
-    
+	@Override
 	public void updateWebsiteNavigate(WebsiteNavigate websiteNavigate){
 		websiteNavigateDao.updateWebsiteNavigate(websiteNavigate);
 		EHCacheUtil.remove(CacheConstans.WEBSITE_NAVIGATE);
 	}
-    
-    
+
+	@Override
 	public WebsiteNavigate getWebsiteNavigateById(int id){
 		return websiteNavigateDao.getWebsiteNavigateById(id);
 	}
-    
-    
-	@SuppressWarnings("unchecked")
+
+	@Override
 	public Map<String,Object> getWebNavigate(){
 		Map<String,Object> navigateMap=new HashMap<String, Object>();
 		Map<String,List<String>> navigatesMapJson= (Map<String, List<String>>) EHCacheUtil.get(CacheConstans.WEBSITE_NAVIGATE);

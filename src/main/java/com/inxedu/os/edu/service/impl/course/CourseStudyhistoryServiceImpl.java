@@ -36,6 +36,7 @@ public class CourseStudyhistoryServiceImpl implements CourseStudyhistoryService 
 	 *            要添加的CourseStudyhistory
 	 * @return id
 	 */
+	@Override
 	public Long addCourseStudyhistory(CourseStudyhistory courseStudyhistory) {
 		return courseStudyhistoryDao.addCourseStudyhistory(courseStudyhistory);
 	}
@@ -43,6 +44,7 @@ public class CourseStudyhistoryServiceImpl implements CourseStudyhistoryService 
 	/**
 	 * 添加播放记录和播放次数
 	 */
+	@Override
 	public void playertimes(CourseStudyhistory courseStudyhistory) {
 		Course course = courseService.queryCourseById(courseStudyhistory.getCourseId().intValue());
 		// 判断课程不为空
@@ -94,6 +96,7 @@ public class CourseStudyhistoryServiceImpl implements CourseStudyhistoryService 
 	 * @param id
 	 *            要删除的id
 	 */
+	@Override
 	public void deleteCourseStudyhistoryById(Long id) {
 		courseStudyhistoryDao.deleteCourseStudyhistoryById(id);
 	}
@@ -104,6 +107,7 @@ public class CourseStudyhistoryServiceImpl implements CourseStudyhistoryService 
 	 * @param courseStudyhistory
 	 *            要修改的CourseStudyhistory
 	 */
+	@Override
 	public void updateCourseStudyhistory(CourseStudyhistory courseStudyhistory) {
 		courseStudyhistoryDao.updateCourseStudyhistory(courseStudyhistory);
 	}
@@ -115,14 +119,17 @@ public class CourseStudyhistoryServiceImpl implements CourseStudyhistoryService 
 	 *            查询条件
 	 * @return List<CourseStudyhistory>
 	 */
+	@Override
 	public List<CourseStudyhistory> getCourseStudyhistoryList(CourseStudyhistory courseStudyhistory) {
 		return courseStudyhistoryDao.getCourseStudyhistoryList(courseStudyhistory);
 	}
 
+	@Override
 	public List<CourseStudyhistory> getCourseStudyhistoryListByCouId(Long courseId) {
 		return courseStudyhistoryDao.getCourseStudyhistoryListByCouId(courseId);
 	}
 
+	@Override
 	public int getCourseStudyhistoryCountByCouId(Long courseId) {
 		return courseStudyhistoryDao.getCourseStudyhistoryCountByCouId(courseId);
 	}

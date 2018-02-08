@@ -18,22 +18,23 @@ public class WebSiteImagesTypeServiceImpl implements WebSiteImagesTypeService{
 	
 	@Autowired
 	private WebSiteImagesTypeDao webSiteImagesTypeDao;
-	
+
+	@Override
 	public int createImageType(WebSiteImagesType type) {
 		return webSiteImagesTypeDao.createImageType(type);
 	}
 
-	
+	@Override
 	public List<WebSiteImagesType> queryAllTypeList() {
 		return webSiteImagesTypeDao.queryAllTypeList();
 	}
 
-	
+	@Override
 	public void deleteTypeById(int typeId) {
 		webSiteImagesTypeDao.deleteTypeById(typeId);
 	}
 
-	
+	@Override
 	public void updateType(WebSiteImagesType type) {
 		webSiteImagesTypeDao.updateType(type);
 	}

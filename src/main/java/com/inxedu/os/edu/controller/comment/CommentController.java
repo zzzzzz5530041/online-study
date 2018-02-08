@@ -43,7 +43,7 @@ public class CommentController extends BaseController {
 		try {
 			page.setPageSize(6);
 			//查询评论一级
-			comment.setPCommentId(0);
+			comment.setpCommentId(0);
 			List<Comment> commentList = commentService.getCommentByPage(comment, page);// 查询评论
 			request.setAttribute("commentList", commentList);// 评论list
 			request.setAttribute("page", page);
@@ -108,7 +108,7 @@ public class CommentController extends BaseController {
 			List<Comment> commentList = commentService.queryCommentList(comment);
 			request.setAttribute("commentList", commentList);// 回复
 			
-			comment.setCommentId(comment.getPCommentId());
+			comment.setCommentId(comment.getpCommentId());
 			comment=commentService.queryComment(comment);
 			request.setAttribute("parentComment", comment);
 		} catch (Exception e) {

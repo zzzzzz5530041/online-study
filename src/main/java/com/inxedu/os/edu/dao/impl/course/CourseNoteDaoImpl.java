@@ -27,6 +27,7 @@ public class CourseNoteDaoImpl extends GenericDaoImpl implements CourseNoteDao {
 	 *            要添加的CourseNote
 	 * @return id
 	 */
+	@Override
 	public Long addCourseNote(CourseNote courseNote) {
 		return this.insert("CourseNoteMapper.createCourseNote", courseNote);
 	}
@@ -37,6 +38,7 @@ public class CourseNoteDaoImpl extends GenericDaoImpl implements CourseNoteDao {
 	 * @param id
 	 *            要删除的id
 	 */
+	@Override
 	public void deleteCourseNoteById(Long id) {
 		this.delete("CourseNoteMapper.deleteCourseNoteById", id);
 	}
@@ -47,6 +49,7 @@ public class CourseNoteDaoImpl extends GenericDaoImpl implements CourseNoteDao {
 	 * @param courseNote
 	 *            要修改的CourseNote
 	 */
+	@Override
 	public void updateCourseNote(CourseNote courseNote) {
 		this.update("CourseNoteMapper.updateCourseNote", courseNote);
 	}
@@ -58,6 +61,7 @@ public class CourseNoteDaoImpl extends GenericDaoImpl implements CourseNoteDao {
 	 *            要查询的id
 	 * @return CourseNote
 	 */
+	@Override
 	public CourseNote getCourseNoteById(Long id) {
 		return this.selectOne("CourseNoteMapper.getCourseNoteById", id);
 	}
@@ -67,6 +71,7 @@ public class CourseNoteDaoImpl extends GenericDaoImpl implements CourseNoteDao {
 	 * 
 	 * @return CourseNote
 	 */
+	@Override
 	public CourseNote getCourseNoteByKpointIdAndUserId(Long kpointId, Long userId) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("kpointId", kpointId);
@@ -87,6 +92,7 @@ public class CourseNoteDaoImpl extends GenericDaoImpl implements CourseNoteDao {
 	 *            查询条件
 	 * @return List<CourseNote>
 	 */
+	@Override
 	public List<CourseNote> getCourseNoteList(CourseNote courseNote) {
 		return this.selectList("CourseNoteMapper.getCourseNoteList", courseNote);
 	}
@@ -98,6 +104,7 @@ public class CourseNoteDaoImpl extends GenericDaoImpl implements CourseNoteDao {
 	 * @param page
 	 * @return
 	 */
+	@Override
 	public List<QueryCourseNote> getCourseNoteListPage(QueryCourseNote queryCourseNote, PageEntity page) {
 		return this.queryForListPage("CourseNoteMapper.getCourseNoteListPage", queryCourseNote, page);
 	}
@@ -106,6 +113,7 @@ public class CourseNoteDaoImpl extends GenericDaoImpl implements CourseNoteDao {
 	 * 
 	 * @param courseNote
 	 */
+	@Override
 	public void updateCourseNoteListStatus(CourseNote courseNote) {
 		this.update("CourseNoteMapper.updateCourseNoteListStatus", courseNote);
 	}
@@ -115,6 +123,7 @@ public class CourseNoteDaoImpl extends GenericDaoImpl implements CourseNoteDao {
 	 * @param id
 	 * @return
 	 */
+	@Override
 	public QueryCourseNote getQueryCourseNoteById(Long id) {
 		return this.selectOne("CourseNoteMapper.getQueryCourseNoteById", id);
 	}
@@ -125,6 +134,7 @@ public class CourseNoteDaoImpl extends GenericDaoImpl implements CourseNoteDao {
 	 * @param page
 	 * @return
 	 */
+	@Override
 	public List<QueryCourseNote> getUserCourseNoteByUserId(Long userId, PageEntity page) {
 		return this.queryForListPage("CourseNoteMapper.getUserCourseNoteByUserId", userId, page);
 	}

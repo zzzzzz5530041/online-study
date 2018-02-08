@@ -29,28 +29,27 @@ public class IntercepterAdmin extends HandlerInterceptorAdapter{
 	@Autowired
 	private SysFunctionService sysFunctionService;
 	
-	
+	@Override
 	public void afterCompletion(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		super.afterCompletion(request, response, handler, ex);
 	}
 
-	
+	@Override
 	public void afterConcurrentHandlingStarted(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		super.afterConcurrentHandlingStarted(request, response, handler);
 	}
 
-	
+	@Override
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		super.postHandle(request, response, handler, modelAndView);
 	}
 
-	@SuppressWarnings("unchecked")
-	
+	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		//获取登录的用户
