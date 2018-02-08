@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <import resource="applicationContext-ds.xml"/>
+
+    <!-- 配置文件加载 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:/project.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 邮件发送线程类-->
+    <bean name="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="javaMailProperties">
+            <map>
+                <entry key="mail.smtp.auth" value="true" />
+            </map>
+        </property>
+    </bean>
+</beans>

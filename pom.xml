@@ -86,7 +86,23 @@
             <artifactId>mybatis-spring</artifactId>
             <version>1.2.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <!-- spring orm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
         <!-- GENERAL UTILS begin -->
         <dependency>
             <groupId>commons-lang</groupId>
@@ -297,7 +313,6 @@
             <systemPath>${basedir}/lib/json.jar</systemPath>
         </dependency>
     </dependencies>
-
 
 
     <build>
