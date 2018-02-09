@@ -8,6 +8,7 @@ import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.controller.BaseController;
 import com.inxedu.os.common.util.ObjectUtils;
+import com.inxedu.os.common.util.RedisUtils;
 import com.inxedu.os.common.util.StringUtils;
 import com.inxedu.os.edu.entity.common.Comment;
 import com.inxedu.os.edu.entity.course.CourseDto;
@@ -28,6 +29,7 @@ import com.inxedu.os.edu.service.website.WebsiteImagesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,14 +66,14 @@ public class WebFrontController extends BaseController {
 	private CourseStudyhistoryService courseStudyhistoryService;
 	@Autowired
 	private HelpMenuService helpMenuService;
-	
+	@Autowired
+	private RedisUtils redisUtils;
 	/**
 	 * 首页获取网站首页数据
 	 */
 	@RequestMapping("/index")
 	public String getIndexpage(HttpServletRequest request, Model model) {
 		try {
-
 			model.addAttribute("num", System.currentTimeMillis());
 			// 获得banner图
 			Map<String, List<WebsiteImages>> websiteImages = websiteImagesService.queryImagesByType();

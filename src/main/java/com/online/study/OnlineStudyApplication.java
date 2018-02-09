@@ -1,5 +1,6 @@
 package com.online.study;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,6 +8,7 @@ import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Configuration
 @ImportResource(value = {"applicationContext-root.xml"})
 public class OnlineStudyApplication {
+
 
     public static void main(String[] args) {
         SpringApplication.run(OnlineStudyApplication.class, args);

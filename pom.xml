@@ -31,14 +31,6 @@
             <artifactId>spring-boot-starter-aop</artifactId>
 
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.session</groupId>-->
-        <!--<artifactId>spring-session</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
@@ -46,12 +38,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <!--<exclusions>-->
-            <!--<exclusion>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-webmvc</artifactId>-->
-            <!--</exclusion>-->
-            <!--</exclusions>-->
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -76,8 +62,11 @@
         <!--<artifactId>spring-boot-starter-test</artifactId>-->
         <!--<scope>test</scope>-->
         <!--</dependency>-->
-
-
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <!--继承inxdemo-->
 
         <!--外部jar依赖-->
@@ -300,11 +289,11 @@
             <artifactId>lesscss-engine</artifactId>
             <version>1.5.1</version>
         </dependency>
-        <dependency>
-            <groupId>com.googlecode.htmlcompressor</groupId>
-            <artifactId>htmlcompressor</artifactId>
-            <version>1.5.2</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.googlecode.htmlcompressor</groupId>-->
+            <!--<artifactId>htmlcompressor</artifactId>-->
+            <!--<version>1.5.2</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.caucho</groupId>
             <artifactId>hessian</artifactId>

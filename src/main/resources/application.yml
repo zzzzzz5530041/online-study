@@ -4,6 +4,23 @@ server:
 mybatis:
   config-location: classpath:SqlMapConfig.xml
   mapper-locations: classpath*:*.xml
+spring:
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    #password: online_education 本地不适用密码
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+    timeout: 0
+
+
+
+
+
+
 
 #spring:
 #  thymeleaf:
@@ -19,3 +36,4 @@ mybatis:
 #    view:
 #      suffix: .jsp
 #      prefix: /WEB-INF/view/
+
