@@ -59,7 +59,8 @@ public class WebsiteImagesServiceImpl implements WebsiteImagesService {
 	public Map<String,List<WebsiteImages>> queryImagesByType() {
 		//从缓存中查询图片数据
 		@SuppressWarnings("unchecked")
-		Map<String,List<WebsiteImages>> imageMapList = (Map<String,List<WebsiteImages>>) EHCacheUtil.get(CacheConstans.BANNER_IMAGES);
+//		Map<String,List<WebsiteImages>> imageMapList = (Map<String,List<WebsiteImages>>) EHCacheUtil.get(CacheConstans.BANNER_IMAGES);
+				Map<String,List<WebsiteImages>> imageMapList=null;
 		//如果缓存中不存在则重新查询
 		if(imageMapList==null){
 			List<WebsiteImages> imageList = websiteImagesDao.queryImagesByType();
@@ -79,8 +80,9 @@ public class WebsiteImagesServiceImpl implements WebsiteImagesService {
 					typeId = _wi.getTypeId();
 				}
 				//添加最后一条记录
+
 				imageMapList.put("type_"+typeId, _list);
-				EHCacheUtil.set(CacheConstans.BANNER_IMAGES, imageMapList,CacheConstans.BANNER_IMAGES_TIME);
+//				EHCacheUtil.set(CacheConstans.BANNER_IMAGES, imageMapList,CacheConstans.BANNER_IMAGES_TIME);
 			}
 		}
 		return imageMapList;

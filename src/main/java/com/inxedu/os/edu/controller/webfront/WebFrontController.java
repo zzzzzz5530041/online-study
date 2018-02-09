@@ -71,6 +71,7 @@ public class WebFrontController extends BaseController {
 	@RequestMapping("/index")
 	public String getIndexpage(HttpServletRequest request, Model model) {
 		try {
+
 			model.addAttribute("num", System.currentTimeMillis());
 			// 获得banner图
 			Map<String, List<WebsiteImages>> websiteImages = websiteImagesService.queryImagesByType();
@@ -98,12 +99,13 @@ public class WebFrontController extends BaseController {
 			model.addAttribute("theme_color", cacheColor);
 			
 			// 查询排序最高的4位老师
-			List<Teacher> teacherList=(List<Teacher>)EHCacheUtil.get(CacheConstans.INDEX_TEACHER_RECOMMEND);
+//			List<Teacher> teacherList=(List<Teacher>)EHCacheUtil.get(CacheConstans.INDEX_TEACHER_RECOMMEND);
+			List<Teacher> teacherList=null;
 			if(teacherList==null||teacherList.size()==0){
 				QueryTeacher queryTeacher = new QueryTeacher();
 				queryTeacher.setCount(4);
 				teacherList = teacherService.queryTeacherList(queryTeacher);
-				EHCacheUtil.set(CacheConstans.INDEX_TEACHER_RECOMMEND, teacherList,CacheConstans.RECOMMEND_COURSE_TIME);//缓存一小时
+				//EHCacheUtil.set(CacheConstans.INDEX_TEACHER_RECOMMEND, teacherList,CacheConstans.RECOMMEND_COURSE_TIME);//缓存一小时
 			}
 			model.addAttribute("teacherList", teacherList);
 			
