@@ -23,6 +23,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <mybatis.version>3.2.7</mybatis.version>
+        <thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>
+        <thymeleaf-layout-dialect.version>2.0.0</thymeleaf-layout-dialect.version>
     </properties>
 
     <dependencies>
@@ -315,7 +317,6 @@
             <systemPath>${basedir}/lib/json.jar</systemPath>
         </dependency>
     </dependencies>
-
 
     <build>
         <plugins>
