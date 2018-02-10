@@ -7,33 +7,18 @@ mybatis:
 spring:
   redis:
     database: 0
-    host: localhost
+    host: 127.0.0.1
     port: 6379
-    #password: online_education 本地不适用密码
     pool:
       max-active: 8
-      max-wait: -1
       max-idle: 8
-    timeout: 0
-
-
-
-
-
-
-
-#spring:
-#  thymeleaf:
-#    cache: false
-#    prefix: classpath:/templates/
-#    check-template-location: true
-#    suffix: html
-#    encoding: UTF-8
-#    content-type: text/html
-#    mode: HTML5
-#spring:
-#  mvc:
-#    view:
-#      suffix: .jsp
-#      prefix: /WEB-INF/view/
-
+      max-wait: 2
+    timeout: 2000
+    thymeleaf:
+      cache: true
+      prefix: classpath:/templates/
+      check-template-location: true
+      suffix: html
+      encoding: UTF-8
+      content-type: text/html
+      mode: HTML5
