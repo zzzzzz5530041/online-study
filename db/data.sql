@@ -1,4 +1,7 @@
+set names utf8;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`online_education` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
+USE `online_education`;
 /*Table structure for table `edu_article` */
 
 DROP TABLE IF EXISTS `edu_article`;
