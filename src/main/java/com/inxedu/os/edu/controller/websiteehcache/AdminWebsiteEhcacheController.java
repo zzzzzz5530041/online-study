@@ -3,6 +3,7 @@ package com.inxedu.os.edu.controller.websiteehcache;
 import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.controller.BaseController;
 import com.inxedu.os.common.entity.PageEntity;
+import com.inxedu.os.common.util.RedisUtils;
 import com.inxedu.os.edu.controller.user.AdminUserController;
 import com.inxedu.os.edu.entity.websiteehcache.WebsiteEhcache;
 import com.inxedu.os.edu.service.websiteehcache.WebsiteEhcacheService;
@@ -31,7 +32,8 @@ public class AdminWebsiteEhcacheController extends BaseController {
 	
 	@Autowired
 	private WebsiteEhcacheService websiteEhcacheService;
-	
+	@Autowired
+	private RedisUtils redisUtils;
 	@InitBinder("websiteEhcache")
 	public void initBinderEmail(WebDataBinder binder) {
 		binder.setFieldDefaultPrefix("websiteEhcache.");
@@ -118,7 +120,7 @@ public class AdminWebsiteEhcacheController extends BaseController {
 		try{
 			WebsiteEhcache websiteEhcache=websiteEhcacheService.getWebsiteEhcacheById(id);
 			if(websiteEhcache!=null){
-				EHCacheUtil.remove("CacheConstans."+websiteEhcache.getEhcacheKey());
+				redisUtils.remove("CacheConstans."+websiteEhcache.getEhcacheKey());
 				json=setJson(true, "true", null);
 			}
 		}catch(Exception e){
@@ -136,7 +138,7 @@ public class AdminWebsiteEhcacheController extends BaseController {
 	public Map<String, Object> removeAllEHCache(){
 		Map<String, Object> json=null;
 		try{
-			EHCacheUtil.removeAll();
+			redisUtils.removeAll();
 			json=setJson(true, "true", null);
 		}catch(Exception e){
 			logger.error("AdminEhcacheController.removeAllEHCache", e);

@@ -82,7 +82,8 @@ public class WebFrontController extends BaseController {
 			Map<String, List<WebsiteImages>> websiteImages = websiteImagesService.queryImagesByType();
 			model.addAttribute("websiteImages", websiteImages);
 			//不同的主题显示不同的颜色
-			String cacheColor=(String)EHCacheUtil.get("inxedu_index_theme_color");
+//			String cacheColor=(String)EHCacheUtil.get("inxedu_index_theme_color");
+			String cacheColor=redisUtils.getByKey("inxedu_index_theme_color",String.class);
 			if(StringUtils.isNotEmpty(cacheColor)){
 				if("blue".equals(cacheColor)){
 					List<WebsiteImages> websiteImagesList = websiteImages.get("type_16");
@@ -123,7 +124,6 @@ public class WebFrontController extends BaseController {
 			return setExceptionRequest(request, e);
 		}
 		model.addAttribute("staticImage", CommonConstants.staticImage);
-		System.out.println("staticImage= "+ CommonConstants.staticImage);
 		return getViewPath("/web/front/index");//首页页面
 	}
 
@@ -147,12 +147,13 @@ public class WebFrontController extends BaseController {
 	public String studentDynamic(HttpServletRequest request) {
 		try {
 			//课程学习记录
-			 List<CourseStudyhistory> courseStudyhistoryList = (List<CourseStudyhistory>) EHCacheUtil.get(CacheConstans.INDEX_STUDENT_DYNAMIC);
+			List<CourseStudyhistory> courseStudyhistoryList = (List<CourseStudyhistory>)redisUtils.getByKey(CacheConstans.INDEX_STUDENT_DYNAMIC,List.class);
+
 				if(ObjectUtils.isNull(courseStudyhistoryList)){
 					CourseStudyhistory courseStudyhistory=new CourseStudyhistory();
 					courseStudyhistory.setQueryLimit(4);//限制4条
 					courseStudyhistoryList=courseStudyhistoryService.getCourseStudyhistoryList(courseStudyhistory);
-					EHCacheUtil.set(CacheConstans.INDEX_STUDENT_DYNAMIC,courseStudyhistoryList);
+					redisUtils.save(CacheConstans.INDEX_STUDENT_DYNAMIC,courseStudyhistoryList);
 				}
 			request.setAttribute("courseStudyhistoryList", courseStudyhistoryList);
 		} catch (Exception e) {
@@ -213,7 +214,7 @@ public class WebFrontController extends BaseController {
 		}
     	
     	//放入缓存
-    	EHCacheUtil.set("inxedu_index_theme_color",colorfalg,21600);//缓存六小时
+		redisUtils.saveWithExpireTime("inxedu_index_theme_color",colorfalg,21600L);//缓存六小时
     	//获得项目根目录
 //    	String strDirPath = request.getSession().getServletContext().getRealPath("/");
     	//读取字符串
@@ -259,7 +260,7 @@ public class WebFrontController extends BaseController {
     @ResponseBody
     public Object getLoginUserByKey(HttpServletRequest request,@RequestParam String userKey) {
     	Map<String,Object> json = new HashMap<String,Object>();
-    	User user = (User) EHCacheUtil.get(userKey);
+		User user = (User) redisUtils.getByKey(userKey,User.class);
 		//User user = (User) request.getSession().getAttribute(userKey);
 		if(ObjectUtils.isNotNull(user)){
 			//添加需要的属性

@@ -5,6 +5,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.types.Expiration;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
@@ -26,13 +27,50 @@ public class RedisUtils {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    /**
+     * 删除缓存
+     * @param key
+     */
+    public void remove(String key){
+        redisTemplate.execute(new RedisCallback<Object>(){
+            @Override
+            public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                redisConnection.del(key.getBytes());
+                return null;
+            }
+        });
+    }
 
+    /**
+     * 清空缓存
+     * @param key
+     */
+    public void removeAll(){
+        redisTemplate.execute(new RedisCallback<Object>(){
+            @Override
+            public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                redisConnection.flushAll();
+                return null;
+            }
+        });
+    }
     public void save(String key, Object obj) {
         byte[] valueByte = serialize(obj);
         redisTemplate.execute(new RedisCallback<Object>() {
             @Override
             public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
                 redisConnection.set(redisTemplate.getStringSerializer().serialize(key), valueByte);
+                return null;
+            }
+        });
+    }
+
+    public void saveWithExpireTime(String key, Object obj,Long expireTime) {
+        byte[] valueByte = serialize(obj);
+        redisTemplate.execute(new RedisCallback<Object>() {
+            @Override
+            public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                redisConnection.setEx(redisTemplate.getStringSerializer().serialize(key), expireTime, valueByte);
                 return null;
             }
         });
@@ -89,4 +127,5 @@ public class RedisUtils {
             throw new RuntimeException(e.getMessage(), e);
         }
     }
+
 }

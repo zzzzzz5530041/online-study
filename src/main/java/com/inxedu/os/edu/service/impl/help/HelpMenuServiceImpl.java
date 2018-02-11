@@ -2,11 +2,13 @@ package com.inxedu.os.edu.service.impl.help;
 
 import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
+import com.inxedu.os.common.util.RedisUtils;
 import com.inxedu.os.edu.dao.help.HelpMenuDao;
 import com.inxedu.os.edu.entity.help.HelpMenu;
 import com.inxedu.os.edu.service.help.HelpMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.BinaryClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,8 @@ import java.util.List;
 public class HelpMenuServiceImpl implements HelpMenuService {
 	@Autowired
 	private HelpMenuDao helpMenuDao;
-	
+	@Autowired
+	private RedisUtils redisUtils;
 	/**
 	 * 查询所有菜单 
 	 * @return HelpMenu
@@ -28,7 +31,7 @@ public class HelpMenuServiceImpl implements HelpMenuService {
 	@Override
     public List<List<HelpMenu>> getHelpMenuAll(){
     	@SuppressWarnings("unchecked")
-		List<List<HelpMenu>> helpMenus=(List<List<HelpMenu>>) EHCacheUtil.get(CacheConstans.HELP_CENTER);
+		List<List<HelpMenu>> helpMenus=(List<List<HelpMenu>>) redisUtils.getByKey(CacheConstans.HELP_CENTER, List.class);
     	if(helpMenus!=null){
     		return helpMenus;
     	}
@@ -46,7 +49,7 @@ public class HelpMenuServiceImpl implements HelpMenuService {
 			helpMenus.add(helpMenuOneAndTwo);
 		}
 		if(helpMenus!=null){
-			EHCacheUtil.set(CacheConstans.HELP_CENTER, helpMenus, CacheConstans.HELP_CENTER_TIME);
+			redisUtils.saveWithExpireTime(CacheConstans.HELP_CENTER,helpMenus,Long.valueOf(CacheConstans.HELP_CENTER_TIME));
 		}
 		return helpMenus;
     }
