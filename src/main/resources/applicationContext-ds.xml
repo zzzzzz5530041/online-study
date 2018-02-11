@@ -81,6 +81,7 @@
                 <value>transactionInterceptor</value>
             </list>
         </property>
+        <property name="proxyTargetClass" value="true" />
     </bean>
 
     <!-- 本项目数据源代码-->
