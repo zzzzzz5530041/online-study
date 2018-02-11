@@ -170,7 +170,7 @@
 
 .i-question-list ul {
     display: block;
-    height: 370px;
+    /**height: 370px;*/
     overflow: hidden;
     position: relative
 }
