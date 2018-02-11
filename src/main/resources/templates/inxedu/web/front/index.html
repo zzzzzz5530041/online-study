@@ -13,20 +13,6 @@
     <link th:href="@{/web/css/web_source.css}" rel="stylesheet">
 </head>
 
-<div th:include="/common/footer::footer"></div>
-
-<p>
-    <tr th:each="teacher : ${teacherList}">
-        <td th:text="${teacher.name}">teacher:</td>
-        <td th:text="${teacher.education}">2.41</td>
-    </tr>
-
-</p>
-
-
-
-
---------------------------------------------<br/>
 <body>
 <div class="i-slide">
     <section>
@@ -105,41 +91,34 @@
                         </h2>
                     </header>
                     <div class="i-question-list">
-                        <ul id="iQuestion">
-                            <c:forEach items="${commentList}" var="comment" varStatus="status">
-                                <li>
-                                    <section class="i-q-l-wrap">
-                                        <div class="u-face">
-                                            <c:if test="${empty comment.picImg }">
-                                                <img width="50" height="50" class="picImg" src="${ctx }/static/inxweb/img/avatar-boy.gif" xsrc="${ctx }/static/inxweb/img/avatar-boy.gif">
-                                            </c:if>
-                                            <c:if test="${not empty comment.picImg }">
-                                                <img width="50" height="50" class="picImg" src="${ctx }/static/inxweb/img/avatar-boy.gif" xsrc="${ctx }${comment.picImg }">
-                                            </c:if>
-                                        </div>
-                                        <section class="hLh20 of">
-                                            <span class="fr"><tt class="c-ccc f-fG"><fmt:formatDate value="${comment.addTime }" pattern="yyyy/MM/dd HH:mm" /></tt></span>
-                                            <span class="fsize16 c-666">
-												 	<c:if test="${empty comment.userName }">
-														${comment.email}
-													</c:if>
-													<c:if test="${not empty comment.userName }">
-														${comment.userName}
-													</c:if>
-												</span>
-                                            <span class="fsize14 c-999 ml5 f-fA">评论课程：</span>
-                                        </section>
-                                        <section class="hLh20 of mt10">
-                                            <a class="c-master fsize14" href="${ctx}/front/couinfo/${comment.courseId}">《${comment.courseName}》</a>
-                                        </section>
-                                        <section class="i-q-txt">
-                                            <p>
-                                                <span class="c-999 f-fA txtOf"> ${comment.content} </span>
-                                            </p>
-                                        </section>
+                        <ul id="iQuestion" th:each="comment:${commentList}">
+                            <li>
+                                <section class="i-q-l-wrap">
+                                    <div class="u-face">
+                                        <img width="50" height="50" th:if="${comment.picImg==null}" class="picImg" xsrc="${ctx }/static/inxweb/img/avatar-boy.gif" src="${ctx }/static/inxweb/img/avatar-boy.gif">
+                                        <img width="50" height="50" th:unless="${comment.picImg==null}" class="picImg" src="${ctx }/static/inxweb/img/avatar-boy.gif" xsrc="${ctx }${comment.picImg }">
+                                    </div>
+                                    <section class="hLh20 of">
+                                        <span class="fr"><tt class="c-ccc f-fG"><fmt:formatDate value="${comment.addTime }" pattern="yyyy/MM/dd HH:mm" /></tt></span>
+                                        <th:block th:if="${comment.userName==null}">
+                                            <span class="fsize16 c-666" th:text="${comment.email}"> </span>
+                                        </th:block>
+                                        <th:block th:if="${comment.userName!=null}">
+                                            <span class="fsize16 c-666" th:text=" ${comment.userName}"> </span>
+                                        </th:block>
+
+                                        <span class="fsize14 c-999 ml5 f-fA">评论课程：</span>
                                     </section>
-                                </li>
-                            </c:forEach>
+                                    <section class="hLh20 of mt10">
+                                        <a class="c-master fsize14" href="${ctx}/front/couinfo/${comment.courseId}"><span th:text="'《'+${comment.courseName}+'》'"></span></a>
+                                    </section>
+                                    <section class="i-q-txt">
+                                        <p>
+                                            <span class="c-999 f-fA txtOf" th:text="${comment.content}"> </span>
+                                        </p>
+                                    </section>
+                                </section>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -213,10 +192,31 @@
 
 </body>
 
-
-
-
-
-
+<div th:include="/common/footer::footer"></div>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="swiper-container">
+    <div class="swiper-wrapper" th:each="image:${websiteImagesList}">
+        <div class="swiper-slide" style="background:#EF550F">
+            <a target="_blank" th:href="${image.linkAddress}">
+                <img class="imgload" th:src="${staticImage}+${image.imagesUrl}" th:alt="${image.title}">
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+
