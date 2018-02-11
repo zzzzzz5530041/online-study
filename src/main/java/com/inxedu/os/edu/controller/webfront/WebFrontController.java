@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
+import com.inxedu.os.common.constants.CommonConstants;
 import com.inxedu.os.common.controller.BaseController;
 import com.inxedu.os.common.util.ObjectUtils;
 import com.inxedu.os.common.util.RedisUtils;
@@ -76,6 +77,7 @@ public class WebFrontController extends BaseController {
 	public String getIndexpage(HttpServletRequest request, Model model) {
 		try {
 			model.addAttribute("num", System.currentTimeMillis());
+
 			// 获得banner图
 			Map<String, List<WebsiteImages>> websiteImages = websiteImagesService.queryImagesByType();
 			model.addAttribute("websiteImages", websiteImages);
@@ -120,6 +122,8 @@ public class WebFrontController extends BaseController {
 			logger.error("WebFrontController.getIndexpage", e);
 			return setExceptionRequest(request, e);
 		}
+		model.addAttribute("staticImage", CommonConstants.staticImage);
+		System.out.println("staticImage= "+ CommonConstants.staticImage);
 		return getViewPath("/web/front/index");//首页页面
 	}
 

@@ -38,7 +38,7 @@ public class AdminThemeController extends BaseController {
     	int updaterowcount = 2 ;
     	FileReader fr;
 		try {
-			String path = strDirPath+"/static/inxweb/css/less/theme.less";
+			String path = strDirPath+ "/static/inxweb/css/less/theme.less";
 			fr = new FileReader(path);
 			BufferedReader br = new BufferedReader(fr);
 			String line = br.readLine();
