@@ -14,8 +14,8 @@
         <a class="arrow-right s-arrow" href="javascript:void(0)"></a>
         <!-- 图片位置 -->
         <div class="swiper-container">
-            <div class="swiper-wrapper" th:each="image:${websiteImagesList}">
-                <div class="swiper-slide" style="background:#EF550F">
+            <div class="swiper-wrapper" >
+                <div class="swiper-slide" th:each="image:${websiteImagesList}" style="background:#EF550F">
                     <a target="_blank" th:href="${image.linkAddress}">
                         <img class="imgload" th:src="${staticImage}+${image.imagesUrl}" th:alt="${image.title}">
                     </a>
@@ -88,8 +88,8 @@
                             <li>
                                 <section class="i-q-l-wrap">
                                     <div class="u-face">
-                                        <img width="50" height="50" th:if="${comment.picImg==null}" class="picImg" th:xsrc="${contextPath}+'/static/web/img/avatar-boy.gif'" th:src="${contextPath }+'/static/web/img/avatar-boy.gif'">
-                                        <img width="50" height="50" th:unless="${comment.picImg==null}" class="picImg" th:src="${contextPath}+'/static/web/img/avatar-boy.gif'" th:xsrc="${contextPath }+${comment.picImg }">
+                                        <img width="50" height="50" th:if="${comment.picImg==null}" class="picImg" th:xsrc="${contextPath}+'/web/img/avatar-boy.gif'" th:src="${contextPath }+'/web/img/avatar-boy.gif'">
+                                        <img width="50" height="50" th:unless="${comment.picImg==null}" class="picImg" th:src="${contextPath}+'/web/img/avatar-boy.gif'" th:xsrc="${contextPath }+${comment.picImg }">
                                     </div>
                                     <section class="hLh20 of">
                                         <span class="fr c-ccc f-fG" th:text="${#dates.format(comment.addTime,'yyyy-MM-dd HH:mm')}"></span>
@@ -149,18 +149,18 @@
                         <li  th:each="teacher:${teacherList}">
                             <section class="i-teach-wrap">
                                 <div class="i-teach-pic">
-                                    <a href="${contextPath }/front/teacher/${teacher.id}" th:title="${teacher.name}">
+                                    <a th:href="${contextPath }+'/front/teacher/'+ ${teacher.id}" th:title="${teacher.name}">
                                         <th:block th:if="${teacher.picPath !=null and teacher.picPath !=''}">
-                                            <img th:alt="${teacher.name}" src="${contextPath }/static/inxweb/img/default-tea-img.gif" xsrc="<%=staticImage%>${teacher.picPath}">
+                                            <img th:alt="${teacher.name}" th:src="${contextPath }+'/web/img/default-tea-img.gif'" >
                                         </th:block>
 
-                                        <c:if test="${empty teacher.picPath||teacher.picPath==''}">
-                                            <img th:alt="${teacher.name}" src="${contextPath }/static/inxweb/img/default-img.gif" xsrc="${contextPath }/static/inxweb/img/default-img.gif">
-                                        </c:if>
+                                        <th:block th:if="${ teacher.picPath==null ||teacher.picPath==''}">
+                                            <img th:alt="${teacher.name}"   th:src="${contextPath }+'/web/img/default-img.gif'"  >
+                                        </th:block>
                                     </a>
                                 </div>
                                 <div class="mt10 hLh30 txtOf tac">
-                                    <a th:href="'/front/teacher/'+${teacher.id}" th:title="${teacher.name}" class="fsize18 c-666" th:text="${teacher.name}"></a>
+                                    <a th:href="${contextPath }+'/front/teacher/'+${teacher.id}" th:title="${teacher.name}" class="fsize18 c-666" th:text="${teacher.name}"></a>
                                 </div>
                                 <div class="hLh30 txtOf tac">
                                     <span class="fsize14 c-999" th:text="${teacher.education }"></span>
@@ -174,7 +174,7 @@
                     <div class="clear"></div>
                 </article>
                 <section class="tac pt20">
-                    <a href="${contextPath }/front/teacherlist" title="全部讲师" class="comm-btn c-btn-2">全部讲师</a>
+                    <a th:href="${contextPath }+'/front/teacherlist'" title="全部讲师" class="comm-btn c-btn-2">全部讲师</a>
                 </section>
             </div>
         </section>
