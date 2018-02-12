@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <link th:href="@{/common/css/bootstrap.css}" rel="stylesheet">
-    <link th:href="@{/common/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/common/css/bootstrap-theme.css}" rel="stylesheet">
-    <link th:href="@{/common/css/bootstrap-theme-min.css}" rel="stylesheet">
-    <link th:href="@{/web/css/global.css}" rel="stylesheet">
-    <link th:href="@{/web/css/reset.css}" rel="stylesheet">
-    <link th:href="@{/web/css/theme.css}" rel="stylesheet">
-    <link th:href="@{/web/css/web.css}" rel="stylesheet">
+<script>
+    var theme_color = '${theme_color}';
+</script>
 </head>
 <div th:include="/common/header::header"></div>
 <body>
