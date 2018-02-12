@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+">
     <import resource="applicationContext-ds.xml"/>
 
     <!-- 配置文件加载 -->
@@ -19,10 +22,43 @@
         <property name="defaultEncoding" value="UTF-8"></property>
         <property name="javaMailProperties">
             <map>
-                <entry key="mail.smtp.auth" value="true" />
+                <entry key="mail.smtp.auth" value="true"/>
             </map>
         </property>
     </bean>
 
+    <!-- ②：拦截器的配置 -->
+    <mvc:interceptors>
+        <!-- 后台登录和权限的拦截器配置 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/*"/>
+            <mvc:mapping path="/admin/**/*"/>
+            <mvc:exclude-mapping path="/admin/main/login"/>
+            <bean class="com.inxedu.os.common.intercepter.IntercepterAdmin"></bean>
+        </mvc:interceptor>
+        <!-- 前台网站配置拦截器配置 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**/*"/>
+            <mvc:exclude-mapping path="/static/**/*"/>
+            <mvc:exclude-mapping path="/*/ajax/**"/>
+            <mvc:exclude-mapping path="/kindeditor/**/*"/>
+            <bean class="com.inxedu.os.common.intercepter.LimitIntercepterForWebsite">
+            </bean>
+        </mvc:interceptor>
+        <!-- 前台用户登录拦截器配置 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/uc/*"/>
+            <mvc:mapping path="/uc/**/*"/>
+            <mvc:exclude-mapping path="/uc/tologin"/>
+            <mvc:exclude-mapping path="/uc/getloginUser"/>
+            <mvc:exclude-mapping path="/uc/register"/>
+            <mvc:exclude-mapping path="/uc/createuser"/>
+            <mvc:exclude-mapping path="/uc/login"/>
+            <mvc:exclude-mapping path="/uc/passwordRecovery"/>
+            <mvc:exclude-mapping path="/uc/sendEmail"/>
+            <bean class="com.inxedu.os.common.intercepter.IntercepterWebLogin">
+            </bean>
+        </mvc:interceptor>
 
+    </mvc:interceptors>
 </beans>

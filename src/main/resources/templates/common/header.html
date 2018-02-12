@@ -22,19 +22,19 @@
     <div th:with="contextPath=${contextPath }"></div>
     <section class="container">
         <h1 id="logo">
-            <a th:href="${contextPath }" title="在线教育">
-                <img src="<%=staticImage%>${logomap.logo.url}" width="100%" alt="${websitemap.web.company}">
+            <a th:href="${contextPath }" th:title="${websitemap.web.company}">
+                <img th:src="${staticImage }+${logomap.logo.url}" width="100%" th:alt="${websitemap.web.company}" >
             </a>
         </h1>
         <div class="h-r-nsl">
             <ul class="nav">
-                <c:forEach items="${navigatemap.INDEX}" var="indexNavigate">
-                    <li><a href="${ctx}${indexNavigate.url}" title="${indexNavigate.name}"
-                        <c:if test="${indexNavigate.newPage==0}">target="_blank"</c:if>
-                        >${indexNavigate.name}</a></li>
-                </c:forEach>
+                <li th:each="indexNavigate:${navigatemap.INDEX}">
+                    <a th:href="${contextPath }+${indexNavigate.url}">
+                        <span th:text="${indexNavigate.name}"></span>
+                    </a>
+
+                </li>
             </ul>
-            <!-- / nav -->
             <ul class="h-r-login">
                 <li class="undis" id="no-login">
                     <a href="javascript:lrFun(1)" title="登录">
@@ -49,7 +49,7 @@
                     <em class="icon18 news-icon">&nbsp;</em>
                 </a><q class="red-point" style="display: none">&nbsp;</q></li>
                 <li class="h-r-user undis" id="is-login-two"><a href="${ctx}/uc/index" title="">
-                    <img src="${ctx }/static/inxweb/img/avatar-boy.gif" width="30" height="30" class="vam picImg"
+                    <img th:src="${contextPath }+'/static/inxweb/img/avatar-boy.gif'" width="30" height="30" class="vam picImg"
                          alt="">
                     <span class="vam disIb" id="userName"></span>
                 </a>
@@ -58,8 +58,8 @@
             </ul>
             <aside class="h-r-search">
                 <form action="${ctx}/front/showcoulist" method="post">
-                    <label class="h-r-s-box"><input type="text" placeholder="输入你想学的课程" name="queryCourse.courseName"
-                                                    value="${queryCourse.courseName}">
+                    <label class="h-r-s-box">
+                        <input type="text" placeholder="输入你想学的课程" name="queryCourse.courseName"  >
                         <button type="submit" class="s-btn">
                             <em class="icon18">&nbsp;</em>
                         </button>

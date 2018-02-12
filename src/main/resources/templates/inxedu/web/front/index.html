@@ -6,6 +6,7 @@
 </head>
 <div th:include="/common/header::header"></div>
 <body>
+<div th:with="contextPath=${contextPath }"></div>
 <div class="i-slide">
     <section>
         <!-- 如果需要导航按钮 -->
@@ -66,7 +67,7 @@
                     <div class="clear"></div>
                 </article>
                 <section class="tac pt20">
-                    <a href="${ctx }/front/showcoulist" title="全部课程" class="comm-btn c-btn-2">全部课程</a>
+                    <a th:href="${contextPath }+'/front/showcoulist'" title="全部课程" class="comm-btn c-btn-2">全部课程</a>
                 </section>
             </div>
         </section>
@@ -148,13 +149,13 @@
                         <li  th:each="teacher:${teacherList}">
                             <section class="i-teach-wrap">
                                 <div class="i-teach-pic">
-                                    <a href="${ctx}/front/teacher/${teacher.id}" th:title="${teacher.name}">
+                                    <a href="${contextPath }/front/teacher/${teacher.id}" th:title="${teacher.name}">
                                         <th:block th:if="${teacher.picPath !=null and teacher.picPath !=''}">
-                                            <img th:alt="${teacher.name}" src="${ctx}/static/inxweb/img/default-tea-img.gif" xsrc="<%=staticImage%>${teacher.picPath}">
+                                            <img th:alt="${teacher.name}" src="${contextPath }/static/inxweb/img/default-tea-img.gif" xsrc="<%=staticImage%>${teacher.picPath}">
                                         </th:block>
 
                                         <c:if test="${empty teacher.picPath||teacher.picPath==''}">
-                                            <img th:alt="${teacher.name}" src="${ctx}/static/inxweb/img/default-img.gif" xsrc="${ctx}/static/inxweb/img/default-img.gif">
+                                            <img th:alt="${teacher.name}" src="${contextPath }/static/inxweb/img/default-img.gif" xsrc="${contextPath }/static/inxweb/img/default-img.gif">
                                         </c:if>
                                     </a>
                                 </div>
@@ -173,7 +174,7 @@
                     <div class="clear"></div>
                 </article>
                 <section class="tac pt20">
-                    <a href="${ctx}/front/teacherlist" title="全部讲师" class="comm-btn c-btn-2">全部讲师</a>
+                    <a href="${contextPath }/front/teacherlist" title="全部讲师" class="comm-btn c-btn-2">全部讲师</a>
                 </section>
             </div>
         </section>
