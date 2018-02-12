@@ -115,7 +115,7 @@ public class AppCourseController extends BaseController{
             json=this.setJson(true, "成功", course);
 		}catch(Exception e){
 			json=this.setJson(false, "异常", null);
-			logger.error("couinfo()--error",e);
+			logger.error("courseDetail()--error",e);
 		}
 		return json;
 	}

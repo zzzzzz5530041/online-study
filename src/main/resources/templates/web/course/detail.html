@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${course.courseName}"></title>
+    <div th:include="/common/web_header::header"></div>
+</head>
+<body>
+<div id="aCoursesList" class="bg-fa of">
+    <!-- /课程详情 开始 -->
+    <section class="container">
+        <section class="path-wrap txtOf hLh30">
+            <span th:with="context=${contextPath}"></span>
+            <a th:href="${context }" title="" class="c-999 fsize14">首页</a>
+            \
+            <a th:href="${context}+'/front/showcoulist'" title="" class="c-999 fsize14">课程列表</a>
+            \ <span class="c-333 fsize14" th:text="${course.courseName}"></span>
+        </section>
+        <div>
+        <article class="c-v-pic-wrap">
+            <section class="p-h-video-box" id="videoPlay">
+                <th:block th:if="${course.logo!=null and course.logo!=''}">
+                    <img th:src="${contextPath}+${course.logo}" th:alt="${course.courseName}" class="dis c-v-pic" />
+                </th:block>
+                <th:block th:unless="${course.logo!=null and course.logo!=''}">
+``                  <img th:src="${contextPath}+'/static/web/img/default-img.gif'" th:alt="${course.courseName}" class="dis c-v-pic" />
+                </th:block>
+
+                <a href="javascript:void(0)" th:onclick="'vedioClick('+${freeVideoId}+')'" th:title="${course.courseName}" class="v-play-btn">
+                    <em class="icon30">&nbsp;</em>
+                </a>
+            </section>
+            <section class="p-h-video-tip">
+                <img th:src="${contextPath}+'/static/web/img/v-loading.gif'">
+                <p class="hLh20"><span class="c-999">加载中...</span></p>
+            </section>
+        </article>
+        <aside class="c-attr-wrap">
+            <section class="ml20 mr15">
+                <h2 class="hLh30 txtOf mt15">
+                    <span class="c-fff fsize24" th:text="${course.courseName}"></span>
+                </h2>
+                <section class="c-attr-jg">
+                    <span class="c-fff">价格：</span><big class="c-yellow" th:text="'￥'+${course.currentPrice }"></big> <span class="c-ccc ml10">原价：<s th:text="'￥'+${course.sourcePrice }"></s></span>
+                </section>
+                <section class="c-attr-mt c-attr-undis">
+                    <span class="c-fff fsize14">主讲： <c:forEach items="${teacherList }" var="tea">
+                            <%-- <a href="${ctx}/front/teacher/${tea.id }">${tea.name }</a>&nbsp;&nbsp;&nbsp; --%>
+                            ${tea.name }&nbsp;&nbsp;&nbsp;
+                        </c:forEach>
+                    </span>
+                </section>
+                <section class="c-attr-mt c-attr-time">
+                    <span class="c-fff fsize14" th:if="${course.loseType==0 }" th:text="'课程有效期：'+${#dates.format(course.endTime,'yyyy-MM-dd HH:mm')}">
+                    <span class="c-fff fsize14" th:if="${course.loseType==1 }" th:text="'从购买之日起'+${course.loseTime }+'天'">
+                </section>
+            </section>
+        </aside>
+        <aside class="thr-attr-box">
+            <ol class="thr-attr-ol clearfix">
+                <li><p>&nbsp;</p>
+                    <aside>
+                        <span class="c-fff f-fM">购买数</span><br>
+                        <h6 class="c-fff f-fM mt10" th:text="${course.pageBuycount }"></h6>
+                    </aside></li>
+                <li><p>&nbsp;</p>
+                    <aside>
+                        <span class="c-fff f-fM">课时数</span><br>
+                        <h6 class="c-fff f-fM mt10" th:text="${course.lessionNum }"></h6>
+                    </aside></li>
+                <li><p>&nbsp;</p>
+                    <aside>
+                        <span class="c-fff f-fM">浏览数</span><br>
+                        <h6 class="c-fff f-fM mt10" th:text="${course.pageViewcount}"></h6>
+                    </aside></li>
+            </ol>
+        </aside>
+        <div class="clear"></div>
+    </div>
+</body>
+
+</html>

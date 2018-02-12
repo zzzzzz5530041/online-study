@@ -1,5 +1,6 @@
 package com.inxedu.os.edu.controller.course;
 
+import com.inxedu.os.common.constants.CommonConstants;
 import com.inxedu.os.common.controller.BaseController;
 import com.inxedu.os.common.entity.PageEntity;
 import com.inxedu.os.common.util.ObjectUtils;
@@ -40,7 +41,7 @@ public class CourseController extends BaseController {
     // 课程列表
     private static final String showCourseList = getViewPath("/web/course/courses-list");
     // 课程详情
-    private static final String couinfo = getViewPath("/web/course/course-infor");
+    private static final String courseDetail = "/web/course/detail";
 
     @Autowired
     private CourseService courseService;
@@ -120,11 +121,12 @@ public class CourseController extends BaseController {
      * 课程详情
      * 不管是课程套餐还是课程目录时都放到list(coursePackageList)中
      */
-    @RequestMapping("/front/couinfo/{id}")
-    public ModelAndView couinfo(HttpServletRequest request, @PathVariable("id") int courseId) {
+    @RequestMapping("/web/course/detail/{id}")
+    public ModelAndView courseDetail(HttpServletRequest request, @PathVariable("id") int courseId) {
         ModelAndView model = new ModelAndView();
+        model.addObject("contextPath", CommonConstants.contextPath);
     	try {
-    		model.setViewName(couinfo);
+    		model.setViewName(courseDetail);
             // 查询课程详情
             Course course = courseService.queryCourseById(courseId);
             if(course!=null){
@@ -176,7 +178,7 @@ public class CourseController extends BaseController {
             model.addObject("isok", true);
         } catch (Exception e) {
         	model.setViewName(this.setExceptionRequest(request, e));
-            logger.error("couinfo()----error", e);
+            logger.error("courseDetail()----error", e);
         }
         return model;
     }
