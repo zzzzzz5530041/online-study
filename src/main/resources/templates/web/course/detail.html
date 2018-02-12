@@ -44,10 +44,10 @@
                     <span class="c-fff">价格：</span><big class="c-yellow" th:text="'￥'+${course.currentPrice }"></big> <span class="c-ccc ml10">原价：<s th:text="'￥'+${course.sourcePrice }"></s></span>
                 </section>
                 <section class="c-attr-mt c-attr-undis">
-                    <span class="c-fff fsize14">主讲： <c:forEach items="${teacherList }" var="tea">
-                            <%-- <a href="${ctx}/front/teacher/${tea.id }">${tea.name }</a>&nbsp;&nbsp;&nbsp; --%>
-                            ${tea.name }&nbsp;&nbsp;&nbsp;
-                        </c:forEach>
+                    <span class="c-fff fsize14">主讲：
+                        <th:block th:each="teacher:${teacherList}">
+                            <span  th:href="${contextPath}+'/front/teacher/'+${teacher.id }" th:text="${teacher.name}"></span>&nbsp;&nbsp;&nbsp;
+                        </th:block>
                     </span>
                 </section>
                 <section class="c-attr-mt c-attr-time">
