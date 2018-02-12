@@ -4,184 +4,273 @@
     var theme_color = '${theme_color}';
 </script>
 </head>
-<div th:include="/common/web_header::header"></div>
-<body>
 <div th:with="contextPath=${contextPath }"></div>
-<div class="i-slide">
-    <section>
-        <!-- 如果需要导航按钮 -->
-        <a class="arrow-left s-arrow" href="javascript:void(0)"></a>
-        <a class="arrow-right s-arrow" href="javascript:void(0)"></a>
-        <!-- 图片位置 -->
-        <div class="swiper-container">
-            <div class="swiper-wrapper" >
-                <div class="swiper-slide" th:each="image:${websiteImagesList}" style="background:#EF550F">
-                    <a target="_blank" th:href="${image.linkAddress}">
-                        <img class="imgload" th:src="${staticImage}+${image.imagesUrl}" th:alt="${image.title}">
-                    </a>
+<body class="W-body">
+<div class="in-wrap">
+    <div class="changeTheme">
+        <div class="ei-item-box">
+            <div class="container pr">
+                <a class="fr" id="Replacement" href="javascript:void(0);">
+                    <img alt="" th:src="${contextPath}+'/web/img/HF-BG.png'">
+                </a>
+            </div>
+        </div>
+        <div class="ei-i-dialog pa" style="height: 120px; top: -120px; opacity: 0; z-index: -1;">
+            <div style="height: 100%;" class="ei-i-dialog-box">
+                <div class="ei-i-dialog-box-tit">
+                    <section class="container pr">
+                        <a title="收起" class="ei-i-close close_a pa" id="close_a" href="javascript: void(0)">
+                            <em class="vam up-hf"> <img alt="" th:src="${contextPath}+'/web/img/up-hf.png'">
+                            </em>
+                            <tt class="f-fM fsize14 vam">收起</tt>
+                        </a>
+                        <span> 主题切换 </span>
+                    </section>
+                </div>
+                <div class="ei-i-dialog-box-boy">
+                    <div class="container">
+                        <article class="dialog-box-boy-in">
+                            <ul class="clearfix">
+                                <li>
+                                    <div id="themeColororange" class="box-boy-in-i  ">
+                                        <a class="pr" href="javascript:changeThemeColor('orange')">
+                                            <img class="pic" alt=""
+                                                 th:src="${contextPath}+'/web/img/pic/one-master.jpg'">
+                                            <span class="pa name"> 网络课堂--模板一 </span> <em id="triangle-bottomright"
+                                                                                         class="xz"> &nbsp; </em>
+                                            <div class="loging" style="display:none;">
+                                                <img th:src="${contextPath}+'web/img/loding.gif'" alt="">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div id="themeColorgreen" class="box-boy-in-i">
+                                        <a class="pr" href="javascript:changeThemeColor('green')">
+                                            <img class="pic" alt=""
+                                                 th:src="${contextPath}+'/web/img/pic/two-green.jpg'">
+                                            <span class="pa name"> 网络课堂--模板二 </span> <em id="triangle-bottomright"
+                                                                                         class="xz"> &nbsp; </em>
+                                            <div class="loging" style="display:none;">
+                                                <img th:src="${contextPath}+'/web/img/loding.gif'" alt="">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div id="themeColorblue" class="box-boy-in-i">
+                                        <a class="pr" href="javascript:changeThemeColor('blue')">
+                                            <img class="pic" alt=""
+                                                 th:src="${contextPath}+'web/img/pic/three-blue.jpg'">
+                                            <span class="pa name"> 网络课堂--模板三 </span> <em id="triangle-bottomright"
+                                                                                         class="xz"> &nbsp; </em>
+                                            <div class="loging" style="display:none;">
+                                                <img th:src="${contextPath}+'web/img/loding.gif'" alt="">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </article>
+                    </div>
                 </div>
             </div>
-         </div>
-        <div class="pagination"></div>
-    </section>
-</div>
-<!-- /index slide -->
-<div id="aCoursesList">
-    <!-- /为你推荐 开始 -->
-    <div class="bg-fa of">
-        <section class="container">
-            <header class="comm-title">
-                <span class="fr mt5"><a href="javascript:void(0)" title="换一换" class="c-master" onclick="huanyihuan()">换一换</a></span>
-                <h2 class="fl tac">
-                    <span class="c-333">为你推荐</span>
-                </h2>
-            </header>
-            <article class="comm-course-list">
-                <ul class="of" id="weinituijian">
+        </div>
+    </div>
 
-                </ul>
-                <div class="clear"></div>
-            </article>
+
+    <div th:include="/common/web_header::header"></div>
+
+
+    <div class="i-slide">
+        <section>
+            <!-- 如果需要导航按钮 -->
+            <a class="arrow-left s-arrow" href="javascript:void(0)"></a>
+            <a class="arrow-right s-arrow" href="javascript:void(0)"></a>
+            <!-- 图片位置 -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" th:each="image:${websiteImagesList}" style="background:#EF550F">
+                        <a target="_blank" th:href="${image.linkAddress}">
+                            <img class="imgload" th:src="${staticImage}+${image.imagesUrl}" th:alt="${image.title}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination"></div>
         </section>
     </div>
-    <!-- /为你推荐 结束 -->
-    <!-- /网校课程 开始 -->
-    <div>
-        <section class="container">
-            <header class="comm-title">
-                <h2 class="tac">
-                    <span class="c-333">网校课程</span>
-                </h2>
-            </header>
-            <div>
-                <section class="c-tab-title">
-                    <a href="javascript:void(0)" title="精品课程" onclick="bna('FOLLOW',this)" class="current boutiqueCourse">精品课程</a>
-                    <a href="javascript:void(0)" title="最新课程" onclick="bna('NEW',this)">最新课程</a>
-                    <a href="javascript:void(0)" title="全部课程" onclick="bna('ALL',this)">全部课程</a>
-                </section>
-            </div>
-            <div>
+    <!-- /index slide -->
+    <div id="aCoursesList">
+        <!-- /为你推荐 开始 -->
+        <div class="bg-fa of">
+            <section class="container">
+                <header class="comm-title">
+                    <span class="fr mt5"><a href="javascript:void(0)" title="换一换" class="c-master"
+                                            onclick="huanyihuan()">换一换</a></span>
+                    <h2 class="fl tac">
+                        <span class="c-333">为你推荐</span>
+                    </h2>
+                </header>
                 <article class="comm-course-list">
-                    <ul class="of" id="bna">
+                    <ul class="of" id="weinituijian">
+
                     </ul>
                     <div class="clear"></div>
                 </article>
-                <section class="tac pt20">
-                    <a th:href="${contextPath }+'/front/showcoulist'" title="全部课程" class="comm-btn c-btn-2">全部课程</a>
-                </section>
-            </div>
-        </section>
-    </div>
-    <!-- /网校课程 结束 -->
-    <!-- /课程互动 开始-->
-    <div class="bg-fa of mt30">
-        <section class="container">
-            <article class="fl col-7">
-                <div class="mr50">
+            </section>
+        </div>
+        <!-- /为你推荐 结束 -->
+        <!-- /网校课程 开始 -->
+        <div>
+            <section class="container">
+                <header class="comm-title">
+                    <h2 class="tac">
+                        <span class="c-333">网校课程</span>
+                    </h2>
+                </header>
+                <div>
+                    <section class="c-tab-title">
+                        <a href="javascript:void(0)" title="精品课程" onclick="bna('FOLLOW',this)"
+                           class="current boutiqueCourse">精品课程</a>
+                        <a href="javascript:void(0)" title="最新课程" onclick="bna('NEW',this)">最新课程</a>
+                        <a href="javascript:void(0)" title="全部课程" onclick="bna('ALL',this)">全部课程</a>
+                    </section>
+                </div>
+                <div>
+                    <article class="comm-course-list">
+                        <ul class="of" id="bna">
+                        </ul>
+                        <div class="clear"></div>
+                    </article>
+                    <section class="tac pt20">
+                        <a th:href="${contextPath }+'/front/showcoulist'" title="全部课程" class="comm-btn c-btn-2">全部课程</a>
+                    </section>
+                </div>
+            </section>
+        </div>
+        <!-- /网校课程 结束 -->
+        <!-- /课程互动 开始-->
+        <div class="bg-fa of mt30">
+            <section class="container">
+                <article class="fl col-7">
+                    <div class="mr50">
+                        <header class="comm-title">
+                            <h2 class="fl tac">
+                                <span class="c-333">课程互动</span>
+                            </h2>
+                        </header>
+                        <div class="i-question-list">
+                            <ul id="iQuestion" th:each="comment:${commentList}">
+                                <li>
+                                    <section class="i-q-l-wrap">
+                                        <div class="u-face">
+                                            <img width="50" height="50" th:if="${comment.picImg==null}" class="picImg"
+                                                 th:xsrc="${contextPath}+'/web/img/avatar-boy.gif'"
+                                                 th:src="${contextPath }+'/web/img/avatar-boy.gif'">
+                                            <img width="50" height="50" th:unless="${comment.picImg==null}"
+                                                 class="picImg" th:src="${contextPath}+'/web/img/avatar-boy.gif'"
+                                                 th:xsrc="${contextPath }+${comment.picImg }">
+                                        </div>
+                                        <section class="hLh20 of">
+                                            <span class="fr c-ccc f-fG"
+                                                  th:text="${#dates.format(comment.addTime,'yyyy-MM-dd HH:mm')}"></span>
+                                            <th:block th:if="${comment.userName==null}">
+                                                <span class="fsize16 c-666" th:text="${comment.email}"> </span>
+                                            </th:block>
+                                            <th:block th:if="${comment.userName!=null}">
+                                                <span class="fsize16 c-666" th:text=" ${comment.userName}"> </span>
+                                            </th:block>
+
+                                            <span class="fsize14 c-999 ml5 f-fA">评论课程：</span>
+                                        </section>
+                                        <section class="hLh20 of mt10">
+                                            <a class="c-master fsize14"
+                                               th:href="${contextPath}+'/web/course/detail/'+${comment.courseId}"><span
+                                                    th:text="'《'+${comment.courseName}+'》'"></span></a>
+                                        </section>
+                                        <section class="i-q-txt">
+                                            <p>
+                                                <span class="c-999 f-fA txtOf" th:text="${comment.content}"> </span>
+                                            </p>
+                                        </section>
+                                    </section>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+                <aside class="fl col-3">
                     <header class="comm-title">
+                        <!-- <span class="fr"><a class="c-master" title="" href="">换一换</a></span> -->
                         <h2 class="fl tac">
-                            <span class="c-333">课程互动</span>
+                            <span class="c-333">学生动态</span>
                         </h2>
                     </header>
-                    <div class="i-question-list">
-                        <ul id="iQuestion" th:each="comment:${commentList}">
-                            <li>
-                                <section class="i-q-l-wrap">
-                                    <div class="u-face">
-                                        <img width="50" height="50" th:if="${comment.picImg==null}" class="picImg" th:xsrc="${contextPath}+'/web/img/avatar-boy.gif'" th:src="${contextPath }+'/web/img/avatar-boy.gif'">
-                                        <img width="50" height="50" th:unless="${comment.picImg==null}" class="picImg" th:src="${contextPath}+'/web/img/avatar-boy.gif'" th:xsrc="${contextPath }+${comment.picImg }">
-                                    </div>
-                                    <section class="hLh20 of">
-                                        <span class="fr c-ccc f-fG" th:text="${#dates.format(comment.addTime,'yyyy-MM-dd HH:mm')}"></span>
-                                        <th:block th:if="${comment.userName==null}">
-                                            <span class="fsize16 c-666" th:text="${comment.email}"> </span>
-                                        </th:block>
-                                        <th:block th:if="${comment.userName!=null}">
-                                            <span class="fsize16 c-666" th:text=" ${comment.userName}"> </span>
-                                        </th:block>
+                    <div class="stud-act-list">
+                        <section>
+                            <ul id="s-action" class="studentDynamicHtml">
 
-                                        <span class="fsize14 c-999 ml5 f-fA">评论课程：</span>
-                                    </section>
-                                    <section class="hLh20 of mt10">
-                                        <a class="c-master fsize14" th:href="${contextPath}+'/web/course/detail/'+${comment.courseId}"><span th:text="'《'+${comment.courseName}+'》'"></span></a>
-                                    </section>
-                                    <section class="i-q-txt">
-                                        <p>
-                                            <span class="c-999 f-fA txtOf" th:text="${comment.content}"> </span>
-                                        </p>
-                                    </section>
+                            </ul>
+                        </section>
+                    </div>
+                </aside>
+                <div class="clear"></div>
+            </section>
+        </div>
+        <!-- /课程互动 结束-->
+        <!-- /网校名师 开始 -->
+        <div>
+            <section class="container">
+                <header class="comm-title">
+                    <h2 class="tac">
+                        <span class="c-333">网校名师</span>
+                    </h2>
+                </header>
+                <div>
+                    <article class="i-teacher-list">
+                        <ul class="of">
+                            <li th:each="teacher:${teacherList}">
+                                <section class="i-teach-wrap">
+                                    <div class="i-teach-pic">
+                                        <a th:href="${contextPath }+'/front/teacher/'+ ${teacher.id}"
+                                           th:title="${teacher.name}">
+                                            <th:block th:if="${teacher.picPath !=null and teacher.picPath !=''}">
+                                                <img th:alt="${teacher.name}"
+                                                     th:src="${contextPath }+'/web/img/default-tea-img.gif'">
+                                            </th:block>
+
+                                            <th:block th:if="${ teacher.picPath==null ||teacher.picPath==''}">
+                                                <img th:alt="${teacher.name}"
+                                                     th:src="${contextPath }+'/web/img/default-img.gif'">
+                                            </th:block>
+                                        </a>
+                                    </div>
+                                    <div class="mt10 hLh30 txtOf tac">
+                                        <a th:href="${contextPath }+'/front/teacher/'+${teacher.id}"
+                                           th:title="${teacher.name}" class="fsize18 c-666"
+                                           th:text="${teacher.name}"></a>
+                                    </div>
+                                    <div class="hLh30 txtOf tac">
+                                        <span class="fsize14 c-999" th:text="${teacher.education }"></span>
+                                    </div>
+                                    <div class="mt15 i-q-txt">
+                                        <p class="c-999 f-fA" th:text="${teacher.career }"></p>
+                                    </div>
                                 </section>
                             </li>
                         </ul>
-                    </div>
-                </div>
-            </article>
-            <aside class="fl col-3">
-                <header class="comm-title">
-                    <!-- <span class="fr"><a class="c-master" title="" href="">换一换</a></span> -->
-                    <h2 class="fl tac">
-                        <span class="c-333">学生动态</span>
-                    </h2>
-                </header>
-                <div class="stud-act-list">
-                    <section>
-                        <ul id="s-action" class="studentDynamicHtml">
-
-                        </ul>
+                        <div class="clear"></div>
+                    </article>
+                    <section class="tac pt20">
+                        <a th:href="${contextPath }+'/front/teacherlist'" title="全部讲师" class="comm-btn c-btn-2">全部讲师</a>
                     </section>
                 </div>
-            </aside>
-            <div class="clear"></div>
-        </section>
+            </section>
+        </div>
+        <!-- /网校名师 结束 -->
     </div>
-    <!-- /课程互动 结束-->
-    <!-- /网校名师 开始 -->
-    <div>
-        <section class="container">
-            <header class="comm-title">
-                <h2 class="tac">
-                    <span class="c-333">网校名师</span>
-                </h2>
-            </header>
-            <div>
-                <article class="i-teacher-list">
-                    <ul class="of">
-                        <li  th:each="teacher:${teacherList}">
-                            <section class="i-teach-wrap">
-                                <div class="i-teach-pic">
-                                    <a th:href="${contextPath }+'/front/teacher/'+ ${teacher.id}" th:title="${teacher.name}">
-                                        <th:block th:if="${teacher.picPath !=null and teacher.picPath !=''}">
-                                            <img th:alt="${teacher.name}" th:src="${contextPath }+'/web/img/default-tea-img.gif'" >
-                                        </th:block>
-
-                                        <th:block th:if="${ teacher.picPath==null ||teacher.picPath==''}">
-                                            <img th:alt="${teacher.name}"   th:src="${contextPath }+'/web/img/default-img.gif'"  >
-                                        </th:block>
-                                    </a>
-                                </div>
-                                <div class="mt10 hLh30 txtOf tac">
-                                    <a th:href="${contextPath }+'/front/teacher/'+${teacher.id}" th:title="${teacher.name}" class="fsize18 c-666" th:text="${teacher.name}"></a>
-                                </div>
-                                <div class="hLh30 txtOf tac">
-                                    <span class="fsize14 c-999" th:text="${teacher.education }"></span>
-                                </div>
-                                <div class="mt15 i-q-txt">
-                                    <p class="c-999 f-fA" th:text="${teacher.career }"></p>
-                                </div>
-                            </section>
-                        </li>
-                    </ul>
-                    <div class="clear"></div>
-                </article>
-                <section class="tac pt20">
-                    <a th:href="${contextPath }+'/front/teacherlist'" title="全部讲师" class="comm-btn c-btn-2">全部讲师</a>
-                </section>
-            </div>
-        </section>
-    </div>
-    <!-- /网校名师 结束 -->
 </div>
-
 </body>
 
 <div th:include="/common/web_footer::footer"></div>
