@@ -124,6 +124,8 @@ public class WebFrontController extends BaseController {
 			return setExceptionRequest(request, e);
 		}
 		model.addAttribute("staticImage", CommonConstants.staticImage);
+		model.addAttribute("contextPath", CommonConstants.contextPath);
+
 		return getViewPath("/web/front/index");//首页页面
 	}
 

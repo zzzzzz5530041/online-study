@@ -11,7 +11,7 @@
     <link th:href="@{/web/css/theme.css}" rel="stylesheet">
     <link th:href="@{/web/css/web.css}" rel="stylesheet">
 </head>
-<div th:include="/common/header::header"></div>
+
 <body>
 <div class="i-slide">
     <section>
@@ -27,7 +27,7 @@
                     </a>
                 </div>
             </div>
-         </div>
+        </div>
         <div class="pagination"></div>
     </section>
 </div>
@@ -94,11 +94,11 @@
                             <li>
                                 <section class="i-q-l-wrap">
                                     <div class="u-face">
-                                        <img width="50" height="50" th:if="${comment.picImg==null}" class="picImg" th:xsrc="${contextPath}+'/static/web/img/avatar-boy.gif'" th:src="${contextPath }+'/static/web/img/avatar-boy.gif'">
-                                        <img width="50" height="50" th:unless="${comment.picImg==null}" class="picImg" th:src="${contextPath}+'/static/web/img/avatar-boy.gif'" th:xsrc="${contextPath }+${comment.picImg }">
+                                        <img width="50" height="50" th:if="${comment.picImg==null}" class="picImg" xsrc="${ctx }/static/inxweb/img/avatar-boy.gif" src="${ctx }/static/inxweb/img/avatar-boy.gif">
+                                        <img width="50" height="50" th:unless="${comment.picImg==null}" class="picImg" src="${ctx }/static/inxweb/img/avatar-boy.gif" xsrc="${ctx }${comment.picImg }">
                                     </div>
                                     <section class="hLh20 of">
-                                        <span class="fr c-ccc f-fG" th:text="${#dates.format(comment.addTime,'yyyy-MM-dd HH:mm')}"></span>
+                                        <span class="fr"><tt class="c-ccc f-fG"><fmt:formatDate value="${comment.addTime }" pattern="yyyy/MM/dd HH:mm" /></tt></span>
                                         <th:block th:if="${comment.userName==null}">
                                             <span class="fsize16 c-666" th:text="${comment.email}"> </span>
                                         </th:block>
@@ -109,7 +109,7 @@
                                         <span class="fsize14 c-999 ml5 f-fA">评论课程：</span>
                                     </section>
                                     <section class="hLh20 of mt10">
-                                        <a class="c-master fsize14" th:href="${contextPath}+'/front/couinfo/'+${comment.courseId}"><span th:text="'《'+${comment.courseName}+'》'"></span></a>
+                                        <a class="c-master fsize14" href="${ctx}/front/couinfo/${comment.courseId}"><span th:text="'《'+${comment.courseName}+'》'"></span></a>
                                     </section>
                                     <section class="i-q-txt">
                                         <p>
