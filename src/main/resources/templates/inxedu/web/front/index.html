@@ -151,8 +151,8 @@
             </header>
             <div>
                 <article class="i-teacher-list">
-                    <ul class="of" th:each="teacher:${teacherList}">
-                        <li>
+                    <ul class="of">
+                        <li  th:each="teacher:${teacherList}">
                             <section class="i-teach-wrap">
                                 <div class="i-teach-pic">
                                     <a href="${ctx}/front/teacher/${teacher.id}" th:title="${teacher.name}">
