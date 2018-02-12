@@ -54,6 +54,28 @@
                     <span class="c-fff fsize14" th:if="${course.loseType==0 }" th:text="'课程有效期：'+${#dates.format(course.endTime,'yyyy-MM-dd HH:mm')}">
                     <span class="c-fff fsize14" th:if="${course.loseType==1 }" th:text="'从购买之日起'+${course.loseTime }+'天'">
                 </section>
+                <section class="c-attr-mt of ml10">
+                    <section class="kcShare pr fl hand vam">
+                        <tt>
+                            <em class="icon18 shareIcon"></em><span class="vam c-fff f-fM">分享</span>
+                        </tt>
+                        <div id="bdshare" class="bdsharebuttonbox">
+                            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                            <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+                            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>
+                    </section>
+                    <span class="ml10 vam sc-end" th:if="${isFavorites==true }">
+                        <em class="icon18 scIcon"></em><a class="c-fff vam" title="收藏" onclick="" href="javascript:void(0)">已收藏</a>
+                    </span>
+                    <span class="ml10 vam" th:if="${isFavorites!=true }">
+                        <em class="icon18 scIcon"></em>
+                        <a class="c-fff vam" title="收藏" th:onclick="'favorites('+${course.courseId}+')'" href="javascript:void(0)">收藏</a>
+                    </span>
+                    </c:if>
+                </section>
             </section>
         </aside>
         <aside class="thr-attr-box">
@@ -77,6 +99,77 @@
         </aside>
         <div class="clear"></div>
     </div>
+        <!-- /课程封面介绍 -->
+        <div class="mt20 c-infor-box">
+            <article class="fl col-7">
+                <section class="mr30">
+                    <div class="i-box">
+                        <div>
+                            <section id="c-i-tabTitle" class="c-infor-tabTitle c-tab-title">
+                                <a name="c-i" class="current" title="课程详情" href="javascript: void(0)">课程详情</a>
+                                <a name="c-g" title="课程大纲" href="javascript: void(0)">课程大纲</a>
+                                <a name="c-c" title="课程评论" href="javascript: void(0)">课程评论</a>
+                            </section>
+                        </div>
+                        <article class="ml10 mr10 pt20">
+                            <div>
+                                <h6 class="c-i-content c-infor-title"> <span>课程介绍</span></h6>
+                                <!-- /无数据提示 开始-->
+                                <section class="no-data-wrap" th:if="${course.context == null}">
+                                    <em class="icon30 no-data-ico">&nbsp;</em> <span class="c-666 fsize14 ml10 vam">没有相关数据，小编正在努力整理中...</span>
+                                </section>
+                                <!-- /无数据提示 结束-->
+                                <div class="course-txt-body-wrap" th:if="${course.context !=null and course.context !=''} ">
+                                    <section class="course-txt-body">
+                                        <p th:text="${course.context}"></p>
+                                    </section>
+                                    <section class="ctb-btn"><a href="javascript: void(0)" class="comm-btn c-btn-6" title="查看更多">查看更多∨</a></section>
+                                </div>
+                            </div>
+                            <!-- /课程介绍 -->
+                            <div class="mt50">
+                                <h6 class="c-g-content c-infor-title">
+                                    <span>课程大纲</span>
+                                </h6>
+                                <section class="mt20">
+                                    <div class="lh-menu-wrap">
+                                        <menu id="lh-menu" class="lh-menu mt10 mr10">
+                                            <ul>
+                                                <div th:with="folderIndex=1"/>
+                                                <th:block th:each="parentKpoint,index:${parentKpointList}">
+                                                    <li class="lh-menu-stair" th:if="${parentKpoint.kpointType==0 }">
+                                                        <th:block  th:switch="${index.first}">
+                                                            <a th:case="true" href="javascript: void(0)" th:title="${parentKpoint.name }" class="current-1"></a>
+                                                            <a th:case="false" href="javascript: void(0)" th:title="${parentKpoint.name }"></a>
+                                                        </th:block>
+                                                            <span class="fr"><em class="icon14 m-tree-icon">&nbsp;</em> </span>
+                                                            <em class="lh-menu-i-1 icon24 mr5"><font th:text="${folderIndex }"></font></em>
+                                                            <span th:text="${parentKpoint.name}"></span>
+                                                        </a>
+                                                        <th:block th:switch="${index.first}">
+                                                            <ol th:case="true" class="lh-menu-ol" style="display: block;">
+                                                            <ol th:case="false" class="lh-menu-ol" style="none: block;">
+                                                        </th:block>
+                                                        <th:block th:each="sonKpoint:${parentKpoint.kpointList}">
+                                                            <li class="lh-menu-second ml30">
+                                                                <a href="javascript:void(0)"  title="">
+                                                                    <span class="fr">
+                                                                      <!--  <tt  th:if="${sonKpoint.free==1 }"class="free-icon vam mr10">免费试听</tt>
+                                                                        <em  th:if="${sonKpoint.playTime !=null}" class="lh-p-icon icon14 ml5" th:text="${sonKpoint.playTime}">&nbsp;</em>
+                                                                        -->
+                                                                    </span>
+                                                                    <em class="lh-menu-i-2 icon14 mr5" th:text="${sonKpoint.name }">&nbsp;</em>
+                                                                </a>
+                                                            </li>
+                                                        </th:block>
+
+                                                    </ol>
+                                                    </li>
+
+                                                </th:block>
+
+
+</div>
 </body>
 
 </html>
