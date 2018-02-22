@@ -5,7 +5,7 @@
 <head>
     <title>课程列表</title>
     <div th:include="/common/web_header::header"></div>
-    <script type="text/javascript" th:src="@{/web/front/course.js}"></script>
+    <script type="text/javascript" th:src="@{/web/js/front/course.js}"></script>
 
 </head>
 <body>
@@ -31,7 +31,8 @@
 
                             <li th:each="subject:${subjectList}"
                                 th:class="${queryCourse.subjectId==subject.subjectId or subjectParentId==subject.subjectId}? 'current':''">
-                                <a th:onclick="'submitForm(1,'+${subject.subjectId}+')'" th:title="${subject.subjectName}"
+                                <a th:onclick="'submitForm(1,'+${subject.subjectId}+')'"
+                                   th:title="${subject.subjectName}"
                                    href="javascript:void(0)" th:text="${subject.subjectName}"></a>
                             </li>
                         </ul>
@@ -42,7 +43,7 @@
                 </dl>
 
 
-                <th:block th:if="${!sonSubjectList.empty}">
+                <th:block th:if="${sonSubjectList!=null}">
                     <dl>
                         <dt>
                             <span class="c-999 fsize14"></span>
@@ -51,7 +52,8 @@
                             <ul class="clearfix">
                                 <li th:each="subject:${sonSubjectList}"
                                     th:class="${queryCourse.subjectId==subject.subjectId}?'current':''">
-                                    <a th:onclick=submitForm(1,${subject.subjectId})" th:title="${subject.subjectName}"
+                                    <a th:onclick="'submitForm(1,'+${subject.subjectId}+')'"
+                                       th:title="${subject.subjectName}"
                                        th:text="${subject.subjectName}" href="javascript:void(0)"></a></li>
                                 </li>
                             </ul>
@@ -75,7 +77,7 @@
 
                             <li th:each="teacher:${teacherList}"
                                 th:class="${teacher.id==queryCourse.teacherId}?'current':''">
-                                <a title="${teacher.name}" th:onclick="submitForm(2,${teacher.id})"
+                                <a title="${teacher.name}" th:onclick="'submitForm(2,'+${teacher.id}+')'"
                                    href="javascript:void(0)" th:text="${teacher.name}"></a>
                             </li>
                         </ul>
@@ -88,7 +90,8 @@
             </section>
             <div class="js-wrap">
                 <section class="fr">
-						<span class="c-ccc"> <tt class="c-master f-fM" th:text="${page.currentPage}"></tt>/<tt class="c-666 f-fM" th:text="${page.totalPageSize}"></tt>
+						<span class="c-ccc"> <tt class="c-master f-fM" th:text="${page.currentPage}"></tt>/<tt
+                                class="c-666 f-fM" th:text="${page.totalPageSize}"></tt>
 						</span>
                 </section>
                 <section class="fl">
@@ -100,111 +103,120 @@
                             <a title="最新" onclick="submitForm(3,'NEW')" href="javascript:void(0)">最新</a>
                         </li>
                         <li th:class="${queryCourse.order=='ASCENDING' or queryCourse.order=='DESCENDING'}?'current bg-orange':''">
-                            <a title="价格" th:onclick="submitForm(4,${queryCourse.order==null}?'ONE':${queryCourse.order})"
-                               href="javascript:void(0)">价格<span th:text="${queryCourse.order=='ASCENDING' }?'↑':'↓'"></a>
+                            <a title="价格"
+                               th:onclick="'submitForm(4,'+${queryCourse.order==null}?'ONE':${queryCourse.order}+')'"
+                               href="javascript:void(0)">价格<span
+                                    th:text="${queryCourse.order=='ASCENDING' }?'↑':'↓'"></a>
                         </li>
                     </ol>
                 </section>
             </div>
             <div class="mt40">
-<section th:if="${courseList.empty}" class="no-data-wrap">
-    <!-- /无数据提示 开始-->
-    <em class="icon30 no-data-ico">&nbsp;</em> <span class="c-666 fsize14 ml10 vam">没有相关数据，小编正在努力整理中...</span>
-    <!-- /无数据提示 结束-->
-</section>
+                <section th:if="${courseList==null}" class="no-data-wrap">
+                    <!-- /无数据提示 开始-->
+                    <em class="icon30 no-data-ico">&nbsp;</em> <span
+                        class="c-666 fsize14 ml10 vam">没有相关数据，小编正在努力整理中...</span>
+                    <!-- /无数据提示 结束-->
+                </section>
+
+                <article th:if="${courseList !=null}" th:class="comm-course-list">
+                    <ul th:class="of">
+                        <li th:each="course,iterStat:${courseList}">
+                            <div class="cc-l-wrap">
+                                <section class="course-img">
+                                    <img th:if="${course.logo!=null}" th:xsrc="${course.logo}"
+                                         src="/web/img/default-img.gif" class="img-responsive" alt=""/>
+                                    <img th:if="${course.logo==null}" xsrc="/web/img/default-img.gif"
+                                         src="/web/img/default-img.gif" class="img-responsive" alt=""/>
+                                    <div class="cc-mask">
+                                        <a th:href="'/front/couinfo/'+${course.courseId}" title=""
+                                           class="comm-btn c-btn-1">开始学习</a>
+                                    </div>
+                                </section>
+
+                                <h3 class="hLh30 txtOf mt10">
+                                    <a th:href="'/front/couinfo/'+${course.courseId}"
+                                       th:title="${course.courseName}" class="course-title fsize18 c-333"
+                                       th:text="${course.courseName}"></a>
+                                </h3>
+
+                                <section class="mt10 hLh20 of">
+                <span th:if="${course.currentPrice=='0.00' }" class="fr jgTag bg-green">
+                    <tt class="c-fff fsize12 f-fA">免费</tt>
+                </span>
+                                    <span th:if="${course.currentPrice!='0.00' }" class="fr jgTag bg-orange">
+                    <tt class="c-fff fsize14 f-fG" th:text="'￥'+${course.currentPrice }"></tt>
+                </span>
+                                    <span class="fl jgAttr c-ccc f-fA">
+                    <tt class="c-999 f-fA" th:text="${course.pageBuycount }+'人学习'"></tt>
+                    | <tt class="c-999 f-fA" th:text="${course.pageViewcount }+'浏览'"></tt>
+				</span>
+                                </section>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+            <!-- 公共分页 开始 -->
+            <!-- 公共分页 结束 -->
+            <form action="/web/course/showcoulist" id="searchForm" method="post">
+                <input type="hidden" id="pageCurrentPage" name="page.currentPage" value="1"/>
+                <input type="hidden" name="queryCourse.teacherId" th:value="${queryCourse.teacherId}"/>
+                <input type="hidden" name="queryCourse.subjectId" th:value="${queryCourse.subjectId}"/>
+                <input type="hidden" name="queryCourse.order" th:value="${queryCourse.order}"/>
+            </form>
+            <script type="text/javascript" th:src="@{/web/js/common/page.js}" ></script>
+            <div class="paging" th:if="${page != null  and page.totalResultSize>0}">
+                <a href="javascript:goPage(1);" title="">首</a>
+                <a id="backpage" th:if="${page.first}" class="undisable" href="javascript:void(0)" title="">&lt;</a>
+                <a id="backpage" th:if="${!page.first}" th:href="'javascript:goPage('+${page.currentPage-1 }+');'" title="">&lt;</a>
+                <a id="nextpage" th:if="${page.last}" href="javascript:void(0)" title="" class="undisable">&gt;</a>
+                <a id="nextpage" th:if="${!page.last}" th:href="'javascript:goPage('+${page.currentPage+1}+');'" title="">&gt;</a>
+                <a th:href="'javascript:goPage('+${page.totalPageSize}+');'" title="">末</a>
+                <div class="clear"></div>
+            </div>
+            <script type="text/javascript" th:inline="javascript" th:with="totalPageSize=${page.totalPageSize }">
+                /*<![CDATA[*/
+                var totalPageSize = [[${totalPageSize}]];
+                var currentPage = [[${page.currentPage-1}]]<1 ? 1 :[[${totalPageSize}]];
+                var totalPage = [[${totalPageSize}]];
+                showPageNumber();
+                /*]]>*/
+            </script>
 
 
 
-
-                <!---->
-                <!--<c:if test="${not empty courseList}">-->
-                    <!--<article class="comm-course-list">-->
-                        <!--<ul class="of">-->
-                            <!--<c:forEach items="${courseList}" var="course" varStatus="index">-->
-                                <!--<li>-->
-                                    <!--<div class="cc-l-wrap">-->
-                                        <!--<section class="course-img">-->
-                                            <!--<c:choose>-->
-                                                <!--<c:when test="${not empty course.logo }">-->
-                                                    <!--<img xSrc="<%=staticImage%>${course.logo}"-->
-                                                         <!--src="${ctx }/static/inxweb/img/default-img.gif"-->
-                                                         <!--class="img-responsive" alt="">-->
-                                                <!--</c:when>-->
-                                                <!--<c:otherwise>-->
-                                                    <!--<img xSrc="/static/inxweb/img/default-img.gif"-->
-                                                         <!--src="${ctx }/static/inxweb/img/default-img.gif"-->
-                                                         <!--class="img-responsive" alt="">-->
-                                                <!--</c:otherwise>-->
-                                            <!--</c:choose>-->
-                                            <!--<div class="cc-mask">-->
-                                                <!--<a href="${ctx}/front/couinfo/${course.courseId}" title=""-->
-                                                   <!--class="comm-btn c-btn-1">开始学习</a>-->
-                                            <!--</div>-->
-                                        <!--</section>-->
-                                        <!--<h3 class="hLh30 txtOf mt10">-->
-                                            <!--<a href="${ctx}/front/couinfo/${course.courseId}"-->
-                                               <!--title="${course.courseName}" class="course-title fsize18 c-333">${course.courseName}</a>-->
-                                        <!--</h3>-->
-                                        <!--<section class="mt10 hLh20 of">-->
-                                            <!--<c:if test="${course.currentPrice=='0.00' }">-->
-                                                <!--<span class="fr jgTag bg-green"><tt-->
-                                                        <!--class="c-fff fsize12 f-fA">免费</tt></span>-->
-                                            <!--</c:if>-->
-                                            <!--<c:if test="${course.currentPrice!='0.00' }">-->
-                                                <!--<span class="fr jgTag bg-orange"><tt class="c-fff fsize14 f-fG">￥${course.currentPrice }</tt></span>-->
-                                            <!--</c:if>-->
-                                            <!--<span class="fl jgAttr c-ccc f-fA"> <tt class="c-999 f-fA">${course.pageBuycount }人学习</tt> | <tt-->
-                                                    <!--class="c-999 f-fA">${course.pageViewcount }浏览</tt>-->
-												<!--</span>-->
-                                        <!--</section>-->
-                                    <!--</div>-->
-                                <!--</li>-->
-                            <!--</c:forEach>-->
-                        <!--</ul>-->
-                        <!--<div class="clear"></div>-->
-                    <!--</article>-->
-                <!--</c:if>-->
-            <!--</div>-->
-            <!--&lt;!&ndash; 公共分页 开始 &ndash;&gt;-->
-            <!--<jsp:include page="/WEB-INF/view/common/front_page.jsp"/>-->
-            <!--&lt;!&ndash; 公共分页 结束 &ndash;&gt;-->
-            <!--<form action="${ctx}/front/showcoulist" id="searchForm" method="post">-->
-                <!--<input type="hidden" id="pageCurrentPage" name="page.currentPage" value="1"/>-->
-                <!--<input type="hidden" name="queryCourse.teacherId" value="${queryCourse.teacherId}"/>-->
-                <!--<input type="hidden" name="queryCourse.subjectId" value="${queryCourse.subjectId}"/>-->
-                <!--<input type="hidden" name="queryCourse.order" value="${queryCourse.order}"/>-->
-            <!--</form>-->
-        <!--</section>-->
-    <!--</section>-->
-    <!--&lt;!&ndash; /课程列表 结束 &ndash;&gt;-->
-<!--</div>-->
-<!--<script>-->
-    <!--$(function () {-->
-        <!--cSortFun(); //分类更多按钮交互效果-->
-        <!--scrollLoad(); //响应滚动加载课程图片-->
-    <!--});-->
-    <!--//sort suMore-->
-    <!--var cSortFun = function () {-->
-        <!--$(".c-s-dl>dl .c-s-more>a").each(function () {-->
-            <!--var _this = $(this),-->
-                <!--_uList = _this.parent().siblings("ul"),-->
-                <!--_uLw = _uList.height();-->
-            <!--if (_uLw <= "40") {-->
-                <!--_this.hide();-->
-            <!--} else {-->
-                <!--_uList.css("height", "40px");-->
-                <!--_this.click(function () {-->
-                    <!--if (_this.html() == "[展开]") {-->
-                        <!--_uList.css("height", "auto");-->
-                        <!--_this.text("[收起]");-->
-                    <!--} else {-->
-                        <!--_uList.css("height", "40px");-->
-                        <!--_this.text("[展开]");-->
-                    <!--}-->
-                <!--})-->
-            <!--}-->
-        <!--});-->
-    <!--}-->
-<!--</script>-->
-<!--</body>-->
-<!--</html>-->
+        </section>
+    </section>
+    <!-- /课程列表 结束 -->
+</div>
+<script>
+    $(function () {
+        cSortFun(); //分类更多按钮交互效果
+        scrollLoad(); //响应滚动加载课程图片
+    });
+    //sort suMore
+    var cSortFun = function () {
+        $(".c-s-dl>dl .c-s-more>a").each(function () {
+            var _this = $(this),
+                _uList = _this.parent().siblings("ul"),
+                _uLw = _uList.height();
+            if (_uLw <= "40") {
+                _this.hide();
+            } else {
+                _uList.css("height", "40px");
+                _this.click(function () {
+                    if (_this.html() == "[展开]") {
+                        _uList.css("height", "auto");
+                        _this.text("[收起]");
+                    } else {
+                        _uList.css("height", "40px");
+                        _this.text("[展开]");
+                    }
+                })
+            }
+        });
+    }
+</script>
+</body>
+</html>
