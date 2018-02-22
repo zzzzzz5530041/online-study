@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
-<script>
-    var theme_color = '${theme_color}';
-</script>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <title>在线教育</title>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta content="telephone=no" name="format-detection"/>
+
+
+
+    <div th:with="theme_color=${theme_color }"></div>
+
+    <script>
+        var theme_color = '${theme_color}';
+    </script>
 </head>
 <div th:with="contextPath=${contextPath }"></div>
 <body class="W-body">
 <div class="in-wrap">
-    <div class="changeTheme">
+    <div class="changeTheme" style="display: none;">
         <div class="ei-item-box">
             <div class="container pr">
                 <a class="fr" id="Replacement" href="javascript:void(0);">
@@ -164,7 +179,7 @@
                             <ul id="iQuestion" th:each="comment:${commentList}">
                                 <li>
                                     <section class="i-q-l-wrap">
-                                        <div class="u-face">
+                                        <div class="u-faxSrcce">
                                             <img width="50" height="50" th:if="${comment.picImg==null}" class="picImg"
                                                  th:xsrc="${contextPath}+'/web/img/avatar-boy.gif'"
                                                  th:src="${contextPath }+'/web/img/avatar-boy.gif'">
@@ -271,6 +286,56 @@
         <!-- /网校名师 结束 -->
     </div>
 </div>
+
+
+
+<div class="tip-new-warp">
+    <div class="tip-new-info">
+        <div class="tip-new-in-bg">
+            <img th:src="${contextPath}+'/web/img/kyb-tip-bg.jpg'">
+        </div>
+        <div class="tip-new-in-nr">
+            <div class="tip-new-in-nr-top">
+                <a href="javascript:void (0)" title="关闭" class="new-tips-close">
+                    <img th:src="${contextPath}+'/web/img/kyb-tip-close.png'">
+                </a>
+            </div>
+            <div class="tip-new-in-nr-bottom">
+                <div class="tip-new-in-b-txt f-fM fsize16 c-333">
+                    开源版本切勿商务哦！别辜负了我们善良的初衷，不然因酷小伙伴可是要暴躁的哟。更多功能欢迎购买商业版。
+                    <p class="f-fM fsize16 c-333 disFw">——因酷教育软件</p>
+                </div>
+                <div class="tip-new-in-b-btn">
+                    <a href="http://www.inxedu.com" title="选购商业版" target="_blank">选购商业版</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/web/js/common/swiper-2.1.0.js}"></script>
+<script type="text/javascript" th:src="@{/web/js/front/index.js}"></script>
+<script type="text/javascript" th:src="@{/web/js/front/index_theme_color.js}"></script><!-- 换肤 -->
+
+<script>
+    $(function() {
+        sSwiperFun(); //幻灯片调取
+        upSlideFun("#iQuestion"); //向上滚动互动
+        scrollLoad(); //响应滚动加载课程图片
+        $(".boutiqueCourse").click();//网校课程-精品课程
+        huanyihuan();
+        studentDynamic();//学生动态
+        tipNew();//温馨提示弹框
+
+
+        var uri = window.location.search;
+        var val = "msg";
+        var re = new RegExp("" + val + "=([^&?]*)", "ig");
+        var msg=((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+        if(msg!=null && msg!='' && msg=='LimitLogin'){
+            dialog('提示信息',"您的帐号在其他地点登录，请重新登录",1);
+        }
+    });
+</script>
 </body>
 
 <div th:include="/common/web_footer::footer"></div>

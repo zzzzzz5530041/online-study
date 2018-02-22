@@ -1559,7 +1559,7 @@
 .tip-new-warp {
     position: fixed;
     z-index: 9999;
-    background: url("/static/inxweb/img/kyb-tip-all-bg.png") repeat top left;
+    background: url("/web/img/kyb-tip-all-bg.png") repeat top left;
     width: 100%;
     height: 100%;
     top: 0px;

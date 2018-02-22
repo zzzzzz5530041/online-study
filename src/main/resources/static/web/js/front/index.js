@@ -24,7 +24,7 @@ function sSwiperFun() {
     
 };
 
-var lodingHtml = '<div class="tac"><img width="100" height="108" alt="" src="/static/inxweb/img/loading.gif"></div>',
+var lodingHtml = '<div class="tac"><img width="100" height="108" alt="" src="/web/img/loading.gif"></div>',
 	_timer = null;
 //为你推荐    换一换
 function huanyihuan() {

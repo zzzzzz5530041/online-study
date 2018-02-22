@@ -39,9 +39,9 @@ public class CourseController extends BaseController {
     private static final Logger logger = LoggerFactory.getLogger(CourseController.class);
 
     // 课程列表
-    private static final String showCourseList = getViewPath("/web/course/courses-list");
+    private static final String showCourseList = "/web/course/courses-list";
     // 课程详情
-    private static final String courseDetail = "/web/course/detail";
+    private static final String courseDetail = "/web/course/course-detail";
 
     @Autowired
     private CourseService courseService;
@@ -67,7 +67,7 @@ public class CourseController extends BaseController {
     /**
      * 课程列表展示,搜索课程
      */
-    @RequestMapping("/front/showcoulist")
+    @RequestMapping("/web/course/showcoulist")
     public ModelAndView showCourseList(HttpServletRequest request, @ModelAttribute("page") PageEntity page, @ModelAttribute("queryCourse") QueryCourse queryCourse) {
         ModelAndView model = new ModelAndView();
         try {

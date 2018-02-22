@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.inxedu.os.common.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,8 @@ public class WebsiteNavigateServiceImpl implements WebsiteNavigateService {
  	@Autowired
     private WebsiteNavigateDao websiteNavigateDao;
     private Gson gson=new Gson();
-
+	@Autowired
+	private RedisUtils redisUtils;
 	@Override
 	public List<WebsiteNavigate> getWebsiteNavigate(WebsiteNavigate websiteNavigate){
 		return websiteNavigateDao.getWebsiteNavigate(websiteNavigate);
@@ -64,8 +66,9 @@ public class WebsiteNavigateServiceImpl implements WebsiteNavigateService {
 	@Override
 	public Map<String,Object> getWebNavigate(){
 		Map<String,Object> navigateMap=new HashMap<String, Object>();
-		Map<String,List<String>> navigatesMapJson= (Map<String, List<String>>) EHCacheUtil.get(CacheConstans.WEBSITE_NAVIGATE);
-        if (navigatesMapJson!=null&&navigatesMapJson.size()>0) {//多类型导航json存在
+//		Map<String,List<String>> navigatesMapJson= (Map<String, List<String>>) EHCacheUtil.get(CacheConstans.WEBSITE_NAVIGATE);
+		Map<String,List<String>> navigatesMapJson=redisUtils.getByKey(CacheConstans.WEBSITE_NAVIGATE,Map.class);
+		if (navigatesMapJson!=null&&navigatesMapJson.size()>0) {//多类型导航json存在
         	for(Entry<String,List<String>> entry:navigatesMapJson.entrySet()){
         		List<WebsiteNavigate> navigates=new ArrayList<WebsiteNavigate>();//单类型导航json
         		List<String> navigatesJson = entry.getValue();
@@ -100,7 +103,8 @@ public class WebsiteNavigateServiceImpl implements WebsiteNavigateService {
         if (ObjectUtils.isNotNull(navigatesJson)) {
         	navigatesMapJson.put(type,navigatesJson);//导航json集合
         } 
-        EHCacheUtil.set(CacheConstans.WEBSITE_NAVIGATE,navigatesMapJson, CacheConstans.WEBSITE_NAVIGATE_TIME);
+//        EHCacheUtil.set(CacheConstans.WEBSITE_NAVIGATE,navigatesMapJson, CacheConstans.WEBSITE_NAVIGATE_TIME);
+		redisUtils.saveWithExpireTime(CacheConstans.WEBSITE_NAVIGATE,navigatesMapJson, Long.valueOf(CacheConstans.WEBSITE_NAVIGATE_TIME));
 		return navigateMap;
 	}
 

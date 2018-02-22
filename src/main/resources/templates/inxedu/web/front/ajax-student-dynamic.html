@@ -1,0 +1,21 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<div th:with="contextPath=${contextPath }"></div>
+
+<li th:each="courseStudyhistory:${courseStudyhistoryList}">
+	<div class="u-face">
+		<img th:if="${courseStudyhistory.picImg==null}" th:src="${contextPath }+'/web/img/avatar-boy.gif'" width="50" height="50" alt="">
+		<img th:if="${courseStudyhistory.picImg!=null}" th:src="${staticImage$}+${courseStudyhistory.picImg }" width="50" height="50" alt="">
+	</div>
+
+	<section class="hLh30 txtOf">
+		<span class="c-ccc fr" th:text="${courseStudyhistory.updateTimeFormat }"></span>
+		<span class="c-333 fsize16 fl"th:text="${courseStudyhistory.showName}"></span>
+	</section>
+	<section class="hLh20 txtOf">
+		<span class="c-999">播放了</span>
+		<span class="c-master" th:text="${courseStudyhistory.courseName }"></span>
+	</section>
+
+</li>
+
+
