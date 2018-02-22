@@ -3,10 +3,10 @@
 <li th:each="course:${courseDtoList}">
     <div class="cc-l-wrap">
         <section class="course-img">
-            <img th:if="course.logo!=null" th:src="${contextPath}+'/web/img/default-img.gif'"
+            <img th:if="${course.logo} !=null" th:src="${contextPath}+'/web/img/default-img.gif'"
                  class="img-responsive" th:alt="${course.courseName }">
 
-            <img th:if="course.logo==null" xsrc="${contextPath}+'/web/img/default-img.gif'"
+            <img th:if="${course.logo}==null" xsrc="${contextPath}+'/web/img/default-img.gif'"
                  src="${contextPath}+'/web/img/default-img.gif'" class="img-responsive"
                  alt="${course.courseName }">
         </section>
@@ -21,20 +21,20 @@
         <section class="mt10 hLh20 of">
 
 
-            <span th:if="course.currentPrice=='0.00'" class="fr jgTag bg-green"><tt
+            <span th:if="${course.currentPrice} eq '0.00'" class="fr jgTag bg-green"><tt
                     class="c-fff fsize12 f-fA">免费</tt></span>
-            <span th:if="course.currentPrice!='0.00'" class="fr jgTag bg-orange"><tt class="c-fff fsize14 f-fG">￥${course.currentPrice }</tt></span>
+            <span th:if="${course.currentPrice} ne '0.00'" class="fr jgTag bg-orange"><tt class="c-fff fsize14 f-fG">￥${course.currentPrice }</tt></span>
 
             <span class="fl jgAttr c-ccc f-fA">
 											<tt class="c-999 f-fA">
-                                                <span th:if="${course.currentPrice=='0.00' }" th:text="${course.pageViewcount }"></span>
-                                                <span th:if="${course.currentPrice1='0.00' }" th:text="${course.pageBuycount }+'人学习'"></span>
+                                                <span th:if="${course.currentPrice} eq '0.00' " th:text="${course.pageViewcount }"></span>
+                                                <span th:if="${course.currentPrice1} eq '0.00'" th:text="${course.pageBuycount }+'人学习'"></span>
                                             </tt>
 											|
 											<tt class="c-999 f-fA">
 
-                                                <span th:if="${course.currentPrice=='0.00' }" th:text="${course.pageViewcount }"></span>
-                                                <span th:if="${course.currentPrice1='0.00' }" th:text="${course.pageBuycount }+'评论'"></span>
+                                                <span th:if="${course.currentPrice} eq '0.00'  " th:text="${course.pageViewcount }"></span>
+                                                <span th:if="${course.currentPrice1 } eq '0.00'" th:text="${course.pageBuycount }+'评论'"></span>
                                             </tt>
 										</span>
         </section>

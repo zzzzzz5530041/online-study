@@ -3,8 +3,8 @@
 
 <li th:each="courseStudyhistory:${courseStudyhistoryList}">
 	<div class="u-face">
-		<img th:if="${courseStudyhistory.picImg==null}" th:src="${contextPath }+'/web/img/avatar-boy.gif'" width="50" height="50" alt="">
-		<img th:if="${courseStudyhistory.picImg!=null}" th:src="${staticImage$}+${courseStudyhistory.picImg }" width="50" height="50" alt="">
+		<img th:if="${courseStudyhistory.picImg}==null" th:src="${contextPath }+'/web/img/avatar-boy.gif'" width="50" height="50" alt="">
+		<img th:if="${courseStudyhistory.picImg}!=null" th:src="${staticImage$}+${courseStudyhistory.picImg }" width="50" height="50" alt="">
 	</div>
 
 	<section class="hLh30 txtOf">
