@@ -617,7 +617,7 @@ CREATE TABLE `edu_website_navigate` (
 
 /*Data for the table `edu_website_navigate` */
 
-insert  into `edu_website_navigate`(`ID`,`NAME`,`URL`,`NEWPAGE`,`TYPE`,`ORDERNUM`,`STATUS`) values (1,'首页','/',1,'INDEX',100,0),(2,'课程','/front/showcoulist',1,'INDEX',99,0),(5,'名师','/front/teacherlist',1,'INDEX',96,0),(7,'文章','/front/articlelist',1,'INDEX',95,0),(14,'关于我们','/front/helpCenter?id=193',0,'TAB',100,0),(16,'成功案例','#',0,'TAB',97,0),(18,'联系我们','/front/helpCenter?id=194',0,'TAB',99,0),(31,'因酷时代','http://www.inxedu.com',0,'FRIENDLINK',0,0),(37,'问答','/questions/list',1,'INDEX',0,0),(38,'帮助中心','/front/helpCenter',0,'TAB',0,0);
+insert  into `edu_website_navigate`(`ID`,`NAME`,`URL`,`NEWPAGE`,`TYPE`,`ORDERNUM`,`STATUS`) values (1,'首页','/',1,'INDEX',100,0),(2,'课程','/web/course/showcoulist',1,'INDEX',99,0),(5,'名师','/web/teacherlist',1,'INDEX',96,0),(7,'文章','/web/articlelist',1,'INDEX',95,0),(14,'关于我们','/web/helpCenter?id=193',0,'TAB',100,0),(16,'成功案例','#',0,'TAB',97,0),(18,'联系我们','/web/helpCenter?id=194',0,'TAB',99,0),(31,'因酷时代','http://www.inxedu.com',0,'FRIENDLINK',0,0),(37,'问答','/questions/list',1,'INDEX',0,0),(38,'帮助中心','/web/helpCenter',0,'TAB',0,0);
 
 /*Table structure for table `edu_website_profile` */
 

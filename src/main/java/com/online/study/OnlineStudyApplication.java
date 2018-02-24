@@ -5,16 +5,23 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @SpringBootApplication
 @ComponentScan("com")
 @Configuration
 @ImportResource(value = {"applicationContext-root.xml"})
+@Controller
 public class OnlineStudyApplication {
 
     public static void main(String[] args) {
 
         SpringApplication.run(OnlineStudyApplication.class, args);
+    }
+    @GetMapping(value = "/")
+    public String index(){
+        return "redirect:/index";
     }
 
 //    @RequestMapping(value = "/", method = RequestMethod.GET)

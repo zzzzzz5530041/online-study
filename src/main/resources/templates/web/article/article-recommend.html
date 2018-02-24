@@ -1,0 +1,51 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<div>
+	<header class="comm-title all-article-title">
+		<h2 class="fl tac">
+			<span class="c-333">文章排行榜</span>
+		</h2>
+		<section class="c-tab-title">
+			<a href="javascript: void(0)">&nbsp;</a>
+		</section>
+	</header>
+	<section class="i-article-list r-art-wrap">
+		<ul>
+			<th:block th:if="${articleList!=null}">
+				<li th:each="article,iterStat:${articleList}" th:with="inx=(${iterStat.index}+1)">
+						<aside class="orderNum"><span th:text="${inx}"></span></aside>
+						<h3 class="hLh30 txtOf">
+							<a th:href="'/web/articleinfo/'+${article.articleId}+'.html'" th:text="${article.title }" th:title="${article.title }" class="i-art-title"></a>
+						</h3>
+						<section class="hLh30 txtOf mt5">
+							<div class="fr">
+								<span> <a class="noter-dy vam" title="回答" th:href="'/web/articleinfo/'+${article.articleId}+'.html'" >
+										<em class="icon18" >&nbsp;</em>
+                                    <span th:text="'('+${article.commentNum }+')'"></span>
+									</a> <tt title="赞一下" class="noter-zan vam ml10 f-fM" th:onclick="'addPraise('+${article.articleId}+',3)'">
+										<em class="icon18">&nbsp;</em>(<span th:class="'addPraise'+${article.articleId}+'_3 praiseCount'" th:text="${article.praiseCount }"></span>)
+									</tt>
+								</span>
+							</div>
+							<span class="fl"><tt class="c-999 f-fM" th:text="${#dates.format(article.publishTime, 'yyyy-MM-dd HH:mm')}">
+									<!-- 1小时前发布 -->
+
+								</tt></span>
+						</section>
+					</li>
+			</th:block>
+		</ul>
+	</section>
+	<section style="margin-bottom: 20px;">
+		<th:block th:each="image,iterStat:${websiteImages.type_12}">
+			<a th:if="${iterStat.index==0}" th:href="${image.linkAddress}" th:title="${image.title}">
+				<img th:src="${image.imagesUrl}" width="100%" th:alt="${image.title}"/></a>
+
+		</th:block>
+	</section>
+</div>
+<script type="text/javascript">
+	$(function() {
+		$(".r-art-wrap>ul>li:lt(3)").addClass("lt2");
+	})
+</script>

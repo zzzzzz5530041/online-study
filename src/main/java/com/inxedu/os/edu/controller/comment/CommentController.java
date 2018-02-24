@@ -28,7 +28,7 @@ import java.util.Map;
 public class CommentController extends BaseController {
 	private static Logger logger = LoggerFactory.getLogger(CommentController.class);
 	// 评论列表
-	private static String queryComment = getViewPath("/web/comment/comment");
+	private static String queryComment = "/web/comment/comment";
 	// 评论回复
 	private static String queryCommentReply = getViewPath("/web/comment/comment_reply");
 	//评论回复分页

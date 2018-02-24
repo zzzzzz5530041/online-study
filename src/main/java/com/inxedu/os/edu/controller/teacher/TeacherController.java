@@ -50,10 +50,10 @@ public class TeacherController extends BaseController {
 	/**
 	 * 教师列表展示
 	 */
-	@RequestMapping("/front/teacherlist")
+	@RequestMapping("/web/teacherlist")
 	public ModelAndView teacherlist(HttpServletRequest request, @ModelAttribute("queryTeacher") QueryTeacher queryTeacher, @ModelAttribute("page") PageEntity page) {
 		//教师列表
-		ModelAndView model = new ModelAndView(getViewPath("/web/teacher/teacher_list"));
+		ModelAndView model = new ModelAndView("/web/teacher/teacher_list");
 		try {
 			// 教师分类
 			QuerySubject querySubject = new QuerySubject();
@@ -77,12 +77,12 @@ public class TeacherController extends BaseController {
 	/**
 	 * 教师详情
 	 */
-	@RequestMapping("/front/teacher/{teacherId}")
+	@RequestMapping("/web/teacher/{teacherId}")
 	public ModelAndView teacherInfo(HttpServletRequest request, @PathVariable int teacherId, @ModelAttribute("page") PageEntity page) {
 		ModelAndView model = new ModelAndView();
 		try {
 			//教师详情
-			model.setViewName(getViewPath("/web/teacher/teacher_info"));
+			model.setViewName("/web/teacher/teacher_info");
 			// 查询老师
 			Teacher teacher = teacherService.getTeacherById(teacherId);
 			model.addObject("teacher", teacher);

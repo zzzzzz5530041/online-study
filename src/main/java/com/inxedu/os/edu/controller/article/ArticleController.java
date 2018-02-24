@@ -4,6 +4,7 @@ import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.controller.BaseController;
 import com.inxedu.os.common.entity.PageEntity;
+import com.inxedu.os.common.util.RedisUtils;
 import com.inxedu.os.edu.entity.article.Article;
 import com.inxedu.os.edu.entity.article.QueryArticle;
 import com.inxedu.os.edu.entity.website.WebsiteImages;
@@ -29,22 +30,23 @@ import java.util.Map;
  * @author www.inxedu.com
  */
 @Controller
-@RequestMapping("/front")
+@RequestMapping("/web")
 
 public class ArticleController extends BaseController {
 	private static Logger logger = LoggerFactory.getLogger(ArticleController.class);
 	// 文章列表
-	private static String listPage = getViewPath("/web/article/article-list");
+	private static String listPage = "/web/article/article-list";
 	// 好文推荐
-	private static String queryArticleRecommend = getViewPath("/web/article/article-recommend");
+	private static String queryArticleRecommend = "/web/article/article-recommend";
 	// 文章详情
-	private static String articleInfo = getViewPath("/web/article/article-info");
+	private static String articleInfo = "/web/article/article-info";
 	
 	@Autowired
 	private ArticleService articleService;
 	@Autowired
 	private WebsiteImagesService websiteImagesService;
-
+@Autowired
+private RedisUtils redisUtils;
 	/**
 	 * 分页查询文章列表
 	 */
@@ -97,14 +99,14 @@ public class ArticleController extends BaseController {
 	public String queryArticleRecommend(HttpServletRequest request) {
 		try {
 			// 查询排行文章
-			List<Article> articleList=(List<Article>)EHCacheUtil.get(CacheConstans.ARTICLE_GOOD_RECOMMEND);
+			List<Article> articleList=(List<Article>)redisUtils.getByKey(CacheConstans.ARTICLE_GOOD_RECOMMEND,List.class);
 			if (articleList==null||articleList.size()==0) {
 				QueryArticle query = new QueryArticle();
 				query.setType(2);
 				query.setCount(8);
 				query.setOrderby(1);
 				articleList = articleService.queryArticleList(query);
-				EHCacheUtil.set(CacheConstans.ARTICLE_GOOD_RECOMMEND, articleList,CacheConstans.RECOMMEND_COURSE_TIME);//缓存一小时
+				redisUtils.saveWithExpireTime(CacheConstans.ARTICLE_GOOD_RECOMMEND, articleList,Long.valueOf(CacheConstans.RECOMMEND_COURSE_TIME));
 			}
 			request.setAttribute("articleList", articleList);
 			

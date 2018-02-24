@@ -1,0 +1,124 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<div>
+	<h6 class="c-c-content c-infor-title" id="i-art-comment">
+		<span class="commentTitle">评论</span>
+	</h6>
+	<section class="lh-bj-list pr mt20 replyhtml">
+		<ul>
+			<li class="unBr">
+				<aside class="noter-pic">
+					<img th:if="${user==null or user.picImg ==null}" width="50" height="50" class="picImg" src="/web/img/avatar-boy.gif">
+					<img th:if="${user!=null and user.picImg !=null}" width="50" height="50" class="picImg" th:src="${user.picImg }">
+				</aside>
+				<div class="of">
+					<section class="n-reply-wrap">
+						<fieldset>
+							<textarea name="" placeholder="输入您要评论的文字" id="commentContent"></textarea>
+						</fieldset>
+						<p class="of mt5 tar pl10 pr10">
+							<span class="fl "><tt class="c-red commentContentmeg" style="display: none;"></tt></span>
+							<a href="javascript:addComment();" title="回复" class="lh-reply-btn">回复</a>
+						</p>
+					</section>
+				</div>
+			</li>
+		</ul>
+	</section>
+		<!-- /无数据提示 开始-->
+		<section th:if="${commentList==null}" class="no-data-wrap">
+			<em class="icon30 no-data-ico">&nbsp;</em> <span class="c-666 fsize14 ml10 vam">还没有评论，快来抢沙发吧...</span>
+		</section>
+		<!-- /无数据提示 结束-->
+	<th:block th:if="${commentList!=null}">
+		<section class="">
+			<section class="question-list lh-bj-list pr">
+				<ul class="pr10">
+					<li th:each="ac:${commentList }">
+							<aside class="noter-pic">
+									<img  th:if="${ac.picImg==null}" width="50" height="50" class="picImg" src="/web/img/avatar-boy.gif">
+									<img th:if="${ac.picImg!=null}"width="50" height="50" class="picImg" th:src="${ac.picImg }">
+							</aside>
+							<div class="of">
+								<span class="fl">
+
+									<font class="fsize12 c-blue" th:if="${ac.userName==null}" th:text="${ac.email}"></font>
+									<font class="fsize12 c-blue" th:if="${ac.userName!=null}" th:text="${ac.userName}"></font>
+								<font class="fsize12 c-999 ml5">评论：</font></span>
+							</div>
+							<div class="noter-txt mt5">
+								<p th:text="${ac.content}"></p>
+							</div>
+							<div class="of mt5">
+								<span class="fr">
+									<font class="fsize12 c-999 ml5" th:text="${#dates.format(ac.addTime, 'yyyy-MM-dd HH:mm')}"></font>
+								</span>
+								<span class="fl"> <a class="noter-dy vam" title="回复" href="javascript: void(0)" th:onclick="'queryCommentReply('+${ac.commentId}+')'">
+										<em class="icon18">&nbsp;</em>(<span th:class="'replyCount'+${ac.commentId}" th:text="${ac.replyCount}"></span>)
+									</a> <tt title="赞一下" class="noter-zan vam ml10"  th:onclick="'addPraise('+${ac.commentId}+',4)'">
+										<em class="icon18">&nbsp;</em>(<span th:class="'addPraise'+${ac.commentId}+'_4 praiseCount'" th:text="${ac.praiseCount }"></span>)
+									</tt>
+								</span>
+							</div>
+							<div class="n-reply">
+								<section class="n-reply-wrap">
+									<fieldset>
+										<textarea name="" th:class="'commentReplyMsgContent'+${ac.commentId}"></textarea>
+									</fieldset>
+									<p class="of mt5 tar pl10 pr10">
+										<span class="fl"><tt th:class="'c-red commentReplyMsg'+${ac.commentId}"></tt></span>
+										<a th:onclick="'addCommentReply('+${ac.commentId}+')'" class="lh-reply-btn" title="回复" href="javascript: void(0)">回复</a>
+									</p>
+								</section>
+								<div th:class="'mt10 pl10 pr10 pb10 commentReply'+${ac.commentId}"></div>
+							</div> <!-- /回复盒子 -->
+						</li>
+				</ul>
+			</section>
+		</section>
+	</th:block>
+	<!-- 公共分页 开始 -->
+	<script type="text/javascript" th:src="@{/web/js/common/page.js}" ></script>
+		<div class="paging" th:if="${page != null and page.totalResultSize>0}">
+			<a href="javascript:goPageAjax(1);" title="">首</a>
+			<a id="backpage" th:if="${page.first}" class="undisable" href="javascript:void(0)" title="">&lt;</a>
+			<a id="backpage" th:if="${!page.first}" th:href="'javascript:goPageAjax('+${page.currentPage-1 }+');'" title="">&lt;</a>
+			<a id="nextpage" th:if="${page.last}"  href="javascript:void(0)" title="" class="undisable">&gt;</a>
+			<a id="nextpage" th:if="${!page.last}" th:href="'javascript:goPageAjax('+${page.currentPage+1}+');'" title="">&gt;</a>
+			<a th:href="'javascript:goPageAjax('+${page.totalPageSize}+');'" title="">末</a>
+			<div class="clear"></div>
+		</div>
+
+	<script type="text/javascript" th:inline="javascript" th:with="totalPageSize=${page.totalPageSize }">
+        /*<![CDATA[*/
+        var totalPageSize =[[${totalPageSize}]];
+        var currentPage =[[${page.currentPage-1}]]<1 ? 1 :[[${page.currentPage}]];
+        var totalPage = [[${page.totalPageSize}]];
+        showAjaxPageNumber();
+        /*]]>*/
+	</script>
+	<!-- 公共分页 结束 -->
+</div>
+<script th:inline="javascript" th:with="totalResultSize=${page.totalResultSize }">
+    /*<![CDATA[*/
+	$(function() {
+		replyFun(); //回复展开
+	});
+	var totalResultSize = [[${totalResultSize}]];
+	$(".totalResultComment").html(totalResultSize);
+	var order = [[${comment.order}]];
+	var title = "评论";
+	if (type == 1) {
+		title = "文章评论（[[${page.totalPageSize}]]条）"
+	}
+	if (type == 2) {
+		title = "课程评论"
+		if(order=='praiseCount'){
+			title = "精彩评论"
+			$(".replyhtml").hide();
+		}
+		
+	}
+	
+	$(".commentTitle").html(title);
+    /*]]>*/
+</script>

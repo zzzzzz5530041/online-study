@@ -94,8 +94,8 @@
                             <li>
                                 <section class="i-q-l-wrap">
                                     <div class="u-face">
-                                        <img width="50" height="50" th:if="${comment.picImg==null}" class="picImg" xsrc="${ctx }/static/inxweb/img/avatar-boy.gif" src="${ctx }/static/inxweb/img/avatar-boy.gif">
-                                        <img width="50" height="50" th:unless="${comment.picImg==null}" class="picImg" src="${ctx }/static/inxweb/img/avatar-boy.gif" xsrc="${ctx }${comment.picImg }">
+                                        <img width="50" height="50" th:if="${comment.picImg==null}" class="picImg" xsrc="/web/img/avatar-boy.gif" src="${ctx }/static/inxweb/img/avatar-boy.gif">
+                                        <img width="50" height="50" th:unless="${comment.picImg==null}" class="picImg" src="/web/img/avatar-boy.gif" xsrc="${ctx }${comment.picImg }">
                                     </div>
                                     <section class="hLh20 of">
                                         <span class="fr"><tt class="c-ccc f-fG"><fmt:formatDate value="${comment.addTime }" pattern="yyyy/MM/dd HH:mm" /></tt></span>

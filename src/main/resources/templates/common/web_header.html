@@ -25,7 +25,7 @@
         <div class="h-r-nsl">
             <ul class="nav">
                 <li th:each="indexNavigate:${navigatemap.INDEX}">
-                    <a th:href="${contextPath }+${indexNavigate.url}">
+                    <a th:href="${indexNavigate.url}">
                         <span th:text="${indexNavigate.name}"></span>
                     </a>
 
@@ -45,7 +45,7 @@
                     <em class="icon18 news-icon">&nbsp;</em>
                 </a><q class="red-point" style="display: none">&nbsp;</q></li>
                 <li class="h-r-user undis" id="is-login-two"><a th:href="${contextPath}+'/uc/index'" title="">
-                    <img th:src="${contextPath }+'/web/img/avatar-boy.gif'" width="30" height="30" class="vam picImg"
+                    <img src="/web/img/avatar-boy.gif" width="30" height="30" class="vam picImg"
                          alt="">
                     <span class="vam disIb" id="userName"></span>
                 </a>
@@ -77,7 +77,7 @@
     <div class="head-mobile-box">
         <section class="clearfix">
             <div class="u-face-pic">
-                <img th:src="${contextPath }+'/web/img/avatar-boy.gif'" alt="" class="userImgPhoto">
+                <img src="/web/img/avatar-boy.gif" alt="" class="userImgPhoto">
                 <a href="${ctx }/uc/initUpdateUser/1" title="" class="c-fff">修改头像</a>
             </div>
             <h4 class="hLh30 txtOf">

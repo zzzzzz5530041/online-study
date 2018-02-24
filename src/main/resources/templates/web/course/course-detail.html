@@ -121,7 +121,7 @@
                                 <!-- /无数据提示 结束-->
                                 <div class="course-txt-body-wrap" th:if="${course.context !=null and course.context !=''} ">
                                     <section class="course-txt-body">
-                                        <p th:text="${course.context}"></p>
+                                        <p th:utext="${course.context}"></p>
                                     </section>
                                     <section class="ctb-btn"><a href="javascript: void(0)" class="comm-btn c-btn-6" title="查看更多">查看更多∨</a></section>
                                 </div>
