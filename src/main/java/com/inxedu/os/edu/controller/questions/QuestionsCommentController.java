@@ -44,7 +44,7 @@ public class QuestionsCommentController extends BaseController {
 	private UserService userService;
 	
 	//问答详情 评论列表页面
-	private static final String questionscommentlist = getViewPath("/web/questionscomment/questionscomment-ajax-list");
+	private static final String questionscommentlist = "/web/questionscomment/questionscomment-ajax-list";
 	//子评论
 	private static final String questionscommentreplist=getViewPath("/web/questionscomment/questionscomment-ajax-listreply");
 	//所有子评论

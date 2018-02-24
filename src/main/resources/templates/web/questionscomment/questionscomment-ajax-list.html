@@ -1,0 +1,171 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+	<!-- /最佳答案 开始-->
+	<div class="good-anwer-box" th:if="${questions.questionsCommentList!=null}">
+		<h4 class="g-a-title">
+			<span class="bg-green vam"><em class="icon24 mr5">&nbsp;</em>最佳答案</span>
+		</h4>
+		<section class="good-answer mt10">
+			<section class="question-list lh-bj-list pr">
+				<ul class="pr10">
+						<li th:each="questionsComment:${questions.questionsCommentList}">
+							<aside class="noter-pic">
+										<img th:if="${questionsComment.picImg!=null}" th:src="${questionsComment.picImg}" alt="" width="50" height="50">
+										<img th:if="${questionsComment.picImg==null}" src="/web/img/avatar-boy.gif" alt="" width="50" height="50">
+							</aside>
+							<div class="of hLh20">
+								<span class="fl">
+									<font class="fsize12 c-blue" th:if="${questionsComment.showName!=null}" th:text="${questionsComment.showName}"></font>
+									<font class="fsize12 c-blue" th:if="${questionsComment.showName==null}" th:text="${questionsComment.email}"></font>
+									<font class="fsize12 c-999 ml5">回复：</font>
+								</span>
+							</div>
+							<div class="noter-txt mt5">
+								<p th:text="${questionsComment.content }"></p>
+							</div>
+							<div class="of mt5">
+								<span class="fr">
+									<font class="fsize12 c-999 ml5" th:text="${#dates.format(questionsComment.addTime, 'yyyy-MM-dd HH:mm')}"></font>
+								</span>
+								<span class="fl"> <a href="javascript: void(0)" title="回答" class="noter-dy vam"
+										th:onclick="'getCommentById(this,'+${questionsComment.id })">
+										<em class="icon18">&nbsp;</em>全部评论(<span th:text="${questionsComment.replyCount }"></span>)
+									</a> <tt class="noter-zan vam ml10 f-fM" title="赞一下" th:onclick="'addPraise('+${questionsComment.id }+',2,this)'">
+										<em class="icon18">&nbsp;</em>点赞(<span th:text="${questionsComment.praiseCount }"></span>)
+									</tt>
+								</span>
+							</div>
+							<div class="n-reply">
+								<section class="n-reply-wrap mt10">
+									<fieldset>
+										<textarea name="" placeholder="输入您要评论的文字" id="commentContent"></textarea>
+									</fieldset>
+									<p class="of mt5 tar pl10 pr10">
+										<span class="fl "><tt class="c-red commentContentmeg" style="display: none;"></tt></span>
+										<a href="javascript:addComment();" title="回复" class="lh-reply-btn">回复</a>
+									</p>
+								</section>
+								<input type="hidden" id="" name="" th:value="${questionsComment.id}" />
+								<div class="mt10 pl10 pr10">
+									<dl class="n-reply-list">
+										<!-- 最佳答案的评论在这里 -->
+									</dl>
+								</div>
+							</div> <!-- /回复盒子 -->
+						</li>
+				</ul>
+			</section>
+		</section>
+	</div>
+	<!-- /最佳答案 结束-->
+<!-- /回答列表 开始 -->
+<div class="q-i-noter-box">
+	<section class="q-i-reply">
+		<h6 class="c-c-content c-infor-title">
+			<span>问答列表</span>
+		</h6>
+			<section class="lh-bj-list pr mt20" th:if="${questions.status==0 }">
+				<ul>
+					<li class="unBr">
+						<aside class="noter-pic">
+									<img th:if="${user!=null and user.picImg !=null}" th:src="${user.picImg }" alt="" width="50" height="50">
+									<img th:if="${user==null or user.picImg ==null}" src="/web/img/avatar-boy.gif" alt="" width="50" height="50">
+						</aside>
+						<div class="of">
+							<section class="n-reply-wrap">
+								<fieldset>
+									<textarea placeholder="输入您要回复的文字" name="questionsComment.content" onkeyup="$(this).parent().next().find('tt').html('');"></textarea>
+								</fieldset>
+								<p class="of mt5 tar pl10 pr10">
+									<span class="fl"><tt class="c-red"></tt></span> <u class="hand mr10 qxBtn c-999" style="display: none;">取消</u>
+									<a class="lh-reply-btn" title="回复" href="javascript: void(0)" onclick="addComment(this)">回复</a>
+								</p>
+							</section>
+						</div>
+					</li>
+				</ul>
+			</section>
+	</section>
+		<!-- /无数据提示 开始-->
+		<section class="no-data-wrap" th:if="${questionsCommentList==null}">
+			<em class="icon30 no-data-ico">&nbsp;</em> <span class="c-666 fsize14 ml10 vam">还没有人回答，提问者喊你去回答...</span>
+		</section>
+		<!-- /无数据提示 结束-->
+	<th:block th:if="${questionsCommentList!=null}">
+		<div class="q-n-r-box">
+			<section class="question-list lh-bj-list pr">
+				<ul class="pr10">
+						<li th:each="questionsComment,iterStat:${questionsCommentList}">
+							<aside class="noter-pic">
+										<img th:if="${questionsComment.picImg !=null}" th:src="${questionsComment.picImg }" alt="" width="50" height="50">
+										<img th:if="${questionsComment.picImg ==null}" src="/web/img/avatar-boy.gif" alt="" width="50" height="50">
+							</aside>
+							<div class="of hLh20">
+									<span th:if="${user!=null and questions.status==0 and  questions.cusId==user.userId and questionsComment.cusId != questions.cusId}" class="fr">
+										<a href="javascript:void(0)" th:onclick="'acceptComment('+${questionsComment.id})" title="" class="comm-btn c-btn-6">采纳为最佳答案</a></span>
+								<span class="fl">
+									<font class="fsize12 c-blue" th:if="${questionsComment.showName!=null}" th:text="${questionsComment.showName}"></font>
+									<font class="fsize12 c-blue" th:if="${questionsComment.showName==null}" th:text="${questionsComment.email}"></font>
+									<font class="fsize12 c-999 ml5">回复：</font></span>
+							</div>
+							<div class="noter-txt mt5">
+								<p th:text="${questionsComment.content }"></p>
+							</div>
+							<div class="of mt5">
+								<span class="fr"><font class="fsize12 c-999 ml5" th:text="${#dates.format(questionsComment.addTime, 'yyyy-MM-dd HH:mm')}"> <!-- <a href="" class="c-blue mr10">删除</a> -->
+								</font></span> <span class="fl"> <a href="javascript: void(0)" title="回答" class="noter-dy vam" onclick="getCommentById(this,${questionsComment.id})">
+										<em class="icon18">&nbsp;</em>(<span th:text="${questionsComment.replyCount }"></span>)
+									</a> <tt class="noter-zan vam ml10" title="赞一下" th:onclick="'addPraise('+${questionsComment.id }+',2,this)'">
+										<em class="icon18">&nbsp;</em>(<span th:text="${questionsComment.praiseCount }"></span>)
+									</tt>
+								</span>
+							</div>
+
+							<div class="n-reply" style="display: none;padding-left: 0;">
+								<div>
+									<section class="n-reply-wrap mt10">
+										<fieldset>
+											<textarea name="" onkeyup="$(this).parent().next().find('tt').html('');"></textarea>
+										</fieldset>
+										<p class="of mt5 tar pl10 pr10">
+											<span class="fl"><tt class="c-red"></tt></span><u class="hand mr10 qxBtn c-999" >取消</u>
+											<a href="javascript: void(0)" title="回复" class="lh-reply-btn" onclick="addReply(this)">回复</a>
+										</p>
+									</section>
+									<input type="hidden" id="" name="" th:value="${questionsComment.id}" />
+								</div>
+								<div class="mt10 pl10 pr10">
+									<dl class="n-reply-list">
+										<!-- 当前问答回复的所有评论在这里 -->
+									</dl>
+								</div>
+							</div> <!-- /回复盒子 -->
+						</li>
+				</ul>
+			</section>
+		</div>
+		<!-- 公共分页 开始 -->
+		<!-- 公共分页 开始 -->
+		<script type="text/javascript" th:src="@{/web/js/common/page.js}" ></script>
+		<div class="paging" th:if="${page != null and page.totalResultSize>0}">
+			<a href="javascript:goPageAjax(1);" title="">首</a>
+			<a id="backpage" th:if="${page.first}" class="undisable" href="javascript:void(0)" title="">&lt;</a>
+			<a id="backpage" th:if="${!page.first}" th:href="'javascript:goPageAjax('+${page.currentPage-1 }+');'" title="">&lt;</a>
+			<a id="nextpage" th:if="${page.last}"  href="javascript:void(0)" title="" class="undisable">&gt;</a>
+			<a id="nextpage" th:if="${!page.last}" th:href="'javascript:goPageAjax('+${page.currentPage+1}+');'" title="">&gt;</a>
+			<a th:href="'javascript:goPageAjax('+${page.totalPageSize}+');'" title="">末</a>
+			<div class="clear"></div>
+		</div>
+
+		<script type="text/javascript" th:inline="javascript" th:with="totalPageSize=${page.totalPageSize }">
+            /*<![CDATA[*/
+            var totalPageSize =[[${totalPageSize}]];
+            var currentPage =[[${page.currentPage-1}]]<1 ? 1 :[[${page.currentPage}]];
+            var totalPage = [[${page.totalPageSize}]];
+            showAjaxPageNumber();
+            /*]]>*/
+		</script>
+		<!-- 公共分页 结束 -->
+		<!-- 公共分页 结束 -->
+</div>
+<!-- /回答列表 结束 -->
+	</th:block>
