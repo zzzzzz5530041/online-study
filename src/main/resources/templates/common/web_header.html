@@ -78,7 +78,7 @@
         <section class="clearfix">
             <div class="u-face-pic">
                 <img src="/web/img/avatar-boy.gif" alt="" class="userImgPhoto">
-                <a href="${ctx }/uc/initUpdateUser/1" title="" class="c-fff">修改头像</a>
+                <a href="/uc/initUpdateUser/1" title="" class="c-fff">修改头像</a>
             </div>
             <h4 class="hLh30 txtOf">
 				<span class="fsize16 c-ccc userNameClass">
@@ -86,7 +86,7 @@
 				</span>
             </h4>
             <div class="hLh30">
-                <a href="${ctx }/uc/initUpdateUser/0" title="个人资料设置" class="c-999">个人资料设置</a>
+                <a href="/uc/initUpdateUser/0" title="个人资料设置" class="c-999">个人资料设置</a>
             </div>
             <div class="hLh20 undis" id="mobileExitDiv">
                 <a href="javascript:void(0)" title="退出" onclick="exit();" class="c-999">退出</a>
@@ -94,11 +94,9 @@
         </section>
         <nav class="mw-nav">
             <ul class="clearfix">
-                <c:forEach items="${navigatemap.INDEX}" var="indexNavigate">
-                    <li><a href="${ctx}${indexNavigate.url}" title="${indexNavigate.name}"
-                        <c:if test="${indexNavigate.newPage==0}">target="_blank"</c:if>
-                        >${indexNavigate.name}</a></li>
-                </c:forEach>
+                <li th:each="indexNavigate:${navigatemap.INDEX}" >
+                    <a th:href="${indexNavigate.url}" th:title="${indexNavigate.name}" th:text="${indexNavigate.name}"></a>
+                </li>
             </ul>
         </nav>
         <section class="u-m-dd">
@@ -107,10 +105,10 @@
                     <span>Wo的学习</span>
                     <ol>
                         <li class="current"><a href="javascript:void(0)"
-                                               onclick="mobileHrefCheckLogin('${ctx }/uc/index')" title="">免费课程</a></li>
-                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('${ctx }/front/showcoulist')"
+                                               onclick="mobileHrefCheckLogin('/uc/index')" title="">免费课程</a></li>
+                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('/web/showcoulist')"
                                title="">选课中心</a></li>
-                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('${ctx }/uc/myFavorites')"
+                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('/uc/myFavorites')"
                                title="">Wo的收藏</a></li>
                     </ol>
                 </li>
@@ -119,10 +117,10 @@
                 <li>
                     <span>Wo的问答</span>
                     <ol>
-                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('${ctx }/uc/myquestions/list')"
+                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('/uc/myquestions/list')"
                                title="">Wo的提问</a></li>
                         <li><a href="javascript:void(0)"
-                               onclick="mobileHrefCheckLogin('${ctx }/uc/myrepquestions/list')" title="">Wo的回答</a></li>
+                               onclick="mobileHrefCheckLogin('/uc/myrepquestions/list')" title="">Wo的回答</a></li>
                     </ol>
                 </li>
             </ul>
@@ -130,11 +128,11 @@
                 <li>
                     <span>Wo的资料</span>
                     <ol>
-                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('${ctx }/uc/initUpdateUser/0')"
+                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('/uc/initUpdateUser/0')"
                                title="">基本资料</a></li>
-                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('${ctx }/uc/initUpdateUser/1')"
+                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('/uc/initUpdateUser/1')"
                                title="">个人头像</a></li>
-                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('${ctx }/uc/initUpdateUser/2')"
+                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('/uc/initUpdateUser/2')"
                                title="">密码设置</a></li>
                     </ol>
                 </li>
@@ -143,7 +141,7 @@
                 <li>
                     <span>Wo的消息</span>
                     <ol>
-                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('${ctx }/uc/letter')" title="">系统消息</a>
+                        <li><a href="javascript:void(0)" onclick="mobileHrefCheckLogin('/uc/letter')" title="">系统消息</a>
                         </li>
                     </ol>
                 </li>

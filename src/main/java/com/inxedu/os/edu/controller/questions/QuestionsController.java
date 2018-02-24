@@ -57,11 +57,11 @@ public class QuestionsController extends BaseController {
 	private QuestionsTagService questionsTagService;
 
 	// 问答列表
-	private static final String questionslist = getViewPath("/web/questions/questions-list");
+	private static final String questionslist = "/web/questions/questions-list";
 	// 添加问答页面
 	private static final String questionsadd = getViewPath("/web/questions/questions-add");
 	// 问答详情页面
-	private static final String questionsinfo = getViewPath("/web/questions/questions-info");
+	private static final String questionsinfo = "/web/questions/questions-info";
 	// 我的问答列表
 	private static final String myquestionslist = getViewPath("/web/ucenter/questions-mylist");
 	// 问答 我的回答列表
