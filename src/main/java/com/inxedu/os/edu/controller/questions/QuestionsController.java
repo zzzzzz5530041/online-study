@@ -63,7 +63,7 @@ public class QuestionsController extends BaseController {
 	// 问答详情页面
 	private static final String questionsinfo = "/web/questions/questions-info";
 	// 我的问答列表
-	private static final String myquestionslist = getViewPath("/web/ucenter/questions-mylist");
+	private static final String myquestionslist = "/web/usercenter/my_question_list";
 	// 问答 我的回答列表
 	private static final String myrepquestionslist = getViewPath("/web/ucenter/questions-myreplist");
 
@@ -225,7 +225,7 @@ public class QuestionsController extends BaseController {
 	 * @param request
 	 * @return ModelAndView
 	 */
-	@RequestMapping("/uc/myquestions/list")
+	@RequestMapping("/web/myquestion/list")
 	public ModelAndView getMyQuestionsList(HttpServletRequest request, @ModelAttribute("questions") Questions questions, @ModelAttribute("page") PageEntity page) {
 		ModelAndView model = new ModelAndView(myquestionslist);
 		try {
