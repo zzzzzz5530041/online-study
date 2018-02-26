@@ -288,7 +288,7 @@ function queryUnReadNum(){
 	$.ajax({
 		type : "POST",
 		dataType : "json",
-		url:baselocation+"/usercenter/ajax/queryUnReadLetter",
+		url:baselocation+"/web/usercenter/ajax/queryUnReadLetter",
 		cache : true,
 		async : true,
 		success : function(result) {
@@ -487,7 +487,7 @@ function dialogLogin(type){
         return false;
     }
 	$.ajax({
-		url:baselocation+'/usercenter/login',
+		url:baselocation+'/web/usercenter/login',
 		type:'post',
 		dataType:'json',
 		data:{
@@ -500,7 +500,7 @@ function dialogLogin(type){
 				$(".e-l-jy").html('<font class="fsize12 c-orange">'+result.message+'</font>');
 			}else{
 				if(type==1){
-					window.location.href="/usercenter/index";
+					window.location.href="/web/usercenter/index";
 				}else{
 					window.location.reload();
 				}
@@ -562,7 +562,7 @@ function dialogRegister() {
 	}
 
 	$.ajax({
-		url : baselocation + "/usercenter/createuser",
+		url : baselocation + "/web/usercenter/createuser",
 		data : {"user.email":$("#u-email-reg").val(),"user.password":$("#u-password-reg").val(),
 			"confirmPwd":$("#u-passwordre-reg").val(),"registerCode":$("#u-randomcode-reg").val(),
 			"user.mobile":$("#u-mobile-reg").val()},
@@ -604,7 +604,7 @@ function getCourseLearnedUser(courseId){
 	 				for(var i=0;i<resultList.length;i++){
 	 					useImg=resultList[i].userImg;
 	 					if(useImg==null || $.trim(useImg)==''){
-	 						useImg = baselocation+'/static/inxweb/img/avatar-boy.gif';
+	 						useImg = '/web/img/avatar-boy.gif';
 	 					}else{
 	 						useImg =imagesPath+useImg;
 	 					}

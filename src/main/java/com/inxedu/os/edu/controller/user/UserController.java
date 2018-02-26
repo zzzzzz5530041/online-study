@@ -44,7 +44,7 @@ import java.util.*;
  * @author www.inxedu.com
  */
 @Controller
-@RequestMapping("/usercenter")
+@RequestMapping("/web/usercenter")
 public class UserController extends BaseController{
 	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -93,7 +93,7 @@ public class UserController extends BaseController{
 			if(uri!=null){
 				model.setViewName("redirect:"+uri.toString());
 			}else{
-				model.setViewName("redirect:/uc/myFavorites");
+				model.setViewName("redirect:/usercenter/myFavorites");
 			}
 		}catch (Exception e) {
 			model.setViewName(this.setExceptionRequest(request, e));
@@ -109,7 +109,7 @@ public class UserController extends BaseController{
 	 */
 	@RequestMapping("/myFavorites")
 	public ModelAndView myFavorites(HttpServletRequest request,@ModelAttribute("page") PageEntity page){
-		ModelAndView model = new ModelAndView(getViewPath("/web/ucenter/favourite_course_list"));
+		ModelAndView model = new ModelAndView("/web/usercenter/favourite_course_list");
 		try{
 			page.setPageSize(5);
 			int userId = SingletonLoginUtils.getLoginUserId(request);
@@ -134,7 +134,7 @@ public class UserController extends BaseController{
 	public ModelAndView playVideo(HttpServletRequest request,@PathVariable("courseId") int courseId){
 		ModelAndView model = new ModelAndView();
 		try{
-			model.setViewName(getViewPath("/web/ucenter/player-video"));
+			model.setViewName("/web/usercenter/player_video");
 			//获取课程
 			Course course = courseService.queryCourseById(courseId);
 			if(course!=null){
@@ -214,7 +214,7 @@ public class UserController extends BaseController{
 	public ModelAndView ucIndex(HttpServletRequest request,@ModelAttribute("page") PageEntity page,@ModelAttribute("queryCourse") QueryCourse queryCourse){
 		ModelAndView model = new ModelAndView();
 		try{
-			model.setViewName("/web/usercenter/freecourse");
+			model.setViewName("/web/usercenter/free_course");
 			// 页面传来的数据放到page中
 			page.setPageSize(9);
 			//只查询上架的
@@ -369,7 +369,7 @@ public class UserController extends BaseController{
 			User user = userService.queryUserById(userId);
 			model.addObject("user", user);
 			model.addObject("index",index);
-			model.setViewName(getViewPath("/web/ucenter/user-info"));
+			model.setViewName("/web/usercenter/user_info");
 		}catch (Exception e) {
 			model.setViewName(this.setExceptionRequest(request, e));
 			logger.error("initUpdateUser()---error",e);
