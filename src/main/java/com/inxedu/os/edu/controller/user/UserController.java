@@ -44,7 +44,7 @@ import java.util.*;
  * @author www.inxedu.com
  */
 @Controller
-@RequestMapping("/uc")
+@RequestMapping("/usercenter")
 public class UserController extends BaseController{
 	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -214,7 +214,7 @@ public class UserController extends BaseController{
 	public ModelAndView ucIndex(HttpServletRequest request,@ModelAttribute("page") PageEntity page,@ModelAttribute("queryCourse") QueryCourse queryCourse){
 		ModelAndView model = new ModelAndView();
 		try{
-			model.setViewName(getViewPath("/web/ucenter/uc_freecourse"));
+			model.setViewName("/web/usercenter/freecourse");
 			// 页面传来的数据放到page中
 			page.setPageSize(9);
 			//只查询上架的
