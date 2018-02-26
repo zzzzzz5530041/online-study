@@ -2,7 +2,7 @@
 var baselocation = "";
 var imagesPath="";
 var keuploadSimpleUrl="";//kindeditor中使用的路径需要2个参数来区分项目和模块
-var uploadSimpleUrl="";//单独的上传按钮使用的路径
+var uploadSimpleUrl="/image/gok4?";//单独的上传按钮使用的路径
 var uploadServerUrl="";//上传服务用服务器地址
 /**
  * 验证前台学员是否已经登录 

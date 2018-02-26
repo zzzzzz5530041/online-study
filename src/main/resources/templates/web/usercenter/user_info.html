@@ -5,6 +5,21 @@
     <title>个人中心</title>
     <div th:include="/common/web_header::header"></div>
     <script type="text/javascript" th:src="@{/web/js/usercenter/user.js}"></script>
+    <script type="text/javascript" th:src="@{/common/jcrop/jquery.Jcrop.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/common/jcrop/jquery.Jcrop.min.css}"  />
+    <script type="text/javascript" th:src="@{/kindeditor/kindeditor-all.js}"></script>
+    <script type="text/javascript">
+        $(function(){
+            showTab('${index}');//选项控制显示
+            uploadImg('fileupload','uploadfile');
+        });
+    </script>
+    <style type="text/css">
+        .ke-upload-area {min-width: 54px;width: auto;}
+        .ke-upload-area .ke-button-common,.ke-upload-area .ke-button-common input {border: 1px solid #FF5F16;background: #FFF7F3;}
+        .ke-upload-area .ke-button-common input {border: none;width: 100px;color: #FF5F16;font-weight: bold;}
+        .ke-upload-area .ke-button-common input:hover {background: #FFF2EC;}
+    </style>
 </head>
 <body>
 <div class="in-wrap">
