@@ -47,15 +47,15 @@
         </mvc:interceptor>
         <!-- 前台用户登录拦截器配置 -->
         <mvc:interceptor>
-            <mvc:mapping path="/uc/*"/>
-            <mvc:mapping path="/uc/**/*"/>
-            <mvc:exclude-mapping path="/uc/tologin"/>
-            <mvc:exclude-mapping path="/uc/getloginUser"/>
-            <mvc:exclude-mapping path="/uc/register"/>
-            <mvc:exclude-mapping path="/uc/createuser"/>
-            <mvc:exclude-mapping path="/uc/login"/>
-            <mvc:exclude-mapping path="/uc/passwordRecovery"/>
-            <mvc:exclude-mapping path="/uc/sendEmail"/>
+            <mvc:mapping path="/usercenter/*"/>
+            <mvc:mapping path="/usercenter/**/*"/>
+            <mvc:exclude-mapping path="/usercenter/tologin"/>
+            <mvc:exclude-mapping path="/usercenter/getloginUser"/>
+            <mvc:exclude-mapping path="/usercenter/register"/>
+            <mvc:exclude-mapping path="/usercenter/createuser"/>
+            <mvc:exclude-mapping path="/usercenter/login"/>
+            <mvc:exclude-mapping path="/usercenter/passwordRecovery"/>
+            <mvc:exclude-mapping path="/usercenter/sendEmail"/>
             <bean class="com.inxedu.os.common.intercepter.IntercepterWebLogin">
             </bean>
         </mvc:interceptor>
