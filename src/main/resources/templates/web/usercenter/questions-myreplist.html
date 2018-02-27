@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>我的回答</title>
+	<div th:include="/common/web_header::header"></div>
+</head>
+<body>
+<div class="in-wrap">
+    <div class="bg-fa of">
+        <!-- /个人中心 主体 开始 -->
+        <section class="container">
+            <div class="u-body mt40">
+                <!-- 左侧，开始 -->
+                <menu  class="col-3 fl uMenu" th:include="/web/usercenter/usercenter_layout::layout"></menu>
+                <!-- 左侧，结束 -->
+	<article class="col-7 fl">
+		<div class="u-r-cont">
+			<section>
+				<div>
+					<span class="fr"><a href="/questions/toadd" title="" class="comm-btn c-btn-6" style="font-size: 16px; height: 22px; line-height: 22px; padding: 0 20px;">去提问</a></span>
+					<section class="c-infor-tabTitle c-tab-title cnew-tab-title">
+						<a href="javascript: void(0)" title="Wo的问答" style="cursor: default;">Wo的问答</a>
+						<a href="/web/myquestion/list" title="Wo的提问">Wo的提问</a>
+						<a href="/web/myrepquestions/list" title="Wo的回答" class="current">Wo的回答</a>
+					</section>
+				</div>
+				<div class="mt40">
+						<!-- /无数据提示 开始-->
+						<section th:if="${questionsList==null}" class="no-data-wrap">
+							<em class="icon30 no-data-ico">&nbsp;</em> <span class="c-666 fsize14 ml10 vam">亲，您还没有回复问答,赶快去回答吧！</span>
+						</section>
+						<!-- /无数据提示 结束-->
+						<div class="u-question-wrap" th:if="${questionsList!=null}">
+							<section class="q-all-list">
+								<ul>
+										<li th:each="question:${questionsList }">
+											<aside class="q-head-pic">
+														<img th:if="${question.picImg!=null}" th:src="${question.picImg }" alt="">
+														<img th:if="${question.picImg!=null}" src="/web/img/avatar-boy.gif" alt="">
+												<p class="hLh30 txtOf">
+													<span class="c-999">
+														<th:block th:if="${question.showName==null}" th:text="${question.email }"></th:block>
+														<th:block th:if="${question.showName!=null}" th:text="${question.showName }"></th:block>
+													</span>
+												</p>
+											</aside>
+											<section class="q-txt-box">
+												<a class="replyBrowseNum" th:href="'/questions/info/'+${question.id }" title="">
+													<div class="replyNum">
+														<span class="r-b-num" th:text="${question.replyCount }"></span>
+														<p class="hLh30">
+															<span class="c-999 f-fA">回答数</span>
+														</p>
+													</div>
+													<div class="browseNum">
+														<span class="r-b-num" th:text="${question.browseCount }"></span>
+														<p class="hLh30">
+															<span class="c-999 f-fA">浏览数</span>
+														</p>
+													</div>
+												</a>
+												<h3 class="hLh30 txtOf">
+													<em class="icon16 q-tw">&nbsp;</em>
+													<a th:href="'/questions/info/'+${question.id }" title="" class="fsize16 c-333 vam" th:text="${question.title }"></a>
+												</h3>
+												<h3 class="hLh30 txtOf mt5">
+													<em class="icon16 q-hd">&nbsp;</em>
+														<span th:if="${question.questionsCommentList==null}" class="fsize12 c-999 vam">哈~~~ 此问题大家还有苦思冥想中...</span>
+														<!-- 没有回答时的内容 -->
+
+													<th:block th:if="${question.questionsCommentList!=null}">
+														<span class="fsize12 c-999 vam" th:if="${question.status==0 }">
+															<tt class="c-ccc f-fM mr5">[最新回答]</tt>
+															<th:block th:each="questionsComment:${question.questionsCommentList }" th:text="${questionsComment.content }" />
+														</span>
+														<!-- 有回答时显示最新一条的回答内容 -->
+														<span class="fsize12 c-999 vam" th:if="${question.status==1 }">
+															<tt class="c-green f-fM mr5">[最佳回答]</tt>
+															<th:block th:each="questionsComment:${question.questionsCommentList }" th:text="${questionsComment.content }" />
+														</span>
+														<!-- 采纳最佳显示最佳答案内容 -->
+
+													</th:block>
+												</h3>
+												<div class="mt15">
+													<span class="c-ccc fl vam" th:text="'时间：'+${question.modelTime }"></span>
+													<section class="fl ml20 pt10">
+														<div class="taglist clearfix">
+																<a th:each="questionsTag:${question.questionsTagRelationList }" th:title="${questionsTag.tagName }"
+																   th:data-id="${questionsTag.questionsTagId }" class="list-tag" th:href="'/questions/list?questions.questionsTagId='+${questionsTag.questionsTagId }" th:text="${questionsTag.tagName }"></a>
+														</div>
+													</section>
+													<div class="clear"></div>
+												</div>
+											</section>
+										</li>
+								</ul>
+							</section>
+						</div>
+					<!-- 公共分页 开始 -->
+					<script type="text/javascript" th:src="@{/web/js/common/page.js}" ></script>
+					<div class="paging" th:if="${page != null  and page.totalResultSize>0}">
+						<a href="javascript:goPage(1);" title="">首</a>
+						<a id="backpage" th:if="${page.first}" class="undisable" href="javascript:void(0)" title="">&lt;</a>
+						<a id="backpage" th:if="${!page.first}" th:href="'javascript:goPage('+${page.currentPage-1 }+');'" title="">&lt;</a>
+						<a id="nextpage" th:if="${page.last}" href="javascript:void(0)" title="" class="undisable">&gt;</a>
+						<a id="nextpage" th:if="${!page.last}" th:href="'javascript:goPage('+${page.currentPage+1}+');'" title="">&gt;</a>
+						<a th:href="'javascript:goPage('+${page.totalPageSize}+');'" title="">末</a>
+						<div class="clear"></div>
+					</div>
+					<script type="text/javascript" th:inline="javascript" th:with="totalPageSize=${page.totalPageSize }">
+                        /*<![CDATA[*/
+                        var totalPageSize = [[${totalPageSize}]];
+                        var currentPage = [[${page.currentPage-1}]]<1 ? 1 :[[${totalPageSize}]];
+                        var totalPage = [[${totalPageSize}]];
+                        showPageNumber();
+                        /*]]>*/
+					</script>
+					<!-- 公共分页 结束 -->
+					<form action="/web/myrepquestions/list" id="searchForm" method="post">
+						<input type="hidden" id="pageCurrentPage" name="page.currentPage" value="1" />
+					</form>
+				</div>
+			</section>
+			<!-- /Wo的消息 -->
+		</div>
+	</article>
+            </div></section></div></div><
+</body>
+</html>

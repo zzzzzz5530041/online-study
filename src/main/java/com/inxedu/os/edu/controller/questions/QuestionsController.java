@@ -59,13 +59,13 @@ public class QuestionsController extends BaseController {
 	// 问答列表
 	private static final String questionslist = "/web/questions/questions-list";
 	// 添加问答页面
-	private static final String questionsadd = getViewPath("/web/questions/questions-add");
+	private static final String questionsadd = "/web/questions/questions-add";
 	// 问答详情页面
 	private static final String questionsinfo = "/web/questions/questions-info";
 	// 我的问答列表
 	private static final String myquestionslist = "/web/usercenter/my_question_list";
 	// 问答 我的回答列表
-	private static final String myrepquestionslist = getViewPath("/web/ucenter/questions-myreplist");
+	private static final String myrepquestionslist = "/web/usercenter/questions-myreplist";
 
 	@InitBinder({ "questions" })
 	public void initBinderQuestions(WebDataBinder binder) {
@@ -272,7 +272,7 @@ public class QuestionsController extends BaseController {
 	 * @param request
 	 * @return ModelAndView
 	 */
-	@RequestMapping("/uc/myrepquestions/list")
+	@RequestMapping("/web/myrepquestions/list")
 	public ModelAndView getMyRepQuestionsList(HttpServletRequest request, @ModelAttribute("questions") Questions questions, @ModelAttribute("page") PageEntity page) {
 		ModelAndView model = new ModelAndView(myrepquestionslist);
 		try {

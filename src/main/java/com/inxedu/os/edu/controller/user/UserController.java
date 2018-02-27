@@ -639,7 +639,7 @@ public class UserController extends BaseController{
 	 */
 	@RequestMapping(value = "/letter")
 	public ModelAndView queryUserLetter(HttpServletRequest request, @ModelAttribute("page") PageEntity page) {
-		ModelAndView modelAndView = new ModelAndView(getViewPath("/web/ucenter/uc_letter_inbox"));// 用户消息
+		ModelAndView modelAndView = new ModelAndView("/web/usercenter/uc_letter_inbox");// 用户消息
 		try {
 
 			page.setPageSize(6);// 分页页数为6

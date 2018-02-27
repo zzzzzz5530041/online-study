@@ -55,7 +55,7 @@
                                                     <div class="of cancel-colle">
                                                         <div class="fr tac">
                                                             <label class="hand"><input type="checkbox" style="vertical-align: -2px;" name="favouriteId" th:value="${favorite.favouriteId}"></label> <br>
-                                                            <a th:href="'/web/usercenter/deleteFaveorite'+/${favorite.favouriteId}" title="" class="c-blue">取消收藏</a>
+                                                            <a th:href="'/web/usercenter/deleteFaveorite/'+${favorite.favouriteId}" title="" class="c-blue">取消收藏</a>
                                                         </div>
                                                         <a th:href="'/front/couinfo/'+${favorite.courseId }" title="">
                                                             <img th:if="${favorite.logo ne empty}" th:src="${favorite.logo}" width="120" alt="">
@@ -71,7 +71,28 @@
                                     </form>
                                 </div>
                                 <!-- 公共分页 开始 -->
-                                <jsp:include page="/WEB-INF/view/common/front_page.jsp" />
+                                <script type="text/javascript" th:src="@{/web/js/common/page.js}" ></script>
+                                <div class="paging" th:if="${page != null  and page.totalResultSize>0}">
+                                    <a href="javascript:goPage(1);" title="">首</a>
+                                    <a id="backpage" th:if="${page.first}" class="undisable" href="javascript:void(0)" title="">&lt;</a>
+                                    <a id="backpage" th:if="${!page.first}" th:href="'javascript:goPage('+${page.currentPage-1 }+');'" title="">&lt;</a>
+                                    <a id="nextpage" th:if="${page.last}" href="javascript:void(0)" title="" class="undisable">&gt;</a>
+                                    <a id="nextpage" th:if="${!page.last}" th:href="'javascript:goPage('+${page.currentPage+1}+');'" title="">&gt;</a>
+                                    <a th:href="'javascript:goPage('+${page.totalPageSize}+');'" title="">末</a>
+                                    <div class="clear"></div>
+                                </div>
+                                <script type="text/javascript" th:inline="javascript" th:with="totalPageSize=${page.totalPageSize }">
+                                    /*<![CDATA[*/
+                                    var totalPageSize = [[${totalPageSize}]];
+                                    var currentPage = [[${page.currentPage-1}]]<1 ? 1 :[[${totalPageSize}]];
+                                    var totalPage = [[${totalPageSize}]];
+                                    showPageNumber();
+                                    /*]]>*/
+                                </script>
+
+
+
+
                                 <!-- 公共分页 结束 -->
                                 <form action="/web/usercenter/myFavorites" method="post" id="searchForm">
                                     <input type="hidden" name="page.currentPage" value="1" id="pageCurrentPage" />
