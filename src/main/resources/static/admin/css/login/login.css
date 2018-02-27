@@ -4,9 +4,9 @@
 }
 html,body {position: relative;height: 100%;overflow: hidden;}
 body {
-	background: #fff url('../assets/load-bg.jpg') 50% 50% no-repeat;
+	background: #fff url('../../img/new/load-bg.jpg') 50% 50% no-repeat;
 	background-size: cover;
-	background-origin: padding-box;background-clip: border-box;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/static/admin/assets/load-bg.jpg',sizingMethod='scale');
+	background-origin: padding-box;background-clip: border-box;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../img/new/load-bg.jpg',sizingMethod='scale');
 	font-family: "Lantinghei SC","Open Sans",Arial,"Hiragino Sans GB","Microsoft YaHei","΢���ź�","STHeiti","WenQuanYi Micro Hei",SimSun,sans-serif;
 }
 
@@ -85,7 +85,7 @@ p.main {
 }
 
 p.main INPUT {
-	background: url('../assets/input.png') 0 0 repeat-x;
+	background: url('../../img/new/input.png') 0 0 repeat-x;
 	border: 1px solid #d3d3d3;
 	color: #555;
 	padding: 5px;
@@ -118,7 +118,7 @@ input.login {
 	font-size: 12px;
 	text-decoration: none;
 	border: 1px solid #555;
-	background: url('../assets/rep1.png') 50% 50% repeat-x;
+	background: url('../../img/new/rep1.png') 50% 50% repeat-x;
 	display: inline;
 	margin-right: 50px;
 	cursor: pointer;

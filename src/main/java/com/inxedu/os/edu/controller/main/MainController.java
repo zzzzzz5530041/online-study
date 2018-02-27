@@ -32,7 +32,7 @@ import java.util.*;
 @RequestMapping("/admin/main")
 public class MainController extends BaseController{
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-	private static String mainPage = getViewPath("/admin/main/main");//后台管理主界面
+	private static String mainPage = "/admin/main/index";//后台管理主界面
 	private static String mainIndexPage = getViewPath("/admin/main/index");//后台操作中心初始化首页
 	@Autowired
 	private SysFunctionService sysFunctionService;
