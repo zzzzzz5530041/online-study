@@ -26,7 +26,8 @@
             </map>
         </property>
     </bean>
-
+    <mvc:resources location="/" mapping="/**/*.css"/>
+    <mvc:resources location="/" mapping="/**/*.js"/>
     <!-- ②：拦截器的配置 -->
     <mvc:interceptors>
         <!-- 后台登录和权限的拦截器配置 -->
@@ -34,6 +35,8 @@
             <mvc:mapping path="/admin/*"/>
             <mvc:mapping path="/admin/**/*"/>
             <mvc:exclude-mapping path="/admin/main/login"/>
+            <mvc:exclude-mapping path="/**/*.css"/>
+            <mvc:exclude-mapping path="/**/*.js"/>
             <bean class="com.inxedu.os.common.intercepter.IntercepterAdmin"></bean>
         </mvc:interceptor>
         <!-- 前台网站配置拦截器配置 -->
