@@ -41,10 +41,10 @@
                         </em><span class="vam ml5">注册</span>
                     </a>
                 </li>
-                <li class="mr10 undis" id="is-login-one"><a th:href="${contextPath}+'/uc/letter'" title="消息" id="headerMsgCountId">
+                <li class="mr10 undis" id="is-login-one"><a href="/web/usercenter/letter'" title="消息" id="headerMsgCountId">
                     <em class="icon18 news-icon">&nbsp;</em>
                 </a><q class="red-point" style="display: none">&nbsp;</q></li>
-                <li class="h-r-user undis" id="is-login-two"><a th:href="${contextPath}+'/uc/index'" title="">
+                <li class="h-r-user undis" id="is-login-two"><a href="/web/usercenter/index" title="">
                     <img src="/web/img/avatar-boy.gif" width="30" height="30" class="vam picImg"
                          alt="">
                     <span class="vam disIb" id="userName"></span>
@@ -53,7 +53,7 @@
                 <!-- /未登录显示第1 li；登录后显示第2，3 li -->
             </ul>
             <aside class="h-r-search">
-                <form action="${ctx}/front/showcoulist" method="post">
+                <form action="/web/course/showcoulist" method="post">
                     <label class="h-r-s-box">
                         <input type="text" placeholder="输入你想学的课程" name="queryCourse.courseName"  >
                         <button type="submit" class="s-btn">

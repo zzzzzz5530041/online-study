@@ -33,7 +33,7 @@ public class CourseKpointController extends BaseController {
 
 	private static final String playAudioAjax=getViewPath("/web/course/play_audio_ajax");//加载播放大厅音频地址
 	private static final String playAudioAjaxMobile=getViewPath("/web/course/play_audio_ajax_mobile");//手机 加载播放大厅音频地址
-	private static final String getKopintHtml = getViewPath("/web/course/videocode");// 课程播放
+	private static final String getKopintHtml = "/web/course/videocode";// 课程播放
 	private static final String callBack56Uploading = getViewPath("/course/callBack56_uploading");//56视频上传回调
 	private static final String playTxtAjax=getViewPath("/web/playCourse/play_txt_ajax");//加载播放大厅文本
 	@Autowired

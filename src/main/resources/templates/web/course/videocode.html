@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+		<!-- 错误类型的 先用iframe承接 -->
+		<iframe th:if="${videotype=='IFRAME'}" id="playervideoiframe" th:src="${videourl}" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+		<script  th:inline="javascript">
+            /*<![CDATA[*/
+			$(function(){
+				var width = $("#playervideoiframe").width();
+				var height=$("#playervideoiframe").height();
+				var videourl =[[${videourl}]];
+				$("#playervideoiframe").attr("src",videourl+"&width=100%&height="+height);
+			});
+            /*]]>*/
+		</script>
+		<th:block th:if="${videotype=='CC'}">
+			<script th:src="'http://p.bokecc.com/player?vid=&siteid='+${ccwebsitemap.cc.ccappID}+'&autoStart=true&width=100%&height=100%&playerid=51A2AD3118ACAD37&playertype=1'" type='text/javascript'>
+			</script>
+
+		</th:block>
+		<th:block th:if="${videotype=='INXEDUVIDEO'} ">
+			<div id="videoareaname" style="width: 100%;height: 100%"></div>
+			<script th:inline="javascript">
+                /*<![CDATA[*/
+                var vodparam = [[${videourl}]];
+                cloudsdk.initplay("videoareaname",{"src":vodparam,"id":"cloudsdk","isautosize":"0"});
+                var html =  $("video").parent().html();
+                $("video").remove();
+                if(html!=null&&html!=''){
+                    $("#videoareaname").html(html);
+                }
+                /*]]>*/
+			</script>
+		</th:block>
+
+<th:block th:if="${videotype=='uploadVideo'}">
+	<script type="text/javascript" th:src="@{/web/js/front/comment.js}"></script>
+	<script type="text/javascript" th:src="@{/web/common/ckplayer/ckplayer.js}" charset="utf-8"></script>
+	<div id="videoareaname" style="width: 100%;height: 100%"></div>
+	<script type="text/javascript">
+        /*<![CDATA[*/
+        var videourl =[[${videourl}]]
+        var flashvars={
+            f:videourl,
+            c:0,
+            p:1
+        };
+        var video=['videourl->video/mp4'];
+        CKobject.embed('/web/common/ckplayer/ckplayer.swf','videoareaname','ckplayer_a1','100%','100%',false,flashvars,video);
+        /*]]>*/
+	</script>
+</th:block>
+
+		<!-- 错误类型的 先用iframe承接 -->
+		<!--<iframe src="${videourl}" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>-->
+</c:choose>
