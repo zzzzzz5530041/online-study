@@ -34,7 +34,7 @@ import java.util.Date;
 @RequestMapping("/admin")
 public class LoginController extends BaseController{
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	private static String loginPage = getViewPath("/admin/main/login");//后台登录页面
+	private static String loginPage = "/admin/main/login";//后台登录页面
 	private static String loginSuccess="redirect:/admin/main";//后台管理主界面
 
 	@Autowired
