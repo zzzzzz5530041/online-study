@@ -26,8 +26,7 @@
             </map>
         </property>
     </bean>
-    <mvc:resources location="/" mapping="/**/*.css"/>
-    <mvc:resources location="/" mapping="/**/*.js"/>
+
     <!-- ②：拦截器的配置 -->
     <mvc:interceptors>
         <!-- 后台登录和权限的拦截器配置 -->
