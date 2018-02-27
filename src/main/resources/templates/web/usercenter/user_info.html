@@ -8,9 +8,9 @@
     <script type="text/javascript" th:src="@{/common/jcrop/jquery.Jcrop.min.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/common/jcrop/jquery.Jcrop.min.css}"  />
     <script type="text/javascript" th:src="@{/kindeditor/kindeditor-all.js}"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" th:inline="javascript" >
         $(function(){
-            showTab('${index}');//选项控制显示
+            showTab([[${index}]]);//选项控制显示
             uploadImg('fileupload','uploadfile');
         });
     </script>
