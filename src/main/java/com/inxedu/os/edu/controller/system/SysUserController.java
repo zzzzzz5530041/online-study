@@ -266,7 +266,7 @@ public class SysUserController extends BaseController {
 			page.setPageSize(15);
 
 			/**用户列表页面*/
-			model.setViewName(getViewPath("/admin/system/sys-user-list"));
+			model.setViewName("/admin/system/system_user_list");
 			//查询用户数据
 			List<SysUser> sysUserList = sysUserService.querySysUserPage(querySysUser, page);
 			//向页面传数据

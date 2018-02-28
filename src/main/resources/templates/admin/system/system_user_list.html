@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="/admin/common/frame::header"></div>
+
+<body>
+<div th:replace="/admin/common/frame::title"></div>
+<div th:replace="/admin/common/frame::search"></div>
+<div th:replace="/admin/common/frame::navbar"></div>
+<div th:replace="/admin/common/frame::sidebar"></div>
+<div th:replace="/admin/common/frame::styleSwither"></div>
+<div id="content">
+    <div th:replace="/admin/common/frame::manage"></div>
+    <div th:replace="/admin/common/frame::nav"></div>
+    <div class="container-fluid">
+        <div class="tab-list">
+            <div class="td-list">
+                <button class="btn btn-primary pull-left">创建用户</button>
+            </div>
+            <div class="td-list">
+                <input type="text" style="width: 200px" placeholder="用户名/E_MAIL"/>
+            </div>
+            <div class="td-list">
+                <button type="submit" class="btn btn-primary pull-right">查询</button>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table">
+                            <thead>
+                            <tr>
+                                <th>登录名</th>
+                                <th>姓名</th>
+                                <th>E-MAIL</th>
+                                <th>电话</th>
+                                <th>创建时间</th>
+                                <th>最后登录时间</th>
+                                <th>最后登录IP</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <th:block th:each="sysuser:${userList}">
+                                <tr class="gradeX">
+                                    <td th:text="${sysuser.loginName}"></td>
+                                    <td th:if="${sysuser.loginName ne null and sysuser.loginName ne ''}" th:text="${sysuser.userName}"></td><td th:if="${sysuser.loginName eq null or sysuser.loginName eq ''}">--</td>
+                                    <td th:if="${sysuser.email!=null and sysuser.email!=''}" th:text=" ${sysuser.email}"></td><td th:unless="${sysuser.email!=null and sysuser.email!=''}">--</td>
+                                    <td th:if="${sysuser.tel!=null && sysuser.tel!=''}" th:text=" ${sysuser.tel}"></td><td th:unless="${sysuser.tel!=null && sysuser.tel!=''}">--</td>
+                                    <td th:text="${#dates.format(sysuser.createTime, 'yyyy/MM/dd HH:mm')}"></td>
+                                    <td th:if="${sysuser.lastLoginTime!=null}" th:text="${#dates.format(sysuser.lastLoginTime, 'yyyy/MM/dd HH:mm')}"></td><td th:unless="${sysuser.lastLoginTime!=null}">--</td>
+                                    <td th:if="${sysuser.lastLoginIp!=null && sysuser.lastLoginIp!=''}" th:text=" ${sysuser.tel}"></td><td th:unless="${sysuser.lastLoginIp!=null && sysuser.lastLoginIp!=''}">--</td>
+                                    <th:block th:switch="${sysuser.status}">
+                                        <td th:case="0">正常</td>
+                                        <td th:case="1">冻结</td>
+                                    </th:block>
+                                    <td>
+                                        <th:block th:switch="${sysuser.status}">
+                                            <button th:case="0" th:onclick="'disableOrstart('+${sysuser.userId}+',2,this)'">冻结</button>
+                                            <button th:case="1" th:onclick="'disableOrstart('+${sysuser.userId}+',1,this)'">启用</button>
+                                        </th:block>
+                                        <button onclick="initUser(${sysuser.userId})"  type="button">修改</button>
+                                        <button href="javascript:void(0)" onclick="updatePwd(${sysuser.userId})">修改密码</button>
+                                        <button href="javascript:void(0)" onclick="delUser(${sysuser.userId})">删除用户</button>
+                                        <button th:href="'/admin/sysuser/looklog/'+${sysuser.userId}">查看日志</button>
+                                    </td>
+                                </tr>
+                            </th:block>
+                            </tbody>
+                        </table>
+                     </div>
+                 </div>
+             </div>
+        </div>
+</body>
