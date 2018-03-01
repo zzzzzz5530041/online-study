@@ -176,13 +176,13 @@
         </dependency>
         <!-- GENERAL UTILS end -->
         <!-- sitemesh2 -->
-        <dependency>
-            <groupId>opensymphony</groupId>
-            <artifactId>sitemesh</artifactId>
-            <version>2.5</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/sitemesh-2.5.jar</systemPath>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>opensymphony</groupId>-->
+            <!--<artifactId>sitemesh</artifactId>-->
+            <!--<version>2.5</version>-->
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${basedir}/lib/sitemesh-2.5.jar</systemPath>-->
+        <!--</dependency>-->
         <!-- spting 定时 -->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
@@ -190,38 +190,38 @@
             <version>2.2.1</version>
         </dependency>
         <!-- velocity -->
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-tools</artifactId>
-            <version>2.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.struts</groupId>
-                    <artifactId>struts-tiles</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.struts</groupId>
-                    <artifactId>struts-taglib</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.struts</groupId>
-                    <artifactId>struts-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>sslext</groupId>
-                    <artifactId>sslext</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>oro</groupId>
-                    <artifactId>oro</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.velocity</groupId>-->
+            <!--<artifactId>velocity</artifactId>-->
+            <!--<version>1.7</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.velocity</groupId>-->
+            <!--<artifactId>velocity-tools</artifactId>-->
+            <!--<version>2.0</version>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.apache.struts</groupId>-->
+                    <!--<artifactId>struts-tiles</artifactId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.apache.struts</groupId>-->
+                    <!--<artifactId>struts-taglib</artifactId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.apache.struts</groupId>-->
+                    <!--<artifactId>struts-core</artifactId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<groupId>sslext</groupId>-->
+                    <!--<artifactId>sslext</artifactId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<groupId>oro</groupId>-->
+                    <!--<artifactId>oro</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
 
         <!-- 读取资源文件(例properties)  -->
         <dependency>
@@ -296,27 +296,27 @@
             <!--<artifactId>htmlcompressor</artifactId>-->
             <!--<version>1.5.2</version>-->
         <!--</dependency>-->
-        <dependency>
-            <groupId>com.caucho</groupId>
-            <artifactId>hessian</artifactId>
-            <version>3.1.5</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.caucho</groupId>-->
+            <!--<artifactId>hessian</artifactId>-->
+            <!--<version>3.1.5</version>-->
+        <!--</dependency>-->
 
         <!--ue编辑器-->
-        <dependency>
-            <groupId>com.baidu.ueditor</groupId>
-            <artifactId>ueditor</artifactId>
-            <version>1.1.2</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/ueditor-1.1.2.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json.jar</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/json.jar</systemPath>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.baidu.ueditor</groupId>-->
+            <!--<artifactId>ueditor</artifactId>-->
+            <!--<version>1.1.2</version>-->
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${basedir}/lib/ueditor-1.1.2.jar</systemPath>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.json</groupId>-->
+            <!--<artifactId>json.jar</artifactId>-->
+            <!--<version>1.0</version>-->
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${basedir}/lib/json.jar</systemPath>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
