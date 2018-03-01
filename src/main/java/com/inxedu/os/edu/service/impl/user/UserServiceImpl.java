@@ -1,13 +1,9 @@
 package com.inxedu.os.edu.service.impl.user;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.entity.PageEntity;
 import com.inxedu.os.common.exception.BaseException;
-import com.inxedu.os.common.util.MD5;
-import com.inxedu.os.common.util.ObjectUtils;
-import com.inxedu.os.common.util.StringUtils;
-import com.inxedu.os.common.util.WebUtils;
+import com.inxedu.os.common.util.*;
 import com.inxedu.os.edu.dao.user.UserDao;
 import com.inxedu.os.edu.entity.user.QueryUser;
 import com.inxedu.os.edu.entity.user.User;
@@ -34,7 +30,8 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserDao userDao;
-
+	@Autowired
+	private RedisUtils redisUtils;
 	@Override
 	public int createUser(User user) {
 		return userDao.createUser(user);
@@ -283,11 +280,11 @@ public class UserServiceImpl implements UserService{
 		//用户cookie key
 		String uuid = WebUtils.getCookie(request, CacheConstans.WEB_USER_LOGIN_PREFIX);
 		//缓存用户的登录时间
-		user.setLoginTimeStamp(Long.parseLong( EHCacheUtil.get(CacheConstans.USER_CURRENT_LOGINTIME+user.getUserId()).toString()));
+		user.setLoginTimeStamp(Long.parseLong( redisUtils.getByKey(CacheConstans.USER_CURRENT_LOGINTIME+user.getUserId(),Object.class).toString()));
 		if(autoThirty!=null&&autoThirty.equals("true")){//自动登录
-			EHCacheUtil.set(uuid, user, CacheConstans.USER_TIME);
+			redisUtils.saveWithExpireTime(uuid, user, Long.valueOf(CacheConstans.USER_TIME));
 		}else{
-			EHCacheUtil.set(uuid, user, 86400);
+			redisUtils.saveWithExpireTime(uuid, user, 86400L);
 		}
 	}
 

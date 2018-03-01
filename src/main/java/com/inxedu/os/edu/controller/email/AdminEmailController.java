@@ -44,7 +44,8 @@ public class AdminEmailController extends BaseController {
 	private static final String sendEmailMsgInfo = getViewPath("/admin/email/sendEmail_info");// 邮件管理页面
 	private static final String toSendEmailMsg = getViewPath("/admin/email/to_sendEmailMsg");// 发送邮件页面
 	private static final String progressbar = getViewPath("/admin/email/progressbar");// 进度
-	
+	@Autowired
+	private SingletonLoginUtils singletonLoginUtils;
 	@Autowired
 	private UserEmailMsgService userEmailMsgService;
 	
@@ -216,7 +217,7 @@ public class AdminEmailController extends BaseController {
 					json = this.setJson(false, errorEmail, "");
 					return json;
 				} else {
-					SysUser user = SingletonLoginUtils.getLoginSysUser(request);
+					SysUser user = singletonLoginUtils.getLoginSysUser(request);
 					List<UserEmailMsg> emailMsgList = new ArrayList<UserEmailMsg>();
 					UserEmailMsg userEmailMsg = new UserEmailMsg();
 					userEmailMsg.setId(0);

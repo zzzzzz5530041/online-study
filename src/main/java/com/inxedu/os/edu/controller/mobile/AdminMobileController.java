@@ -44,7 +44,8 @@ public class AdminMobileController extends BaseController {
 	private UserMobileMsgService userMobileMsgService;
 	@Autowired
 	private UserEmailMsgService userEmailMsgService;
-	
+	@Autowired
+	private SingletonLoginUtils singletonLoginUtils;
 	@InitBinder("userMobileMsg")
 	public void initBinderMobile(WebDataBinder binder) {
 		binder.setFieldDefaultPrefix("userMobileMsg.");
@@ -169,7 +170,7 @@ public class AdminMobileController extends BaseController {
 					return json;
 				} else {
 					// 添加发送记录
-					SysUser user = SingletonLoginUtils.getLoginSysUser(request);
+					SysUser user = singletonLoginUtils.getLoginSysUser(request);
 					
 					UserMobileMsg userMobileMsg = new UserMobileMsg();
 					userMobileMsg.setSendTime(sendTime);

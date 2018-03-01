@@ -1,6 +1,5 @@
 package com.inxedu.os.edu.controller.websiteehcache;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.controller.BaseController;
 import com.inxedu.os.common.entity.PageEntity;
 import com.inxedu.os.common.util.RedisUtils;

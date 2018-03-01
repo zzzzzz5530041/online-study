@@ -42,7 +42,8 @@ public class QuestionsCommentController extends BaseController {
 	private QuestionsCommentService questionsCommentService;
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private SingletonLoginUtils singletonLoginUtils;
 	//问答详情 评论列表页面
 	private static final String questionscommentlist = "/web/questionscomment/questionscomment-ajax-list";
 	//子评论
@@ -72,7 +73,7 @@ public class QuestionsCommentController extends BaseController {
 			model.addObject("questionsCommentList", questionsCommentList);
 			model.addObject("page", page);
 			
-			int userId = SingletonLoginUtils.getLoginUserId(request);
+			int userId = singletonLoginUtils.getLoginUserId(request);
 			User user=userService.queryUserById(userId);
 			model.addObject("user", user);
 			
@@ -100,7 +101,7 @@ public class QuestionsCommentController extends BaseController {
 	public Object addQuestionsComment(HttpServletRequest request,@ModelAttribute("questionsComment")QuestionsComment questionsComment){
 		Map<String,Object> json = new HashMap<String,Object>();
 		try{
-			int userId = SingletonLoginUtils.getLoginUserId(request);
+			int userId = singletonLoginUtils.getLoginUserId(request);
 			if (userId==0) {
 				json = this.setJson(false, "请先登录", "");
 				return json;
@@ -133,7 +134,7 @@ public class QuestionsCommentController extends BaseController {
 	public Object addQuestionsCommentReply(HttpServletRequest request,@ModelAttribute("questionsComment")QuestionsComment questionsComment){
 		Map<String,Object> json = new HashMap<String,Object>();
 		try{
-			int userId = SingletonLoginUtils.getLoginUserId(request);
+			int userId = singletonLoginUtils.getLoginUserId(request);
 			if (userId==0) {
 				json = this.setJson(false, "请先登录", "");
 				return json;
@@ -166,7 +167,7 @@ public class QuestionsCommentController extends BaseController {
 	public Object acceptComment(HttpServletRequest request,@ModelAttribute("questionsComment")QuestionsComment questionsComment){
 		Map<String,Object> json = new HashMap<String,Object>();
 		try{
-			int userId = SingletonLoginUtils.getLoginUserId(request);
+			int userId = singletonLoginUtils.getLoginUserId(request);
 			if (userId==0) {
 				json = this.setJson(false, "请先登录", "");
 				return json;

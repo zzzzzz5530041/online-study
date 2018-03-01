@@ -1,9 +1,10 @@
 package com.inxedu.os.common.util;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.edu.entity.system.SysUser;
 import com.inxedu.os.edu.entity.user.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,15 +12,17 @@ import javax.servlet.http.HttpServletRequest;
  * @author www.inxedu.com
  *
  */
+@Component
 public class SingletonLoginUtils {
-	
+    @Autowired
+    private RedisUtils redisUtils;
 	/**
 	 * 
 	 * 获取后台登录用户ID
 	 * @param request
 	 * @return 返因用户ID
 	 */
-	public static int getLoginSysUserId(HttpServletRequest request) {
+	public  int getLoginSysUserId(HttpServletRequest request) {
 		SysUser useObject = getLoginSysUser(request);
 		if (ObjectUtils.isNotNull(useObject)) {
 			return useObject.getUserId();
@@ -33,10 +36,10 @@ public class SingletonLoginUtils {
 	 * @return SysUser
 	 * @throws Exception
 	 */
-	public static SysUser getLoginSysUser(HttpServletRequest request) {
+	public  SysUser getLoginSysUser(HttpServletRequest request) {
 		String userKey = WebUtils.getCookie(request, CacheConstans.LOGIN_MEMCACHE_PREFIX);
 		if (StringUtils.isNotEmpty(userKey)) {
-			SysUser sysUser = (SysUser) EHCacheUtil.get(userKey);
+			SysUser sysUser = (SysUser) redisUtils.getByKey(userKey,SysUser.class);
 			if (ObjectUtils.isNotNull(sysUser)) {
 				return sysUser;
 			}
@@ -49,7 +52,7 @@ public class SingletonLoginUtils {
 	 * @param request
 	 * @return 返回用户ID
 	 */
-	public static int getLoginUserId(HttpServletRequest request){
+	public  int getLoginUserId(HttpServletRequest request){
 		User user = getLoginUser(request);
 		if(user!=null){
 			return user.getUserId();
@@ -62,10 +65,10 @@ public class SingletonLoginUtils {
 	 * @param request
 	 * @return User
 	 */
-	public static User getLoginUser(HttpServletRequest request){
+	public  User getLoginUser(HttpServletRequest request){
 		String userKey = WebUtils.getCookie(request, CacheConstans.WEB_USER_LOGIN_PREFIX);
 		if(StringUtils.isNotEmpty(userKey)){
-			User user = (User) EHCacheUtil.get(userKey);
+			User user = (User) redisUtils.getByKey(userKey,User.class);
 			//User user = (User) request.getSession().getAttribute(userKey);
 			if(ObjectUtils.isNotNull(user)){
 				return user;
@@ -75,7 +78,7 @@ public class SingletonLoginUtils {
 	}
 
 	//判断是否为手机浏览器
-	public static boolean JudgeIsMoblie(HttpServletRequest request) {
+	public  boolean JudgeIsMoblie(HttpServletRequest request) {
 		boolean isMoblie = false;
 		String[] mobileAgents = { "iphone", "android","ipad", "phone", "mobile", "wap", "netfront", "java", "opera mobi",
 				"opera mini", "ucweb", "windows ce", "symbian", "series", "webos", "sony", "blackberry", "dopod",

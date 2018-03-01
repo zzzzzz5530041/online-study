@@ -1,6 +1,5 @@
 package com.inxedu.os.edu.controller.article;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.controller.BaseController;
 import com.inxedu.os.common.entity.PageEntity;

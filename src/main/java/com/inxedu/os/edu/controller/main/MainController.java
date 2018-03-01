@@ -1,9 +1,9 @@
 package com.inxedu.os.edu.controller.main;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.controller.BaseController;
 import com.inxedu.os.common.util.ObjectUtils;
+import com.inxedu.os.common.util.RedisUtils;
 import com.inxedu.os.common.util.SingletonLoginUtils;
 import com.inxedu.os.edu.entity.system.SysFunction;
 import com.inxedu.os.edu.entity.system.SysUser;
@@ -46,7 +46,10 @@ public class MainController extends BaseController{
 	private StatisticsDayService statisticsDayService;
 	@Autowired
 	private QuestionsService questionsService;
-
+	@Autowired
+	private SingletonLoginUtils singletonLoginUtils;
+	@Autowired
+	private RedisUtils redisUtils;
 	private List<SysFunction> functionList =null;
 	/**
 	 * 进入操作中心
@@ -58,13 +61,13 @@ public class MainController extends BaseController{
 	public ModelAndView mainPage(HttpServletRequest request){
 		ModelAndView model = new ModelAndView();
 		try{
-			SysUser sysuser = SingletonLoginUtils.getLoginSysUser(request);
+			SysUser sysuser = singletonLoginUtils.getLoginSysUser(request);
 			//得到缓存用户权限
-			List<SysFunction> userFunctionList =(List<SysFunction>) EHCacheUtil.get(CacheConstans.USER_FUNCTION_PREFIX+sysuser.getUserId());
+			List<SysFunction> userFunctionList =(List<SysFunction>) redisUtils.getByKey(CacheConstans.USER_FUNCTION_PREFIX+sysuser.getUserId(),List.class);
 			//如果缓存中不存在则查询数据库中的用户权限
 			if(ObjectUtils.isNull(userFunctionList)){
 				userFunctionList = sysFunctionService.querySysUserFunction(sysuser.getUserId());
-				EHCacheUtil.set(CacheConstans.USER_FUNCTION_PREFIX+sysuser.getUserId(), userFunctionList);
+				redisUtils.save(CacheConstans.USER_FUNCTION_PREFIX+sysuser.getUserId(), userFunctionList);
 			}
 			//处理权限
 			functionList = handleUserFunction(userFunctionList);
@@ -141,7 +144,7 @@ public class MainController extends BaseController{
 			model.addObject("todayloginnum", todayloginnum);
 			model.setViewName(mainIndexPage);
 			
-			Map<String, Object> webCountMap=(Map<String, Object>) EHCacheUtil.get(CacheConstans.WEB_COUNT);
+			Map<String, Object> webCountMap=(Map<String, Object>) redisUtils.getByKey(CacheConstans.WEB_COUNT,Map.class);
 			
 			if(webCountMap==null){
 				webCountMap=new HashMap<String, Object>();
@@ -157,7 +160,7 @@ public class MainController extends BaseController{
 				//所有问答数
 				int questionsCount=questionsService.queryAllQuestionsCount();
 				webCountMap.put("questionsCount", questionsCount);//所有问答数
-				EHCacheUtil.set(CacheConstans.WEB_COUNT, webCountMap,CacheConstans.WEB_COUNT_TIME);
+				redisUtils.saveWithExpireTime(CacheConstans.WEB_COUNT, webCountMap,Long.valueOf(CacheConstans.WEB_COUNT_TIME));
 				model.addObject("webCountMap",webCountMap);
 			}else{
 				model.addObject("webCountMap",webCountMap);
@@ -188,13 +191,13 @@ public class MainController extends BaseController{
 	@RequestMapping("/header")
 	public String mainHeader(HttpServletRequest request){
 		try{
-			SysUser sysuser = SingletonLoginUtils.getLoginSysUser(request);
+			SysUser sysuser = singletonLoginUtils.getLoginSysUser(request);
 			//得到缓存用户权限
-			List<SysFunction> userFunctionList =(List<SysFunction>) EHCacheUtil.get(CacheConstans.USER_FUNCTION_PREFIX+sysuser.getUserId());
+			List<SysFunction> userFunctionList =(List<SysFunction>) redisUtils.getByKey(CacheConstans.USER_FUNCTION_PREFIX+sysuser.getUserId(),List.class);
 			//如果缓存中不存在则查询数据库中的用户权限
 			if(ObjectUtils.isNull(userFunctionList)){
 				userFunctionList = sysFunctionService.querySysUserFunction(sysuser.getUserId());
-				EHCacheUtil.set(CacheConstans.USER_FUNCTION_PREFIX+sysuser.getUserId(), userFunctionList);
+				redisUtils.save(CacheConstans.USER_FUNCTION_PREFIX+sysuser.getUserId(), userFunctionList);
 			}
 			//处理权限
 			List<SysFunction> functionList = handleUserFunction(userFunctionList);
@@ -213,13 +216,13 @@ public class MainController extends BaseController{
 	@RequestMapping("/left")
 	public String mainLeft(HttpServletRequest request,@RequestParam int parentId){
 		try{
-			SysUser sysuser = SingletonLoginUtils.getLoginSysUser(request);
+			SysUser sysuser = singletonLoginUtils.getLoginSysUser(request);
 			//得到缓存用户权限
-			List<SysFunction> userFunctionList =(List<SysFunction>) EHCacheUtil.get(CacheConstans.USER_FUNCTION_PREFIX+sysuser.getUserId());
+			List<SysFunction> userFunctionList =(List<SysFunction>) redisUtils.getByKey(CacheConstans.USER_FUNCTION_PREFIX+sysuser.getUserId(),List.class);
 			//如果缓存中不存在则查询数据库中的用户权限
 			if(ObjectUtils.isNull(userFunctionList)){
 				userFunctionList = sysFunctionService.querySysUserFunction(sysuser.getUserId());
-				EHCacheUtil.set(CacheConstans.USER_FUNCTION_PREFIX+sysuser.getUserId(), userFunctionList);
+				redisUtils.save(CacheConstans.USER_FUNCTION_PREFIX+sysuser.getUserId(), userFunctionList);
 			}
 
 			List<SysFunction> functionList = recursionFunction(userFunctionList,parentId);

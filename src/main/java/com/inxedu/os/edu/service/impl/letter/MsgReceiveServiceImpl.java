@@ -1,18 +1,5 @@
 package com.inxedu.os.edu.service.impl.letter;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.inxedu.os.common.cache.EHCacheUtil;
-import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.entity.PageEntity;
 import com.inxedu.os.common.util.ObjectUtils;
 import com.inxedu.os.edu.dao.letter.MsgReceiveDao;
@@ -24,6 +11,12 @@ import com.inxedu.os.edu.entity.user.User;
 import com.inxedu.os.edu.service.letter.MsgReceiveService;
 import com.inxedu.os.edu.service.letter.MsgSystemService;
 import com.inxedu.os.edu.service.user.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
 
 /**
  * @description 站内信的实现

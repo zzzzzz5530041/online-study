@@ -42,7 +42,8 @@ public class CourseController extends BaseController {
     private static final String showCourseList = "/web/course/courses-list";
     // 课程详情
     private static final String courseDetail = "/web/course/course-detail";
-
+@Autowired
+private SingletonLoginUtils singletonLoginUtils;
     @Autowired
     private CourseService courseService;
     @Autowired
@@ -144,7 +145,7 @@ public class CourseController extends BaseController {
             		tempCoursedto.setTeacherList(teacherList);
             	}
             	model.addObject("courseList", courseList);
-            	int userId = SingletonLoginUtils.getLoginUserId(request);
+            	int userId = singletonLoginUtils.getLoginUserId(request);
             	if(userId>0){
             		//查询登用户是否已经收藏
         			boolean isFavorites = courseFavoritesService.checkFavorites(userId, courseId);
@@ -191,7 +192,7 @@ public class CourseController extends BaseController {
     public Map<String,Object> createFavorites(HttpServletRequest request,@ModelAttribute("courseFavorites") CourseFavorites courseFavorites,@PathVariable("courseId") int courseId){
     	Map<String,Object> json = new HashMap<String,Object>();
     	try{
-    		int userId = SingletonLoginUtils.getLoginUserId(request);
+    		int userId = singletonLoginUtils.getLoginUserId(request);
     		if(userId<=0){
     			json = this.setJson(false, "请登录！", null);
     			return json;
@@ -227,7 +228,7 @@ public class CourseController extends BaseController {
             // 查询课程详情
             Course course = courseService.queryCourseById(courseId);
             if(course!=null){
-                int userId = SingletonLoginUtils.getLoginUserId(request);
+                int userId = singletonLoginUtils.getLoginUserId(request);
                 //查询目录
                 List<CourseKpoint> parentKpointList = new ArrayList<CourseKpoint>();
                 List<CourseKpoint> kpointList = courseKpointService.queryCourseKpointByCourseId(courseId);

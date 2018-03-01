@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.inxedu.os.common.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.entity.PageEntity;
 import com.inxedu.os.edu.dao.website.WebsiteCourseDetailDao;
@@ -24,11 +24,12 @@ import com.inxedu.os.edu.service.website.WebsiteCourseDetailService;
 public class WebsiteCourseDetailServiceImpl implements WebsiteCourseDetailService {
 	@Autowired
 	private WebsiteCourseDetailDao websiteCourseDetailDao;
-
+	@Autowired
+	private RedisUtils redisUtils;
 	@Override
 	public void createWebsiteCourseDetail(String detail) {
 		websiteCourseDetailDao.createWebsiteCourseDetail(detail);
-		EHCacheUtil.remove(CacheConstans.RECOMMEND_COURSE);
+		redisUtils.remove(CacheConstans.RECOMMEND_COURSE);
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class WebsiteCourseDetailServiceImpl implements WebsiteCourseDetailServic
 	@Override
 	public void deleteDetailById(int id) {
 		websiteCourseDetailDao.deleteDetailById(id);
-		EHCacheUtil.remove(CacheConstans.RECOMMEND_COURSE);
+		redisUtils.remove(CacheConstans.RECOMMEND_COURSE);
 	}
 
 	@Override
@@ -48,7 +49,7 @@ public class WebsiteCourseDetailServiceImpl implements WebsiteCourseDetailServic
 		map.put("id", id);
 		map.put("sort", sort);
 		websiteCourseDetailDao.updateSort(map);
-		EHCacheUtil.remove(CacheConstans.RECOMMEND_COURSE);
+		redisUtils.remove(CacheConstans.RECOMMEND_COURSE);
 	}
 
 	@Override

@@ -28,7 +28,8 @@ public class PraiseController extends BaseController {
 	
 	@Autowired
 	private PraiseService praiseService;
-
+	@Autowired
+	private SingletonLoginUtils singletonLoginUtils;
 	@InitBinder({"praise"})
 	public void initBinderPraise(WebDataBinder binder){
 		binder.setFieldDefaultPrefix("praise.");
@@ -42,7 +43,7 @@ public class PraiseController extends BaseController {
 	public Object addPraise(HttpServletRequest request,@ModelAttribute("praise")Praise praise){
 		Map<String,Object> json = new HashMap<String,Object>();
 		try{
-			int userId = SingletonLoginUtils.getLoginUserId(request);
+			int userId = singletonLoginUtils.getLoginUserId(request);
 			if (userId==0) {
 				json = this.setJson(false, "请先登录", "");
 				return json;

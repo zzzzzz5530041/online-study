@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.inxedu.os.common.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.edu.dao.statistics.StatisticsDayDao;
 import com.inxedu.os.edu.entity.statistics.StatisticsDay;
@@ -26,7 +26,8 @@ import lombok.Setter;
  */
 @Service("statisticsDayService")
 public class StatisticsDayServiceImpl implements StatisticsDayService{
-
+	@Autowired
+	private RedisUtils redisUtils;
 	@Autowired
     private StatisticsDayDao statisticsDayDao;
  	
@@ -49,10 +50,10 @@ public class StatisticsDayServiceImpl implements StatisticsDayService{
     	//添加网校统计
     	statisticsDayDao.addStatisticsDay(date);
 
-    	EHCacheUtil.remove(CacheConstans.WEB_STATISTICS);
-    	EHCacheUtil.remove(CacheConstans.WEB_STATISTICS_THIRTY+7);
-    	EHCacheUtil.remove(CacheConstans.WEB_STATISTICS_THIRTY+15);
-    	EHCacheUtil.remove(CacheConstans.WEB_STATISTICS_THIRTY+30);
+		redisUtils.remove(CacheConstans.WEB_STATISTICS);
+		redisUtils.remove(CacheConstans.WEB_STATISTICS_THIRTY+7);
+		redisUtils.remove(CacheConstans.WEB_STATISTICS_THIRTY+15);
+		redisUtils.remove(CacheConstans.WEB_STATISTICS_THIRTY+30);
     }
     
     /**
@@ -107,13 +108,13 @@ public class StatisticsDayServiceImpl implements StatisticsDayService{
 	 */
 	public StatisticsDay getStatisticsSumMsg(){
 
-		StatisticsDay statisticsDay=  (StatisticsDay) EHCacheUtil.get(CacheConstans.WEB_STATISTICS);
+		StatisticsDay statisticsDay=  (StatisticsDay) redisUtils.getByKey(CacheConstans.WEB_STATISTICS,StatisticsDay.class);
         if (statisticsDay!=null) {
             return statisticsDay;
         }
         statisticsDay=statisticsDayDao.getStatisticsSumMsg();
         if (statisticsDay!=null) {
-        	EHCacheUtil.set(CacheConstans.WEB_STATISTICS, statisticsDay);
+			redisUtils.save(CacheConstans.WEB_STATISTICS, statisticsDay);
         }
 		return statisticsDay;
 	}
@@ -130,13 +131,13 @@ public class StatisticsDayServiceImpl implements StatisticsDayService{
 	@Override
 	public List<StatisticsDay> getStatisticThirty(int days){
 
-		List<StatisticsDay> statistics= (List<StatisticsDay>) EHCacheUtil.get(CacheConstans.WEB_STATISTICS_THIRTY+days);
+		List<StatisticsDay> statistics= (List<StatisticsDay>) redisUtils.getByKey(CacheConstans.WEB_STATISTICS_THIRTY+days,List.class);
         if (statistics!=null&&statistics.size()>0) {
             return statistics;
         }
         statistics=statisticsDayDao.getStatisticThirty(days);
         if (statistics!=null) {
-        	EHCacheUtil.set(CacheConstans.WEB_STATISTICS_THIRTY+days, statistics, CacheConstans.WEB_STATISTICS_TIME);
+			redisUtils.saveWithExpireTime(CacheConstans.WEB_STATISTICS_THIRTY+days, statistics, Long.valueOf(CacheConstans.WEB_STATISTICS_TIME));
         }
 		return statistics;
 	}
@@ -146,10 +147,10 @@ public class StatisticsDayServiceImpl implements StatisticsDayService{
 	@Override
 	public void delStatisticsByDate(String startTime,String endTime){
 		statisticsDayDao.delStatisticsByDate(startTime,endTime);
-		EHCacheUtil.remove(CacheConstans.WEB_STATISTICS);
-		EHCacheUtil.remove(CacheConstans.WEB_STATISTICS_THIRTY+7);
-        EHCacheUtil.remove(CacheConstans.WEB_STATISTICS_THIRTY+15);
-        EHCacheUtil.remove(CacheConstans.WEB_STATISTICS_THIRTY+30);
+		redisUtils.remove(CacheConstans.WEB_STATISTICS);
+		redisUtils.remove(CacheConstans.WEB_STATISTICS_THIRTY+7);
+		redisUtils.remove(CacheConstans.WEB_STATISTICS_THIRTY+15);
+		redisUtils.remove(CacheConstans.WEB_STATISTICS_THIRTY+30);
 	}
 	/**
 	 * 生成指定时间段的统计数据
@@ -176,11 +177,11 @@ public class StatisticsDayServiceImpl implements StatisticsDayService{
         }
         //批量添加网校统计
         statisticsDayDao.addStatisticsDayBatch(dates);
-        
-        EHCacheUtil.remove(CacheConstans.WEB_STATISTICS);
-        EHCacheUtil.remove(CacheConstans.WEB_STATISTICS_THIRTY+7);
-        EHCacheUtil.remove(CacheConstans.WEB_STATISTICS_THIRTY+15);
-        EHCacheUtil.remove(CacheConstans.WEB_STATISTICS_THIRTY+30);
+
+		redisUtils.remove(CacheConstans.WEB_STATISTICS);
+		redisUtils.remove(CacheConstans.WEB_STATISTICS_THIRTY+7);
+		redisUtils.remove(CacheConstans.WEB_STATISTICS_THIRTY+15);
+		redisUtils.remove(CacheConstans.WEB_STATISTICS_THIRTY+30);
 	}
 
 	/**

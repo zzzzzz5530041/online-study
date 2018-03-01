@@ -1,11 +1,11 @@
 package com.inxedu.os.app.controller.user;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.constants.CommonConstants;
 import com.inxedu.os.common.controller.BaseController;
 import com.inxedu.os.common.entity.PageEntity;
 import com.inxedu.os.common.util.MD5;
+import com.inxedu.os.common.util.RedisUtils;
 import com.inxedu.os.common.util.StringUtils;
 import com.inxedu.os.common.util.WebUtils;
 import com.inxedu.os.edu.constants.enums.WebSiteProfileType;
@@ -54,7 +54,8 @@ public class AppUserController extends BaseController{
 	private CourseFavoritesService courseFavoritesService;
 	@Autowired
 	private CourseService courseService;
-	
+	@Autowired
+	private RedisUtils redisUtils;
 	/**
 	 * 登录
 	 */
@@ -78,7 +79,7 @@ public class AppUserController extends BaseController{
 				json = this.setJson(false, "帐号或密码错误", null);
 				return json;
 			}
-			EHCacheUtil.remove(CacheConstans.WEB_USER_LOGIN_PREFIX+user.getUserId());
+			redisUtils.remove(CacheConstans.WEB_USER_LOGIN_PREFIX+user.getUserId());
 			if(user.getIsavalible()==2){
 				json = this.setJson(false, "帐号已被禁用", null);
 				return json;

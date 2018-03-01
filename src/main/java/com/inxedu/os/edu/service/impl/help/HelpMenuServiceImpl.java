@@ -1,6 +1,5 @@
 package com.inxedu.os.edu.service.impl.help;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.util.RedisUtils;
 import com.inxedu.os.edu.dao.help.HelpMenuDao;
@@ -8,7 +7,6 @@ import com.inxedu.os.edu.entity.help.HelpMenu;
 import com.inxedu.os.edu.service.help.HelpMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import redis.clients.jedis.BinaryClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +74,7 @@ public class HelpMenuServiceImpl implements HelpMenuService {
 	@Override
     public void delHelpMenuById(Long id){
     	helpMenuDao.delHelpMenuById(id);
-    	EHCacheUtil.remove(CacheConstans.HELP_CENTER);
+		redisUtils.remove(CacheConstans.HELP_CENTER);
     }
     /**
      * 更新菜单
@@ -85,7 +83,7 @@ public class HelpMenuServiceImpl implements HelpMenuService {
 	@Override
     public void updateHelpMenuById(HelpMenu helpMenu){
     	helpMenuDao.updateHelpMenuById(helpMenu);
-		EHCacheUtil.remove(CacheConstans.HELP_CENTER);
+		redisUtils.remove(CacheConstans.HELP_CENTER);
     }
     /**
      *  添加菜单
@@ -94,7 +92,7 @@ public class HelpMenuServiceImpl implements HelpMenuService {
      */
 	@Override
     public Long createHelpMenu(HelpMenu helpMenu){
-		EHCacheUtil.remove(CacheConstans.HELP_CENTER);
+		redisUtils.remove(CacheConstans.HELP_CENTER);
     	return helpMenuDao.createHelpMenu(helpMenu);
     	
     }

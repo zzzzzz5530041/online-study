@@ -35,6 +35,8 @@ public class CommentController extends BaseController {
 	private static String queryCommentReplyPage= getViewPath("/web/comment/comment_reply_page");
 	@Autowired
 	private CommentService commentService;
+	@Autowired
+	private SingletonLoginUtils singletonLoginUtils;
 	/**
 	 * 查询评论
 	 */
@@ -48,7 +50,7 @@ public class CommentController extends BaseController {
 			request.setAttribute("commentList", commentList);// 评论list
 			request.setAttribute("page", page);
 			request.setAttribute("comment", comment);
-			User user = SingletonLoginUtils.getLoginUser(request);
+			User user = singletonLoginUtils.getLoginUser(request);
 			request.setAttribute("user", user);
 		} catch (Exception e) {
 			logger.error("queryComment()--error", e);
@@ -65,7 +67,7 @@ public class CommentController extends BaseController {
 		Map<String,Object> json = new HashMap<String,Object>();
 		try {
 			// 如果用户未登录则不能评论
-			int userId = SingletonLoginUtils.getLoginUserId(request);
+			int userId = singletonLoginUtils.getLoginUserId(request);
 			if (userId == 0) {
 				json = this.setJson(false, "isnotlogin", "用户id为空");
 				return json;
@@ -91,7 +93,7 @@ public class CommentController extends BaseController {
 			comment.setLimitNumber(9);
 			List<Comment> commentList = commentService.queryCommentList(comment);
 			request.setAttribute("commentList", commentList);// 回复
-			User user = SingletonLoginUtils.getLoginUser(request);
+			User user = singletonLoginUtils.getLoginUser(request);
 			request.setAttribute("user", user);
 		} catch (Exception e) {
 			logger.error("queryCommentReply()--error", e);

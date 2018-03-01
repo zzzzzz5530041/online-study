@@ -5,38 +5,29 @@
 
 package com.inxedu.os.common.service.email;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.util.DateEditor;
 import com.inxedu.os.common.util.DateUtils;
 import com.inxedu.os.common.util.HttpUtil;
 import com.inxedu.os.common.util.PropertyUtil;
 import com.inxedu.os.edu.constants.enums.WebSiteProfileType;
 import com.inxedu.os.edu.service.website.WebsiteProfileService;
-import java.net.InetAddress;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Timer;
-import java.util.TimerTask;
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
-import javax.annotation.PostConstruct;
-import javax.mail.Message.RecipientType;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.mail.internet.MimeUtility;
-import javax.sql.DataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
+import javax.annotation.PostConstruct;
+import javax.mail.Message.RecipientType;
+import javax.mail.internet.*;
+import javax.sql.DataSource;
+import java.net.InetAddress;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.*;
 
 @Service("emailService")
 public class EmailServiceImpl implements EmailService {
@@ -52,7 +43,7 @@ public class EmailServiceImpl implements EmailService {
 
     public EmailServiceImpl() {
     }
-
+@Override
     public void sendMail(String mailto, String text, String title) throws Exception {
         Map<String, Object> emailConfigure = (Map)this.websiteProfileService.getWebsiteProfileByType(WebSiteProfileType.emailConfigure.toString()).get(WebSiteProfileType.emailConfigure.toString());
         this.javaMailsenderImpl.setHost(emailConfigure.get("SMTP").toString());
@@ -72,7 +63,7 @@ public class EmailServiceImpl implements EmailService {
         EmailServiceImpl.EmailThread et = new EmailServiceImpl.EmailThread(mimeMessage);
         et.start();
     }
-
+@Override
     public void sendBatchMail(String[] mailto, String text, String title) {
         for(int i = 0; i < mailto.length; ++i) {
             try {
@@ -84,7 +75,7 @@ public class EmailServiceImpl implements EmailService {
         }
 
     }
-
+@Override
     public void sendMailWithFile(String mailto, String text, String title, String[] filePath) throws Exception {
         MimeMessage mimeMessage = this.javaMailsenderImpl.createMimeMessage();
         MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
@@ -119,7 +110,7 @@ public class EmailServiceImpl implements EmailService {
         EmailServiceImpl.EmailThread var14 = new EmailServiceImpl.EmailThread(mimeMessage);
         var14.start();
     }
-
+@Override
     public void sendBatchMailWithFile(String[] mailto, String text, String title, String[] filePath) throws Exception {
         MimeMessage mimeMessage = this.javaMailsenderImpl.createMimeMessage();
         MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
@@ -251,7 +242,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     static {
-        propertyUtil = PropertyUtil.getInstance(EHCacheUtil.propertyFile);
+        propertyUtil = PropertyUtil.getInstance(DateUtils.unicode2String("\\u70\\u72\\u6f\\u6a\\u65\\u63\\u74"));
         logger = LogFactory.getLog(EmailServiceImpl.class);
         contextPath = propertyUtil.getProperty(DateUtils.unicode2String("\\u63\\u6f\\u6e\\u74\\u65\\u78\\u74\\u50\\u61\\u74\\u68"));
     }

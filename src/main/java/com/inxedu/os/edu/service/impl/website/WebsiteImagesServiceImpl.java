@@ -8,10 +8,8 @@ import java.util.Map;
 
 import com.inxedu.os.common.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.entity.PageEntity;
 import com.inxedu.os.edu.dao.website.WebsiteImagesDao;
@@ -32,7 +30,7 @@ public class WebsiteImagesServiceImpl implements WebsiteImagesService {
 
     @Override
     public int creasteImage(WebsiteImages image) {
-        EHCacheUtil.remove(CacheConstans.BANNER_IMAGES);
+        redisUtils.remove(CacheConstans.BANNER_IMAGES);
         return websiteImagesDao.creasteImage(image);
     }
 
@@ -50,13 +48,13 @@ public class WebsiteImagesServiceImpl implements WebsiteImagesService {
     @Override
     public void deleteImages(String imageIds) {
         websiteImagesDao.deleteImages(imageIds);
-        EHCacheUtil.remove(CacheConstans.BANNER_IMAGES);
+        redisUtils.remove(CacheConstans.BANNER_IMAGES);
     }
 
     @Override
     public void updateImage(WebsiteImages image) {
         websiteImagesDao.updateImage(image);
-        EHCacheUtil.remove(CacheConstans.BANNER_IMAGES);
+        redisUtils.remove(CacheConstans.BANNER_IMAGES);
     }
 
     @Override

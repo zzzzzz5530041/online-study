@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.inxedu.os.common.util.RedisUtils;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.constants.CommonConstants;
 import com.inxedu.os.common.controller.BaseController;
@@ -55,7 +55,11 @@ public class QuestionsController extends BaseController {
 	private QuestionsTagRelationService questionsTagRelationService;
 	@Autowired
 	private QuestionsTagService questionsTagService;
+	@Autowired
+	private SingletonLoginUtils singletonLoginUtils;
 
+	@Autowired
+	private RedisUtils redisUtils;
 	// 问答列表
 	private static final String questionslist = "/web/questions/questions-list";
 	// 添加问答页面
@@ -153,7 +157,7 @@ public class QuestionsController extends BaseController {
 				json = this.setJson(false, "验证码错误", null);
 				return json;
 			}
-			int userId = SingletonLoginUtils.getLoginUserId(request);
+			int userId = singletonLoginUtils.getLoginUserId(request);
 			if (userId == 0) {
 				json = this.setJson(false, "请先登录", "");
 				return json;
@@ -200,7 +204,7 @@ public class QuestionsController extends BaseController {
 			questions.setQuestionsTagRelationList(questionsTagRelationService.queryQuestionsTagRelation(questionsTagRelation));
 			model.addObject("questions", questions);
 
-			int userId = SingletonLoginUtils.getLoginUserId(request);
+			int userId = singletonLoginUtils.getLoginUserId(request);
 			User user = userService.queryUserById(userId);
 			model.addObject("user", user);
 
@@ -230,7 +234,7 @@ public class QuestionsController extends BaseController {
 		ModelAndView model = new ModelAndView(myquestionslist);
 		try {
 			page.setPageSize(4);
-			int userId = SingletonLoginUtils.getLoginUserId(request);
+			int userId = singletonLoginUtils.getLoginUserId(request);
 			questions.setCusId(Long.valueOf(userId));
 			List<Questions> questionsList = questionsService.getQuestionsList(questions, page);
 			// 查询该问答的问答标签
@@ -277,7 +281,7 @@ public class QuestionsController extends BaseController {
 		ModelAndView model = new ModelAndView(myrepquestionslist);
 		try {
 			page.setPageSize(4);
-			int userId = SingletonLoginUtils.getLoginUserId(request);
+			int userId = singletonLoginUtils.getLoginUserId(request);
 			questions.setCommentUserId(Long.valueOf(userId));
 			List<Questions> questionsList = questionsService.getQuestionsList(questions, page);
 			// 查询该问答的标签
@@ -321,10 +325,10 @@ public class QuestionsController extends BaseController {
 	public Object hotQuestionsRecommend(HttpServletRequest request, @ModelAttribute("questions") Questions questions) {
 		Map<String,Object> json = new HashMap<String,Object>();
 		try {
-			List<Questions> hotQuestionsList=(List<Questions>)EHCacheUtil.get(CacheConstans.QUESTIONS_HOT_RECOMMEND);
+			List<Questions> hotQuestionsList=(List<Questions>)redisUtils.getByKey(CacheConstans.QUESTIONS_HOT_RECOMMEND,List.class);
 			if(hotQuestionsList==null||hotQuestionsList.size()==0){
 				hotQuestionsList = questionsService.queryQuestionsOrder(8);
-				EHCacheUtil.set(CacheConstans.QUESTIONS_HOT_RECOMMEND, hotQuestionsList);
+                redisUtils.save(CacheConstans.QUESTIONS_HOT_RECOMMEND, hotQuestionsList);
 			}
 			json = this.setJson(true, "", hotQuestionsList);
 		} catch (Exception e) {

@@ -18,17 +18,21 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 /**
  * CourseNote 课程笔记 Controller
+ *
  * @author www.inxedu.com
  */
 @Controller
-public class CourseNoteController extends BaseController{
+public class CourseNoteController extends BaseController {
 
     private static final Logger logger = LoggerFactory.getLogger(CourseNoteController.class);
 
- 	@Autowired
+    @Autowired
     private CourseNoteService courseNoteService;
+    @Autowired
+    private SingletonLoginUtils singletonLoginUtils;
 
     /**
      * 查询该用户笔记
@@ -40,19 +44,20 @@ public class CourseNoteController extends BaseController{
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             //通过节点id和用户id查询笔记
-            CourseNote courseNote = courseNoteService.getCourseNoteByKpointIdAndUserId(kpointId, Long.valueOf(SingletonLoginUtils.getLoginUserId(request)));
-            request.setAttribute("courseNote",courseNote);
+            CourseNote courseNote = courseNoteService.getCourseNoteByKpointIdAndUserId(kpointId, Long.valueOf(singletonLoginUtils.getLoginUserId(request)));
+            request.setAttribute("courseNote", courseNote);
             String uuid = StringUtils.createUUID().replace("-", "");
-            request.setAttribute("uuid",uuid);
+            request.setAttribute("uuid", uuid);
         } catch (Exception e) {
             logger.error("CourseNoteController.querynote()", e);
             return setExceptionRequest(request, e);
         }
         return getViewPath("/web/ucenter/query_note");
     }
+
     /**
      * 添加笔记
-     * 
+     *
      * @return
      */
     @RequestMapping("/courseNote/ajax/addnote")
@@ -62,7 +67,7 @@ public class CourseNoteController extends BaseController{
         try {
             //添加笔记（如果笔记存在则更新不存在则添加）
             courseNote.setUpdateTime(new Date());
-            courseNote.setUserId(Long.valueOf(SingletonLoginUtils.getLoginUserId(request)));
+            courseNote.setUserId(Long.valueOf(singletonLoginUtils.getLoginUserId(request)));
             String falg = courseNoteService.addCourseNote(courseNote);
             map.put("message", falg);
         } catch (Exception e) {

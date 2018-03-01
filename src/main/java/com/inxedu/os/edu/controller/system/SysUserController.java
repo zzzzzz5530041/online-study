@@ -42,6 +42,8 @@ public class SysUserController extends BaseController {
 	private SysRoleService sysRoleService;
 	@Autowired
 	private SysUserLoginLogService sysUserLoginLogService;
+	@Autowired
+	private SingletonLoginUtils singletonLoginUtils;
 	@InitBinder({"sysUser"})
 	public void initBinderSysUser(WebDataBinder binder) {
 		binder.setFieldDefaultPrefix("sysUser.");
@@ -85,7 +87,7 @@ public class SysUserController extends BaseController {
 		try{
 			if(type==3){
 				//当前登录系统用户
-				int loginUserId= SingletonLoginUtils.getLoginSysUserId(request);
+				int loginUserId= singletonLoginUtils.getLoginSysUserId(request);
 				if(userId==loginUserId){
 					json = this.setJson(false, "不能删除当前登录的用户", null);
 					return json;

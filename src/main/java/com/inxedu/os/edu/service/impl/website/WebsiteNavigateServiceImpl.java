@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.util.ObjectUtils;
 import com.inxedu.os.edu.dao.website.WebsiteNavigateDao;
@@ -37,25 +36,25 @@ public class WebsiteNavigateServiceImpl implements WebsiteNavigateService {
 	@Override
 	public void addWebsiteNavigate(WebsiteNavigate websiteNavigate){
 		websiteNavigateDao.addWebsiteNavigate(websiteNavigate);
-		EHCacheUtil.remove(CacheConstans.WEBSITE_NAVIGATE);
+		redisUtils.remove(CacheConstans.WEBSITE_NAVIGATE);
 	}
 
 	@Override
 	public void freezeWebsiteNavigate(WebsiteNavigate websiteNavigate){
 		websiteNavigateDao.freezeWebsiteNavigate(websiteNavigate);
-		EHCacheUtil.remove(CacheConstans.WEBSITE_NAVIGATE);
+		redisUtils.remove(CacheConstans.WEBSITE_NAVIGATE);
 	}
 
 	@Override
 	public void delWebsiteNavigate(int id){
 		websiteNavigateDao.delWebsiteNavigate(id);
-		EHCacheUtil.remove(CacheConstans.WEBSITE_NAVIGATE);
+		redisUtils.remove(CacheConstans.WEBSITE_NAVIGATE);
 	}
 
 	@Override
 	public void updateWebsiteNavigate(WebsiteNavigate websiteNavigate){
 		websiteNavigateDao.updateWebsiteNavigate(websiteNavigate);
-		EHCacheUtil.remove(CacheConstans.WEBSITE_NAVIGATE);
+		redisUtils.remove(CacheConstans.WEBSITE_NAVIGATE);
 	}
 
 	@Override

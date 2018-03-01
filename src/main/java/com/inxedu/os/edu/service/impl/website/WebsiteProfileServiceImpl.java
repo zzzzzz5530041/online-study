@@ -2,9 +2,9 @@ package com.inxedu.os.edu.service.impl.website;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.util.ObjectUtils;
+import com.inxedu.os.common.util.RedisUtils;
 import com.inxedu.os.edu.dao.website.WebsiteProfileDao;
 import com.inxedu.os.edu.entity.website.WebsiteProfile;
 import com.inxedu.os.edu.service.website.WebsiteProfileService;
@@ -21,7 +21,8 @@ import java.util.Map;
  */
 @Service("websiteProfileService")
 public class WebsiteProfileServiceImpl implements WebsiteProfileService {
-
+	@Autowired
+	private RedisUtils redisUtils;
 	@Autowired
 	private WebsiteProfileDao websiteProfileDao;
 	private Gson gson=new Gson();
@@ -35,21 +36,21 @@ public class WebsiteProfileServiceImpl implements WebsiteProfileService {
 			websiteProfileDao.addWebsiteProfileByType(websiteProfile);
 		}
 		websiteProfileDao.updateWebsiteProfile(websiteProfile);
-		EHCacheUtil.remove(CacheConstans.WEBSITE_PROFILE+websiteProfile.getType());
+		redisUtils.remove(CacheConstans.WEBSITE_PROFILE+websiteProfile.getType());
 	}
 
 	@Override
 	public Map<String, Object> getWebsiteProfileList() throws Exception {
 		//获得所有配置
 		@SuppressWarnings("unchecked")
-		List<String> websitesStr=(List<String>) EHCacheUtil.get(CacheConstans.WEBSITE_PROFILE);
+		List<String> websitesStr=(List<String>) redisUtils.getByKey(CacheConstans.WEBSITE_PROFILE,List.class);
 		if(ObjectUtils.isNull(websitesStr)||websitesStr.size()==0){
 			List<WebsiteProfile> websiteProfiles=websiteProfileDao.getWebsiteProfileList();
 			for(WebsiteProfile websiteProfile:websiteProfiles){
 				//转json字符串
 				websitesStr.add(gson.toJson(websiteProfile));
 			}
-			EHCacheUtil.set(CacheConstans.WEBSITE_PROFILE, websitesStr, CacheConstans.WEBSITE_PROFILE_TIME);
+			redisUtils.saveWithExpireTime(CacheConstans.WEBSITE_PROFILE, websitesStr, Long.valueOf(CacheConstans.WEBSITE_PROFILE_TIME));
 		}
 		Map<String,Object> webSiteMap = new HashMap<String,Object>();
 		if(ObjectUtils.isNotNull(websitesStr)&&websitesStr.size()>0){
@@ -78,11 +79,11 @@ public class WebsiteProfileServiceImpl implements WebsiteProfileService {
 	@Override
 	public Map<String, Object> getWebsiteProfileByType(String type) {
 		//根据类型获得数据 从cache获取
-		String websiteProfileStr=(String) EHCacheUtil.get(CacheConstans.WEBSITE_PROFILE+type);
+		String websiteProfileStr=(String) redisUtils.getByKey(CacheConstans.WEBSITE_PROFILE+type,String.class);
 		if(ObjectUtils.isNull(websiteProfileStr)){//cache为空查询数据库
 			WebsiteProfile websiteProfile=websiteProfileDao.getWebsiteProfileByType(type);
 			websiteProfileStr=gson.toJson(websiteProfile);//websiteProfileStr json串
-			EHCacheUtil.set(CacheConstans.WEBSITE_PROFILE+type, websiteProfileStr, CacheConstans.WEBSITE_PROFILE_TIME);//设置key 时间一天
+			redisUtils.saveWithExpireTime(CacheConstans.WEBSITE_PROFILE+type, websiteProfileStr, Long.valueOf(CacheConstans.WEBSITE_PROFILE_TIME));//设置key 时间一天
 		}
 		WebsiteProfile websiteProfile=gson.fromJson(websiteProfileStr, WebsiteProfile.class);//转回对象
 

@@ -1,15 +1,11 @@
 package com.inxedu.os.edu.controller.user;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.constants.CommonConstants;
 import com.inxedu.os.common.controller.BaseController;
 import com.inxedu.os.common.entity.PageEntity;
 import com.inxedu.os.common.service.email.EmailService;
-import com.inxedu.os.common.util.MD5;
-import com.inxedu.os.common.util.SingletonLoginUtils;
-import com.inxedu.os.common.util.StringUtils;
-import com.inxedu.os.common.util.WebUtils;
+import com.inxedu.os.common.util.*;
 import com.inxedu.os.edu.constants.enums.WebSiteProfileType;
 import com.inxedu.os.edu.entity.course.*;
 import com.inxedu.os.edu.entity.kpoint.CourseKpoint;
@@ -68,7 +64,10 @@ public class UserController extends BaseController{
 	private TeacherService teacherService;
 	@Autowired
 	private CourseStudyhistoryService courseStudyhistoryService;
-
+	@Autowired
+	private SingletonLoginUtils singletonLoginUtils;
+	@Autowired
+	private RedisUtils redisUtils;
 	@InitBinder({"user"})
 	public void initBinderUser(WebDataBinder binder){
 		binder.setFieldDefaultPrefix("user.");
@@ -112,7 +111,7 @@ public class UserController extends BaseController{
 		ModelAndView model = new ModelAndView("/web/usercenter/favourite_course_list");
 		try{
 			page.setPageSize(5);
-			int userId = SingletonLoginUtils.getLoginUserId(request);
+			int userId = singletonLoginUtils.getLoginUserId(request);
 			List<FavouriteCourseDTO> favoriteList = courseFavoritesService.queryFavoritesPage(userId, page);
 			model.addObject("favoriteList", favoriteList);
 			model.addObject("page", page);
@@ -139,7 +138,7 @@ public class UserController extends BaseController{
 			Course course = courseService.queryCourseById(courseId);
 			if(course!=null){
 				model.addObject("course", course);
-				int userId = SingletonLoginUtils.getLoginUserId(request);
+				int userId = singletonLoginUtils.getLoginUserId(request);
 				//查询是否已经收藏
 				boolean isFavorites = courseFavoritesService.checkFavorites(userId, courseId);
 				model.addObject("isFavorites", isFavorites);
@@ -224,7 +223,7 @@ public class UserController extends BaseController{
 			List<CourseDto> courseList = courseService.queryWebCourseListPage(queryCourse, page);
 			if(courseList!=null&&courseList.size()>0){
 				//获取登录用户ID
-				int userId = SingletonLoginUtils.getLoginUserId(request);
+				int userId = singletonLoginUtils.getLoginUserId(request);
 				for(Course course:courseList){
 					CourseStudyhistory courseStudyhistory=new CourseStudyhistory();
 					courseStudyhistory.setUserId(Long.valueOf(userId));
@@ -365,7 +364,7 @@ public class UserController extends BaseController{
 	public ModelAndView initUpdateUser(HttpServletRequest request,@PathVariable("index") int index){
 		ModelAndView model = new ModelAndView();
 		try{
-			int userId = SingletonLoginUtils.getLoginUserId(request);
+			int userId = singletonLoginUtils.getLoginUserId(request);
 			User user = userService.queryUserById(userId);
 			model.addObject("user", user);
 			model.addObject("index",index);
@@ -386,7 +385,7 @@ public class UserController extends BaseController{
 	public Map<String,Object> getLoginUser(HttpServletRequest request,HttpServletResponse response){
 		Map<String,Object> json = new HashMap<String,Object>();
 		try{
-			User user = SingletonLoginUtils.getLoginUser(request);
+			User user = singletonLoginUtils.getLoginUser(request);
 			if(user==null|| user.getUserId()==0){
 				json = this.setJson(false, null, null);
 			}else{
@@ -424,7 +423,7 @@ public class UserController extends BaseController{
 				json = this.setJson(false, "帐号或密码错误", null);
 				return json;
 			}
-			EHCacheUtil.remove(CacheConstans.WEB_USER_LOGIN_PREFIX+user.getUserId());
+            redisUtils.remove(CacheConstans.WEB_USER_LOGIN_PREFIX+user.getUserId());
 			if(user.getIsavalible()==2){
 				json = this.setJson(false, "帐号已被禁用", null);
 				return json;
@@ -439,15 +438,15 @@ public class UserController extends BaseController{
 
 			if("true".equals(ipForget)){
 				//缓存用户
-				EHCacheUtil.set(uuid, user,CacheConstans.USER_TIME);
+				redisUtils.saveWithExpireTime(uuid, user,Long.valueOf(CacheConstans.USER_TIME));
 				//缓存用户的登录时间
-				EHCacheUtil.set(CacheConstans.USER_CURRENT_LOGINTIME+user.getUserId(), currentTimestamp.toString(), CacheConstans.USER_TIME);
+                redisUtils.saveWithExpireTime(CacheConstans.USER_CURRENT_LOGINTIME+user.getUserId(), currentTimestamp.toString(), Long.valueOf(CacheConstans.USER_TIME));
 				WebUtils.setCookie(response, CacheConstans.WEB_USER_LOGIN_PREFIX, uuid, (CacheConstans.USER_TIME/60/60/24));
 			}else{
 				//缓存用户
-				EHCacheUtil.set(uuid, user,86400);
+                redisUtils.saveWithExpireTime(uuid, user,86400L);
 				//缓存用户的登录时间
-				EHCacheUtil.set(CacheConstans.USER_CURRENT_LOGINTIME+user.getUserId(), currentTimestamp.toString(), 86400);
+                redisUtils.saveWithExpireTime(CacheConstans.USER_CURRENT_LOGINTIME+user.getUserId(), currentTimestamp.toString(), 86400L);
 				WebUtils.setCookie(response, CacheConstans.WEB_USER_LOGIN_PREFIX, uuid, 1);
 			}
 
@@ -537,7 +536,7 @@ public class UserController extends BaseController{
 			//当前时间戳
 			Long currentTimestamp=System.currentTimeMillis();
 			//缓存用户的登录时间
-			EHCacheUtil.set(CacheConstans.USER_CURRENT_LOGINTIME+user.getUserId(), currentTimestamp.toString(), CacheConstans.USER_TIME);
+            redisUtils.saveWithExpireTime(CacheConstans.USER_CURRENT_LOGINTIME+user.getUserId(), currentTimestamp.toString(), Long.valueOf(CacheConstans.USER_TIME));
 			//缓存用户
 			userService.setLoginInfo(request,user.getUserId(),"false");
 		}catch (Exception e) {
@@ -558,7 +557,7 @@ public class UserController extends BaseController{
 		try{
 			String prefix = WebUtils.getCookie(request, CacheConstans.WEB_USER_LOGIN_PREFIX);
 			if(prefix!=null){
-				EHCacheUtil.remove(prefix);
+                redisUtils.remove(prefix);
 			}
 			json = this.setJson(true, null, null);
 		}catch (Exception e) {
@@ -644,7 +643,7 @@ public class UserController extends BaseController{
 
 			page.setPageSize(6);// 分页页数为6
 			MsgReceive msgReceive = new MsgReceive();
-			msgReceive.setReceivingCusId(Long.valueOf(SingletonLoginUtils.getLoginUserId(request)));// set用户id
+			msgReceive.setReceivingCusId(Long.valueOf(singletonLoginUtils.getLoginUserId(request)));// set用户id
 			List<QueryMsgReceive> queryLetterList = msgReceiveService.queryMsgReceiveByInbox(msgReceive, page);// 查询站内信收件箱
 
 			//修改用户消息数后  重新加入缓存
@@ -671,7 +670,7 @@ public class UserController extends BaseController{
     public Map<String, Object> delLetterInbox(@ModelAttribute MsgReceive msgReceive, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            msgReceive.setReceivingCusId(Long.valueOf(SingletonLoginUtils.getLoginUserId(request)));// set 用户id
+            msgReceive.setReceivingCusId(Long.valueOf(singletonLoginUtils.getLoginUserId(request)));// set 用户id
             Long num = msgReceiveService.delMsgReceiveInbox(msgReceive);// 删除收件箱
             if (num.intValue() == 1) {
                 map.put("message", "success");// 成功
@@ -694,10 +693,10 @@ public class UserController extends BaseController{
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             //未登录不可操作
-            if (SingletonLoginUtils.getLoginUserId(request)== 0) {
+            if (singletonLoginUtils.getLoginUserId(request)== 0) {
                 return map;
             }
-            Map<String, String> queryletter = msgReceiveService.queryUnReadMsgReceiveNumByCusId(Long.valueOf(SingletonLoginUtils.getLoginUserId(request)));// 查询该用户有多少未读消息
+            Map<String, String> queryletter = msgReceiveService.queryUnReadMsgReceiveNumByCusId(Long.valueOf(singletonLoginUtils.getLoginUserId(request)));// 查询该用户有多少未读消息
             map.put("entity", queryletter);// 把值放入map中返回json
         } catch (Exception e) {
             logger.error("UserController.queryUnReadLetter()", e);

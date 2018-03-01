@@ -1,8 +1,8 @@
 package com.inxedu.os.edu.service.impl.course;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.entity.PageEntity;
+import com.inxedu.os.common.util.RedisUtils;
 import com.inxedu.os.edu.dao.course.CourseDao;
 import com.inxedu.os.edu.entity.course.Course;
 import com.inxedu.os.edu.entity.course.CourseDto;
@@ -25,7 +25,8 @@ public class CourseServiceImpl implements CourseService {
 
 	@Autowired
 	private CourseDao courseDao;
-
+	@Autowired
+	private RedisUtils redisUtils;
 	@Override
 	public int addCourse(Course course) {
 		return courseDao.addCourse(course);
@@ -58,7 +59,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public Map<String, List<CourseDto>> queryRecommenCourseList() {
 		@SuppressWarnings("unchecked")
-		Map<String, List<CourseDto>> recMap = (Map<String, List<CourseDto>>) EHCacheUtil.get(CacheConstans.RECOMMEND_COURSE);
+		Map<String, List<CourseDto>> recMap = (Map<String, List<CourseDto>>) redisUtils.getByKey(CacheConstans.RECOMMEND_COURSE,Map.class);
 		if (recMap == null) {
 			List<CourseDto> courseList = courseDao.queryRecommenCourseList();
 			if (courseList != null && courseList.size() > 0) {
@@ -76,7 +77,7 @@ public class CourseServiceImpl implements CourseService {
 					recommendId = _cd.getRecommendId();
 				}
 				recMap.put("recommen_" + recommendId, _list);
-				EHCacheUtil.set(CacheConstans.RECOMMEND_COURSE, recMap, CacheConstans.RECOMMEND_COURSE_TIME);
+				redisUtils.saveWithExpireTime(CacheConstans.RECOMMEND_COURSE, recMap, Long.valueOf(CacheConstans.RECOMMEND_COURSE_TIME));
 			}
 		}
 		return recMap;

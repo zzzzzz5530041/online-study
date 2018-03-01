@@ -1,25 +1,23 @@
 package com.inxedu.os.common.intercepter;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 import com.google.gson.Gson;
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.util.ObjectUtils;
+import com.inxedu.os.common.util.RedisUtils;
 import com.inxedu.os.common.util.SingletonLoginUtils;
 import com.inxedu.os.common.util.WebUtils;
 import com.inxedu.os.edu.entity.system.SysFunction;
 import com.inxedu.os.edu.entity.system.SysUser;
 import com.inxedu.os.edu.service.system.SysFunctionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 后台用户登录与权限拦截器
@@ -28,7 +26,10 @@ import com.inxedu.os.edu.service.system.SysFunctionService;
 public class IntercepterAdmin extends HandlerInterceptorAdapter{
 	@Autowired
 	private SysFunctionService sysFunctionService;
-	
+	@Autowired
+	private SingletonLoginUtils singletonLoginUtils;
+    @Autowired
+    private RedisUtils redisUtils;
 	@Override
 	public void afterCompletion(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex)
@@ -53,7 +54,7 @@ public class IntercepterAdmin extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		//获取登录的用户
-		SysUser sysUser = SingletonLoginUtils.getLoginSysUser(request);
+		SysUser sysUser = singletonLoginUtils.getLoginSysUser(request);
 		if(sysUser==null){
 			response.sendRedirect("/admin");//跳转登录页面
 			return false;
@@ -61,10 +62,10 @@ public class IntercepterAdmin extends HandlerInterceptorAdapter{
 		//访问的路径
         String invokeUrl = request.getContextPath() + request.getServletPath();
         //获取所有的权限
-        List<SysFunction> allFunctionList = (List<SysFunction>) EHCacheUtil.get(CacheConstans.SYS_ALL_USER_FUNCTION_PREFIX+sysUser.getUserId());
+        List<SysFunction> allFunctionList = (List<SysFunction>) redisUtils.getByKey(CacheConstans.SYS_ALL_USER_FUNCTION_PREFIX+sysUser.getUserId(),List.class);
         if(ObjectUtils.isNull(allFunctionList)){
         	allFunctionList = sysFunctionService.queryAllSysFunction();
-        	EHCacheUtil.set(CacheConstans.SYS_ALL_USER_FUNCTION_PREFIX+sysUser.getUserId(),allFunctionList);
+            redisUtils.save(CacheConstans.SYS_ALL_USER_FUNCTION_PREFIX+sysUser.getUserId(),allFunctionList);
         }
         //判断当前访问的权限，是否在限制中
         boolean hasFunction = false;
@@ -78,10 +79,10 @@ public class IntercepterAdmin extends HandlerInterceptorAdapter{
         	return true;
         }
         //如果当前访问的权限在限制中则判断是否有访问权限
-        List<SysFunction> userFunctionList = (List<SysFunction>) EHCacheUtil.get(CacheConstans.USER_FUNCTION_PREFIX+sysUser.getUserId());
+        List<SysFunction> userFunctionList = (List<SysFunction>) redisUtils.getByKey(CacheConstans.USER_FUNCTION_PREFIX+sysUser.getUserId(),List.class);
         if(userFunctionList==null || userFunctionList.size()==0){
         	userFunctionList = sysFunctionService.querySysUserFunction(sysUser.getUserId());
-        	EHCacheUtil.set(CacheConstans.USER_FUNCTION_PREFIX+sysUser.getUserId(), userFunctionList);
+            redisUtils.save(CacheConstans.USER_FUNCTION_PREFIX+sysUser.getUserId(), userFunctionList);
         }
         boolean flag = false;
         if(ObjectUtils.isNotNull(userFunctionList)){

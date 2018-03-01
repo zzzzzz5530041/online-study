@@ -1,9 +1,9 @@
 package com.inxedu.os.edu.controller.article;
 
-import com.inxedu.os.common.cache.EHCacheUtil;
 import com.inxedu.os.common.constants.CacheConstans;
 import com.inxedu.os.common.controller.BaseController;
 import com.inxedu.os.common.entity.PageEntity;
+import com.inxedu.os.common.util.RedisUtils;
 import com.inxedu.os.common.util.WebUtils;
 import com.inxedu.os.edu.entity.article.Article;
 import com.inxedu.os.edu.entity.article.ArticleContent;
@@ -42,7 +42,8 @@ public class AdminArticleController extends BaseController {
 
 	@Autowired
 	private ArticleService articleService;
-
+	@Autowired
+	private RedisUtils redisUtils;
 	@InitBinder({ "articleContent" })
 	public void initArticleContentBinder(WebDataBinder binder) {
 		binder.setFieldDefaultPrefix("articleContent.");
@@ -125,7 +126,7 @@ public class AdminArticleController extends BaseController {
 	private void deleteArticle(String[] artidArr) {
 		// 删除数据中记录
 		articleService.deleteArticleByIds(artidArr);
-		EHCacheUtil.remove(CacheConstans.ARTICLE_GOOD_RECOMMEND);
+		redisUtils.remove(CacheConstans.ARTICLE_GOOD_RECOMMEND);
 
 	}
 
