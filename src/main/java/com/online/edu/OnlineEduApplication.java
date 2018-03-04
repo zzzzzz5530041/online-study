@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Configuration
 @ImportResource(value = {"applicationContext-root.xml"})
 @Controller
-public class OnlineStudyApplication {
+public class OnlineEduApplication {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(OnlineStudyApplication.class, args);
+        SpringApplication.run(OnlineEduApplication.class, args);
     }
     @GetMapping(value = "/")
     public String index(){
