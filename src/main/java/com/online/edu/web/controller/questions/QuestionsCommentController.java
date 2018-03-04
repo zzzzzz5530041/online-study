@@ -47,9 +47,9 @@ public class QuestionsCommentController extends BaseController {
 	//问答详情 评论列表页面
 	private static final String questionscommentlist = "/web/questionscomment/questionscomment-ajax-list";
 	//子评论
-	private static final String questionscommentreplist=getViewPath("/web/questionscomment/questionscomment-ajax-listreply");
+	private static final String questionscommentreplist="/web/questionscomment/questionscomment-ajax-listreply";
 	//所有子评论
-	private static final String questionscommentreplistall=getViewPath("/web/questionscomment/questionscomment-ajax-listreply_all");
+	private static final String questionscommentreplistall="/web/questionscomment/questionscomment-ajax-listreply_all";
 	
 	@InitBinder({"questionsComment"})
 	public void initBinderQuestionsComment(WebDataBinder binder){

@@ -355,16 +355,16 @@ a.current-2 .lh-p-icon {background-position: 0 -254px;}
 .dz-num {position:absolute;left:50%;bottom:-24px;margin-left:10px;}
 .share-list {padding: 0 auto;margin-left:-33px;}
 .share-list li {margin-left: 66px;}
-.share-fir-icon {background:url("/static/inxweb/img/zan-icon.png") no-repeat 0 0 /100% auto;transition:all 0.3s ease 0s;}
-.share-list li a:hover .share-fir-icon {background:url("/static/inxweb/img/zan-icon2.png") no-repeat 0 0 /100% auto;}
-.share-sec-icon {background:url("/static/inxweb/img/wx-icon.png") no-repeat 0 0 /100% auto;transition:all 0.3s ease 0s;}
-.share-list li a:hover .share-sec-icon {background:url("/static/inxweb/img/wx-icon2.png") no-repeat 0 0 /100% auto;}
-.share-thr-icon {background:url("/static/inxweb/img/wb-icon.png") no-repeat 0 0 /100% auto;transition:all 0.3s ease 0s;}
-.share-list li a:hover .share-thr-icon {background:url("/static/inxweb/img/wb-icon2.png") no-repeat 0 0 /100% auto;}
+.share-fir-icon {background:url("/web/img/zan-icon.png") no-repeat 0 0 /100% auto;transition:all 0.3s ease 0s;}
+.share-list li a:hover .share-fir-icon {background:url("/web/img/zan-icon2.png") no-repeat 0 0 /100% auto;}
+.share-sec-icon {background:url("/web/img/wx-icon.png") no-repeat 0 0 /100% auto;transition:all 0.3s ease 0s;}
+.share-list li a:hover .share-sec-icon {background:url("/web/img/wx-icon2.png") no-repeat 0 0 /100% auto;}
+.share-thr-icon {background:url("/web/img/wb-icon.png") no-repeat 0 0 /100% auto;transition:all 0.3s ease 0s;}
+.share-list li a:hover .share-thr-icon {background:url("/web/img/wb-icon2.png") no-repeat 0 0 /100% auto;}
 #sharebutton .bdsharebuttonbox a {margin-left:60px !important;}
-#sharebutton .bdsharebuttonbox a.zan-icon {width:70px;height:70px;background: rgba(0, 0, 0, 0) url("/static/inxweb/img/zan-icon.png") no-repeat scroll 0 0 / 100% auto !important;}
-#sharebutton .bdsharebuttonbox a.bds_weixin {width:70px;height:70px;background: rgba(0, 0, 0, 0) url("/static/inxweb/img/wx2-icon.png") no-repeat scroll 0 0 / 100% auto !important;}
-#sharebutton .bdsharebuttonbox a.bds_tsina {width:70px;height:70px;background: rgba(0, 0, 0, 0) url("/static/inxweb/img/wb2-icon.png") no-repeat scroll 0 0 / 100% auto !important;}
+#sharebutton .bdsharebuttonbox a.zan-icon {width:70px;height:70px;background: rgba(0, 0, 0, 0) url("/web/img/zan-icon.png") no-repeat scroll 0 0 / 100% auto !important;}
+#sharebutton .bdsharebuttonbox a.bds_weixin {width:70px;height:70px;background: rgba(0, 0, 0, 0) url("/web/img/wx2-icon.png") no-repeat scroll 0 0 / 100% auto !important;}
+#sharebutton .bdsharebuttonbox a.bds_tsina {width:70px;height:70px;background: rgba(0, 0, 0, 0) url("/web/img/wb2-icon.png") no-repeat scroll 0 0 / 100% auto !important;}
 
 @media (min-width: 1300px) {
   .container {

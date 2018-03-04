@@ -8,7 +8,7 @@ function updateUserInfo(userId){
 		params+=$(this).serialize()+"&";
     });
 	$.ajax({
-		url:baselocation+'/usercenter/updateUser',
+		url:baselocation+'/web/usercenter/updateUser',
 		type:'post',
 		dataType:'json',
 		data:params,
@@ -75,7 +75,7 @@ function updatePwd(){
     });
 	
 	$.ajax({
-		url:baselocation+'/usercenter/updatePwd',
+		url:baselocation+'/web/usercenter/updatePwd',
 		type:'post',
 		dataType:'json',
 		data:params,
@@ -170,11 +170,11 @@ function updateImg(userId) {
 			var photoUrl = json.src;
 			$.ajax({
 				type : "post",
-				url : baselocation+"/usercenter/updateImg",
+				url : baselocation+"/web/usercenter/updateImg",
 				data : {'user.userId':userId,'user.picImg':photoUrl},
 				success : function(result) {
 					if(result.success==true){
-						document.location='/usercenter/initUpdateUser/1'
+						document.location='/web/usercenter/initUpdateUser/1'
 					}else{
 						dialog('提示信息',result.message,1);
 					}

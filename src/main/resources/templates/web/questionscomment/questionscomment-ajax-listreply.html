@@ -1,0 +1,29 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+	<th:block th:each="questionsComment,iterStat:${questionsCommentRepList }">
+		<dd th:if="${iterStat.index<8}">
+			<aside class="n-reply-pic">
+							<img th:if="${questionsComment.picImg!=null}" th:src="${questionsComment.picImg }" alt="">
+							<img th:if="${questionsComment.picImg==null}" src="/web/img/avatar-boy.gif" alt="">
+			</aside>
+			<div class="of">
+				<span class="fl">
+					<font class="fsize12 c-blue">
+						<th:block th:if="${questionsComment.showName==null}" th:text="${questionsComment.email }" />
+						<th:block th:if="${questionsComment.showName!=null}" th:text="${questionsComment.showName }" />
+					</font>
+					<font class="fsize12 c-999 ml5">评论：</font></span>
+			</div>
+			<div class="noter-txt mt5">
+				<p th:text="${questionsComment.content }"></p>
+			</div>
+			<div class="of mt5">
+				<span class="fr"><font class="fsize12 c-999 ml5" th:text="${#dates.format(questionsComment.addTime, 'yyyy-MM-dd HH:mm')}">
+					</font></span>
+				<span class="fl">
+					<tt class="noter-zan vam" title="赞一下" th:onclick="'addPraise('+${questionsComment.id }+',2,this)'"><em class="icon18">&nbsp;</em>(<span th:text="${questionsComment.praiseCount }"></span>)</tt>
+				</span>
+			</div>
+		</dd>
+	</th:block>
+	<div th:if="${questionsCommentRepList.size()>8 }" class="mt20 tac bg-fa hLh30">
+		<a href="javascript:void(0)" th:onclick="'getAllCommentById('+${questionsCommentRepList[0].commentId}+')'" class="comm-btn c-btn-6">查看更多评论回复</a></div>

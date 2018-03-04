@@ -107,7 +107,7 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" th:each="image:${websiteImagesList}" style="background:#EF550F">
                         <a target="_blank" th:href="${image.linkAddress}">
-                            <img class="imgload" th:src="${staticImage}+${image.imagesUrl}" th:alt="${image.title}">
+                            <img class="imgload" th:src="${image.imagesUrl}" th:alt="${image.title}">
                         </a>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
                                            th:title="${teacher.name}">
                                             <th:block th:if="${teacher.picPath !=null and teacher.picPath !=''}">
                                                 <img th:alt="${teacher.name}"
-                                                     th:src="${contextPath }+'/web/img/default-tea-img.gif'">
+                                                     th:src="${teacher.picPath}">
                                             </th:block>
 
                                             <th:block th:if="${ teacher.picPath==null ||teacher.picPath==''}">

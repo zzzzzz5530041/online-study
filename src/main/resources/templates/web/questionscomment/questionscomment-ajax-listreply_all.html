@@ -1,0 +1,67 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<section class="">
+	<section class="question-list lh-bj-list pr">
+		<ul class="pr10">
+					<aside class="noter-pic">
+								<img th:if="${questionsComment.picImg!=null}" th:src="${questionsComment.picImg }" alt="" width="50" height="50">
+								<img th:if="${questionsComment.picImg==null}" src="/web/img/avatar-boy.gif" alt="" width="50" height="50">
+						</c:choose>
+					</aside>
+					<div class="of hLh20">
+							<span class="fr" th:if="${questions.status==0 and  questions.cusId==user.userId and questionsComment.cusId != questions.cusId}">
+								<a href="javascript:void(0)" th:onclick="'acceptComment('+${questionsComment.id}+')'" title="" class="comm-btn c-btn-6">采纳为最佳答案</a>
+							</span>
+						<span class="fl">
+							<font class="fsize12 c-blue">
+								<th:block th:if="${questionsComment.showName!=null}" th:text="${questionsComment.showName }"/>
+								<th:block th:if="${questionsComment.showName==null}" th:text="${questionsComment.email }"/>
+							</font>
+							<font class="fsize12 c-999 ml5">回复：</font></span>
+					</div>
+					<div class="noter-txt mt5">
+						<p th:text="${questionsComment.content }"></p>
+					</div>
+					<div class="of mt5">
+						<span class="fr"><font class="fsize12 c-999 ml5" th:text="${#dates.format(questionsComment.addTime, 'yyyy-MM-dd HH:mm')}"> <!-- <a href="" class="c-blue mr10">删除</a> -->
+						</font></span> <span class="fl"> <a href="javascript: void(0)" title="回答" class="noter-dy vam" th:onclick="'getCommentById(this,'+${questionsComment.id }+')'">
+								<em class="icon18">&nbsp;</em>(<span th:text="${questionsComment.replyCount }"></span>)
+							</a> <tt class="noter-zan vam ml10" title="赞一下" th:onclick="'addPraise('+${questionsComment.id }+',2,this)'">
+								<em class="icon18">&nbsp;</em>(<span th:text="${questionsComment.praiseCount }"></span>)
+							</tt>
+						</span>
+					</div>
+					<div class="">
+						<div class="mt10 pl10 pr10 pb10 commentReply${questionsComment.commentId}">
+							<dl class="n-reply-list">
+									<dd th:each="questionsComment,iterStat:${questionsCommentRepList }">
+										<aside class="n-reply-pic">
+														<img th:if="${questionsComment.picImg!=null}" th:src="${questionsComment.picImg }" alt="">
+														<img th:if="${questionsComment.picImg==null}" src="/web/img/avatar-boy.gif" alt="">
+												</c:choose>
+										</aside>
+										<div class="of">
+											<span class="fl">
+												<font class="fsize12 c-blue">
+													<th:block th:if="${questionsComment.showName==null}" th:text="${questionsComment.email }" />
+													<th:block th:if="${questionsComment.showName!=null}" th:text="${questionsComment.showName }" />
+												</font><font class="fsize12 c-999 ml5">评论：</font></span>
+										</div>
+										<div class="noter-txt mt5">
+											<p th:text="${questionsComment.content }"></p>
+										</div>
+										<div class="of mt5">
+											<span class="fr"><font class="fsize12 c-999 ml5"  th:text="${#dates.format(questionsComment.addTime, 'yyyy-MM-dd HH:mm')}">
+												</font></span>
+											<span class="fl">
+												<tt class="noter-zan vam" title="赞一下" th:onclick="'addPraise('+${questionsComment.id }+',2,this)'"><em class="icon18">&nbsp;</em>(<span th:text="${questionsComment.praiseCount }"></span>)</tt>
+											</span>
+										</div>
+									</dd>
+							</dl>
+						</div>
+					</div> <!-- /回复盒子 -->
+				</li>
+		</ul>
+	</section>
+</section>
