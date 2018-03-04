@@ -36,7 +36,7 @@
             <mvc:exclude-mapping path="/admin/main/login"/>
             <mvc:exclude-mapping path="/**/*.css"/>
             <mvc:exclude-mapping path="/**/*.js"/>
-            <bean class="com.inxedu.os.common.intercepter.IntercepterAdmin"></bean>
+            <bean class="com.online.edu.common.intercepter.IntercepterAdmin"></bean>
         </mvc:interceptor>
         <!-- 前台网站配置拦截器配置 -->
         <mvc:interceptor>
@@ -44,7 +44,7 @@
             <mvc:exclude-mapping path="/static/**/*"/>
             <mvc:exclude-mapping path="/*/ajax/**"/>
             <mvc:exclude-mapping path="/kindeditor/**/*"/>
-            <bean class="com.inxedu.os.common.intercepter.LimitIntercepterForWebsite">
+            <bean class="com.online.edu.common.intercepter.LimitIntercepterForWebsite">
             </bean>
         </mvc:interceptor>
         <!-- 前台用户登录拦截器配置 -->
@@ -58,7 +58,7 @@
             <mvc:exclude-mapping path="/web/usercenter/login"/>
             <mvc:exclude-mapping path="/web/usercenter/passwordRecovery"/>
             <mvc:exclude-mapping path="/web/usercenter/sendEmail"/>
-            <bean class="com.inxedu.os.common.intercepter.IntercepterWebLogin">
+            <bean class="com.online.edu.common.intercepter.IntercepterWebLogin">
             </bean>
         </mvc:interceptor>
 
