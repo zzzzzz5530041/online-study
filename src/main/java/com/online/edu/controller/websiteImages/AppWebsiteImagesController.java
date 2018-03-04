@@ -1,6 +1,6 @@
 package com.online.edu.controller.websiteImages;
 
-import com.inxedu.os.common.controller.BaseController;
+import com.online.edu.common.controller.BaseController;
 import com.online.edu.web.entity.website.WebsiteImages;
 import com.online.edu.web.service.website.WebsiteImagesService;
 import org.apache.log4j.Logger;

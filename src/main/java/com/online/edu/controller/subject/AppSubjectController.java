@@ -1,6 +1,6 @@
 package com.online.edu.controller.subject;
 
-import com.inxedu.os.common.controller.BaseController;
+import com.online.edu.common.controller.BaseController;
 import com.online.edu.web.entity.subject.QuerySubject;
 import com.online.edu.web.entity.subject.Subject;
 import com.online.edu.web.service.subject.SubjectService;

@@ -1,9 +1,9 @@
 package com.online.edu.common.util;
 
 import com.online.edu.common.constants.CacheConstans;
-import com.inxedu.os.common.util.ObjectUtils;
-import com.inxedu.os.common.util.StringUtils;
-import com.inxedu.os.common.util.WebUtils;
+import com.online.edu.common.util.ObjectUtils;
+import com.online.edu.common.util.StringUtils;
+import com.online.edu.common.util.WebUtils;
 import com.online.edu.web.entity.system.SysUser;
 import com.online.edu.web.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -84,13 +84,13 @@
         <!--继承inxdemo-->
 
         <!--外部jar依赖-->
-        <dependency>
-            <groupId>com.inxedu.os</groupId>
-            <artifactId>inxedu-jar</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/inxedu-jar.jar</systemPath>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.online.edu</groupId>-->
+            <!--<artifactId>inxedu-jar</artifactId>-->
+            <!--<version>1.0</version>-->
+            <!--<scope>system</scope>-->
+            <!--<systemPath>${basedir}/lib/inxedu-jar.jar</systemPath>-->
+        <!--</dependency>-->
 
         <!-- mybatis -->
         <dependency>
@@ -190,38 +190,38 @@
             <version>2.2.1</version>
         </dependency>
         <!-- velocity -->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.velocity</groupId>-->
-            <!--<artifactId>velocity</artifactId>-->
-            <!--<version>1.7</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.velocity</groupId>-->
-            <!--<artifactId>velocity-tools</artifactId>-->
-            <!--<version>2.0</version>-->
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<groupId>org.apache.struts</groupId>-->
-                    <!--<artifactId>struts-tiles</artifactId>-->
-                <!--</exclusion>-->
-                <!--<exclusion>-->
-                    <!--<groupId>org.apache.struts</groupId>-->
-                    <!--<artifactId>struts-taglib</artifactId>-->
-                <!--</exclusion>-->
-                <!--<exclusion>-->
-                    <!--<groupId>org.apache.struts</groupId>-->
-                    <!--<artifactId>struts-core</artifactId>-->
-                <!--</exclusion>-->
-                <!--<exclusion>-->
-                    <!--<groupId>sslext</groupId>-->
-                    <!--<artifactId>sslext</artifactId>-->
-                <!--</exclusion>-->
-                <!--<exclusion>-->
-                    <!--<groupId>oro</groupId>-->
-                    <!--<artifactId>oro</artifactId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-tools</artifactId>
+            <version>2.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.struts</groupId>
+                    <artifactId>struts-tiles</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.struts</groupId>
+                    <artifactId>struts-taglib</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.struts</groupId>
+                    <artifactId>struts-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>sslext</groupId>
+                    <artifactId>sslext</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>oro</groupId>
+                    <artifactId>oro</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
         <!-- 读取资源文件(例properties)  -->
         <dependency>
@@ -317,6 +317,21 @@
             <!--<scope>system</scope>-->
             <!--<systemPath>${basedir}/lib/json.jar</systemPath>-->
         <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.icepdf.os/icepdf-core -->
+        <!-- https://mvnrepository.com/artifact/org.icepdf.os/icepdf-core -->
+        <dependency>
+            <groupId>org.icepdf.os</groupId>
+            <artifactId>icepdf-core</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.media</groupId>
+                    <artifactId>jai-core</artifactId>
+                </exclusion>
+            </exclusions>
+            <version>6.1.2</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

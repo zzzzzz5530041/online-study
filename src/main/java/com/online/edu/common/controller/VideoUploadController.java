@@ -1,10 +1,10 @@
 package com.online.edu.common.controller;
 
 import com.online.edu.common.constants.CommonConstants;
-import com.inxedu.os.common.controller.BaseController;
-import com.inxedu.os.common.controller.ImageUploadController;
-import com.inxedu.os.common.util.DateUtils;
-import com.inxedu.os.common.util.FileUploadUtils;
+import com.online.edu.common.controller.BaseController;
+import com.online.edu.common.controller.ImageUploadController;
+import com.online.edu.common.util.DateUtils;
+import com.online.edu.common.util.FileUploadUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

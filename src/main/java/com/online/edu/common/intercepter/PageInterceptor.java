@@ -1,7 +1,7 @@
 package com.online.edu.common.intercepter;
 
-import com.inxedu.os.common.entity.PageEntity;
-import com.inxedu.os.common.util.ObjectUtils;
+import com.online.edu.common.entity.PageEntity;
+import com.online.edu.common.util.ObjectUtils;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;

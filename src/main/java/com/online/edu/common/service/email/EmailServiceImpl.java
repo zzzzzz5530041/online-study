@@ -5,11 +5,11 @@
 
 package com.online.edu.common.service.email;
 
-import com.inxedu.os.common.service.email.EmailService;
-import com.inxedu.os.common.util.DateEditor;
-import com.inxedu.os.common.util.DateUtils;
-import com.inxedu.os.common.util.HttpUtil;
-import com.inxedu.os.common.util.PropertyUtil;
+import com.online.edu.common.service.email.EmailService;
+import com.online.edu.common.util.DateEditor;
+import com.online.edu.common.util.DateUtils;
+import com.online.edu.common.util.HttpUtil;
+import com.online.edu.common.util.PropertyUtil;
 import com.online.edu.web.constants.enums.WebSiteProfileType;
 import com.online.edu.web.service.website.WebsiteProfileService;
 import org.apache.commons.logging.Log;

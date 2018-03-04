@@ -1,6 +1,6 @@
 package com.online.edu.common.constants;
 
-import com.inxedu.os.common.util.PropertyUtil;
+import com.online.edu.common.util.PropertyUtil;
 
 /**
  * 常量

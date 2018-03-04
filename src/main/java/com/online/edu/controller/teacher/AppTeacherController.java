@@ -1,7 +1,7 @@
 package com.online.edu.controller.teacher;
 
-import com.inxedu.os.common.controller.BaseController;
-import com.inxedu.os.common.entity.PageEntity;
+import com.online.edu.common.controller.BaseController;
+import com.online.edu.common.entity.PageEntity;
 import com.online.edu.web.entity.teacher.QueryTeacher;
 import com.online.edu.web.entity.teacher.Teacher;
 import com.online.edu.web.service.teacher.TeacherService;

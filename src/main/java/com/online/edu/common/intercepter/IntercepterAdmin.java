@@ -2,10 +2,10 @@ package com.online.edu.common.intercepter;
 
 import com.google.gson.Gson;
 import com.online.edu.common.constants.CacheConstans;
-import com.inxedu.os.common.util.ObjectUtils;
+import com.online.edu.common.util.ObjectUtils;
 import com.online.edu.common.util.RedisUtils;
 import com.online.edu.common.util.SingletonLoginUtils;
-import com.inxedu.os.common.util.WebUtils;
+import com.online.edu.common.util.WebUtils;
 import com.online.edu.web.entity.system.SysFunction;
 import com.online.edu.web.entity.system.SysUser;
 import com.online.edu.web.service.system.SysFunctionService;

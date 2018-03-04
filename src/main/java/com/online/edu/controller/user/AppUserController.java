@@ -2,12 +2,12 @@ package com.online.edu.controller.user;
 
 import com.online.edu.common.constants.CacheConstans;
 import com.online.edu.common.constants.CommonConstants;
-import com.inxedu.os.common.controller.BaseController;
-import com.inxedu.os.common.entity.PageEntity;
-import com.inxedu.os.common.util.MD5;
+import com.online.edu.common.controller.BaseController;
+import com.online.edu.common.entity.PageEntity;
+import com.online.edu.common.util.MD5;
 import com.online.edu.common.util.RedisUtils;
-import com.inxedu.os.common.util.StringUtils;
-import com.inxedu.os.common.util.WebUtils;
+import com.online.edu.common.util.StringUtils;
+import com.online.edu.common.util.WebUtils;
 import com.online.edu.web.constants.enums.WebSiteProfileType;
 import com.online.edu.web.entity.course.CourseDto;
 import com.online.edu.web.entity.course.CourseFavorites;

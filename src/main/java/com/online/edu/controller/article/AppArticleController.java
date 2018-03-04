@@ -1,7 +1,7 @@
 package com.online.edu.controller.article;
 
-import com.inxedu.os.common.controller.BaseController;
-import com.inxedu.os.common.entity.PageEntity;
+import com.online.edu.common.controller.BaseController;
+import com.online.edu.common.entity.PageEntity;
 import com.online.edu.web.entity.article.Article;
 import com.online.edu.web.entity.article.QueryArticle;
 import com.online.edu.web.service.article.ArticleService;
