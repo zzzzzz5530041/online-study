@@ -44,7 +44,7 @@ public class SysFunctionController extends BaseController{
 		ModelAndView model = new ModelAndView();
 		try{
 			//后台系统权限list页面
-			model.setViewName(getViewPath("/admin/system/sys-function-list"));
+			model.setViewName("/admin/system/system_function_list");
 			List<SysFunction> functionList = sysFunctionService.queryAllSysFunction();
 			if(functionList!=null){
 				model.addObject("jsonFunction", gson.toJson(functionList));

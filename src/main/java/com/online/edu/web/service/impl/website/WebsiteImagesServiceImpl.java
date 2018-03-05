@@ -69,21 +69,21 @@ public class WebsiteImagesServiceImpl implements WebsiteImagesService {
             if (imageList != null && imageList.size() > 0) {
                 imageMapList = new HashMap<String, List<WebsiteImages>>();
 
-                List<WebsiteImages> _list = new ArrayList<WebsiteImages>();
+                List<WebsiteImages> wiList = new ArrayList<WebsiteImages>();
                 int typeId = imageList.get(0).getTypeId();
-                for (WebsiteImages _wi : imageList) {
-                    if (typeId == _wi.getTypeId()) {
-                        _list.add(_wi);
+                for (WebsiteImages websiteImage : imageList) {
+                    if (typeId == websiteImage.getTypeId()) {
+                        wiList.add(websiteImage);
                     } else {
-                        imageMapList.put("type_" + typeId, _list);
-                        _list = new ArrayList<WebsiteImages>();
-                        _list.add(_wi);
+                        imageMapList.put("type_" + typeId, wiList);
+                        wiList = new ArrayList<WebsiteImages>();
+                        wiList.add(websiteImage);
                     }
-                    typeId = _wi.getTypeId();
+                    typeId = websiteImage.getTypeId();
                 }
                 //添加最后一条记录
 
-                imageMapList.put("type_" + typeId, _list);
+                imageMapList.put("type_" + typeId, wiList);
 //                EHCacheUtil.set(CacheConstans.BANNER_IMAGES, imageMapList, CacheConstans.BANNER_IMAGES_TIME);
                 redisUtils.save(CacheConstans.BANNER_IMAGES,imageMapList);
             }
