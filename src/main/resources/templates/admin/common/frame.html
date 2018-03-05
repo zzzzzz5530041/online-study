@@ -22,137 +22,137 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-    <div id="header" th:fragment="title">
-        <h1><a href="#">在线教育后台管理系统</a></h1>
-    </div>
+<div id="header" th:fragment="title">
+    <h1><a href="#">在线教育后台管理系统</a></h1>
+</div>
 
-    <div id="search" th:fragment="search">
-        <input type="text" placeholder="Search here..." /><button type="submit" class="tip-right" title="Search"><i class="icon-search icon-white"></i></button>
-    </div>
-    <div id="user-nav" class="navbar navbar-inverse" th:fragment="navbar">
-        <ul class="nav btn-group">
-            <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Profile</span></a></li>
-            <li class="btn btn-inverse dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a class="sAdd" title="" href="#">new message</a></li>
-                    <li><a class="sInbox" title="" href="#">inbox</a></li>
-                    <li><a class="sOutbox" title="" href="#">outbox</a></li>
-                    <li><a class="sTrash" title="" href="#">trash</a></li>
-                </ul>
-            </li>
-            <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-            <li class="btn btn-inverse"><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
-        </ul>
-    </div>
+<div id="search" th:fragment="search">
+    <input type="text" placeholder="Search here..." /><button type="submit" class="tip-right" title="Search"><i class="icon-search icon-white"></i></button>
+</div>
+<div id="user-nav" class="navbar navbar-inverse" th:fragment="navbar">
+    <ul class="nav btn-group">
+        <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Profile</span></a></li>
+        <li class="btn btn-inverse dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a class="sAdd" title="" href="#">new message</a></li>
+                <li><a class="sInbox" title="" href="#">inbox</a></li>
+                <li><a class="sOutbox" title="" href="#">outbox</a></li>
+                <li><a class="sTrash" title="" href="#">trash</a></li>
+            </ul>
+        </li>
+        <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
+        <li class="btn btn-inverse"><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+    </ul>
+</div>
 
-    <div id="sidebar" th:fragment="sidebar">
-        <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
-        <ul>
-            <li class="active"><a href="#"><i class="icon icon-home"></i> <span>主页面</span></a></li>
-            <li class="submenu">
-                <a href="#"><i class="icon icon-th-list"></i> <span>学员/讲师管理</span></a>
-                <ul>
-                    <li><a href="#">学员列表</a></li>
-                    <li><a href="#">批量开通学员</a></li>
-                    <li><a href="#">教师管理</a></li>
-                    <li><a href="#">添加讲师</a></li>
-                </ul>
-            </li>
-            <li class="submenu">
-                <a href="#"><i class="icon icon-tint"></i> <span>课程管理</span></a>
-                <ul>
-                    <li><a href="#">专业管理</a></li>
-                    <li><a href="#">课程管理</a></li>
-                    <li><a href="#">推荐课程</a></li>
-                    <li><a href="#">推荐课程分类</a></li>
-                    <li><a href="#">评论管理（评论列表）</a></li>
-                </ul>
-            </li>
-            <li class="submenu">
-                <a href="#"><i class="icon icon-th"></i> <span>问答管理</span></a>
-                <ul>
-                    <li><a href="#">问答标签</a></li>
-                    <li><a href="#">问答列表</a></li>
-                    <li><a href="#">问答回复列表</a></li>
-                </ul>
-            </li>
-            <li class="submenu">
-                <a href="#"><i class="icon icon-file"></i> <span>资讯管理</span></a>
-                <ul>
-                    <li><a href="#">添加文章</a></li>
-                    <li><a href="#">文章列表</a></li>
-                </ul>
-            </li>
-            <li class="submenu">
-                <a href="#"><i class="icon icon-signal"></i> <span>统计管理</span></a>
-                <ul>
-                    <li><a href="#">生成统计</a></li>
-                    <li><a href="#">学员登录数统计</a></li>
-                    <li><a href="#">学员注册数统计</a></li>
-                    <li><a href="#">视频观看数统计</a></li>
-                    <li><a href="#">每日学员数统计</a></li>
-                    <li><a href="#">每日课程数统计</a></li>
-                </ul>
-            </li>
-            <li class="submenu">
-                <a href="#"><i class="icon icon-th-list"></i> <span>系统管理</span></a>
-                <ul>
-                    <li><a href="#">权限树</a></li>
-                    <li><a href="#">角色管理</a></li>
-                    <li><a href="/admin/sysuser/userlist">系统用户列表</a></li>
-                    <li><a href="#">全站系统消息</a></li>
-                    <li><a href="#">批量发送</a></li>
-                    <li><a href="#">系统消息列表</a></li>
-                </ul>
-            </li>
-            <li class="submenu">
-                <a href="#"><i class="icon icon-tint"></i> <span>邮件/短信管理</span></a>
-                <ul>
-                    <li><a href="#">发送邮件</a></li>
-                    <li><a href="#">邮件管理</a></li>
-                    <li><a href="#">发送短信</a></li>
-                    <li><a href="#">短信管理</a></li>
-                </ul>
-            </li>
-            <li class="submenu">
-                <a href="#"><i class="icon icon-pencil"></i> <span>站点设置</span></a>
-                <ul>
-                    <li><a href="#">基本配置</a></li>
-                    <li><a href="#">导航管理</a></li>
-                    <li><a href="#">在线咨询</a></li>
-                    <li><a href="#">前台主题色</a></li>
-                    <li><a href="#">媒体广告图</a></li>
-                    <li><a href="#">媒体广告图类型</a></li>
-                    <li><a href="#">新建帮助页面</a></li>
-                    <li><a href="#">帮助菜单</a></li>
-                    <li><a href="#">缓存管理</a></li>
-                </ul>
-            </li>
-         </ul>
-    </div>
+<div id="sidebar" th:fragment="sidebar">
+    <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+    <ul>
+        <li class="active"><a href="#"><i class="icon icon-home"></i> <span>主页面</span></a></li>
+        <li class="submenu">
+            <a href="#"><i class="icon icon-th-list"></i> <span>学员/讲师管理</span></a>
+            <ul>
+                <li><a href="#">学员列表</a></li>
+                <li><a href="#">批量开通学员</a></li>
+                <li><a href="#">教师管理</a></li>
+                <li><a href="#">添加讲师</a></li>
+            </ul>
+        </li>
+        <li class="submenu">
+            <a href="#"><i class="icon icon-tint"></i> <span>课程管理</span></a>
+            <ul>
+                <li><a href="#">专业管理</a></li>
+                <li><a href="#">课程管理</a></li>
+                <li><a href="#">推荐课程</a></li>
+                <li><a href="#">推荐课程分类</a></li>
+                <li><a href="#">评论管理（评论列表）</a></li>
+            </ul>
+        </li>
+        <li class="submenu">
+            <a href="#"><i class="icon icon-th"></i> <span>问答管理</span></a>
+            <ul>
+                <li><a href="#">问答标签</a></li>
+                <li><a href="#">问答列表</a></li>
+                <li><a href="#">问答回复列表</a></li>
+            </ul>
+        </li>
+        <li class="submenu">
+            <a href="#"><i class="icon icon-file"></i> <span>资讯管理</span></a>
+            <ul>
+                <li><a href="#">添加文章</a></li>
+                <li><a href="#">文章列表</a></li>
+            </ul>
+        </li>
+        <li class="submenu">
+            <a href="#"><i class="icon icon-signal"></i> <span>统计管理</span></a>
+            <ul>
+                <li><a href="#">生成统计</a></li>
+                <li><a href="#">学员登录数统计</a></li>
+                <li><a href="#">学员注册数统计</a></li>
+                <li><a href="#">视频观看数统计</a></li>
+                <li><a href="#">每日学员数统计</a></li>
+                <li><a href="#">每日课程数统计</a></li>
+            </ul>
+        </li>
+        <li class="submenu">
+            <a href="#"><i class="icon icon-th-list"></i> <span>系统管理</span></a>
+            <ul>
+                <li><a href="/admin/sysfunctioin/showfunctionztree">权限树</a></li>
+                <li><a href="#">角色管理</a></li>
+                <li><a href="/admin/sysuser/userlist">系统用户列表</a></li>
+                <li><a href="#">全站系统消息</a></li>
+                <li><a href="#">批量发送</a></li>
+                <li><a href="#">系统消息列表</a></li>
+            </ul>
+        </li>
+        <li class="submenu">
+            <a href="#"><i class="icon icon-tint"></i> <span>邮件/短信管理</span></a>
+            <ul>
+                <li><a href="#">发送邮件</a></li>
+                <li><a href="#">邮件管理</a></li>
+                <li><a href="#">发送短信</a></li>
+                <li><a href="#">短信管理</a></li>
+            </ul>
+        </li>
+        <li class="submenu">
+            <a href="#"><i class="icon icon-pencil"></i> <span>站点设置</span></a>
+            <ul>
+                <li><a href="#">基本配置</a></li>
+                <li><a href="#">导航管理</a></li>
+                <li><a href="#">在线咨询</a></li>
+                <li><a href="#">前台主题色</a></li>
+                <li><a href="#">媒体广告图</a></li>
+                <li><a href="#">媒体广告图类型</a></li>
+                <li><a href="#">新建帮助页面</a></li>
+                <li><a href="#">帮助菜单</a></li>
+                <li><a href="#">缓存管理</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
 
-    <div id="style-switcher" th:fragment="styleSwither">
-        <i class="icon-arrow-left icon-white"></i>
-        <span>Style:</span>
-        <a href="#grey" style="background-color: #555555;border-color: #aaaaaa;"></a>
-        <a href="#blue" style="background-color: #2D2F57;"></a>
-        <a href="#red" style="background-color: #673232;"></a>
-    </div>
-    <div id="content">
-        <div id="content-header" th:fragment="manage">
-            <h1>Dashboard</h1>
-            <div class="btn-group">
-                <a class="btn btn-large tip-bottom" title="Manage Files"><i class="icon-file"></i></a>
-                <a class="btn btn-large tip-bottom" title="Manage Users"><i class="icon-user"></i></a>
-                <a class="btn btn-large tip-bottom" title="Manage Comments"><i class="icon-comment"></i><span class="label label-important">5</span></a>
-                <a class="btn btn-large tip-bottom" title="Manage Orders"><i class="icon-shopping-cart"></i></a>
-            </div>
-        </div>
-        <div id="breadcrumb" th:fragment="nav">
-            <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
-            <a href="#" class="current">Dashboard</a>
+<div id="style-switcher" th:fragment="styleSwither">
+    <i class="icon-arrow-left icon-white"></i>
+    <span>Style:</span>
+    <a href="#grey" style="background-color: #555555;border-color: #aaaaaa;"></a>
+    <a href="#blue" style="background-color: #2D2F57;"></a>
+    <a href="#red" style="background-color: #673232;"></a>
+</div>
+<div id="content">
+    <div id="content-header" th:fragment="manage">
+        <h1>Dashboard</h1>
+        <div class="btn-group">
+            <a class="btn btn-large tip-bottom" title="Manage Files"><i class="icon-file"></i></a>
+            <a class="btn btn-large tip-bottom" title="Manage Users"><i class="icon-user"></i></a>
+            <a class="btn btn-large tip-bottom" title="Manage Comments"><i class="icon-comment"></i><span class="label label-important">5</span></a>
+            <a class="btn btn-large tip-bottom" title="Manage Orders"><i class="icon-shopping-cart"></i></a>
         </div>
     </div>
+    <div id="breadcrumb" th:fragment="nav">
+        <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="#" class="current">Dashboard</a>
+    </div>
+</div>
 
 </body>
 </html>
