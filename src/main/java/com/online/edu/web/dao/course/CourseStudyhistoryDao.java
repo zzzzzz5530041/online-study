@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * CourseStudyhistory管理接口
- * @author www.inxedu.com
+ * @author
  */
 public interface CourseStudyhistoryDao {
 

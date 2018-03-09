@@ -10,7 +10,7 @@ import java.util.Date;
  * 
  * @ClassName com.online.edu.inxedu.entity.course.CourseStudyhistory
  * @description 记录播放记录
- * @author www.inxedu.com
+ * @author
  */
 @EqualsAndHashCode(callSuper = false)
 public class CourseStudyhistory implements Serializable {

@@ -10,7 +10,7 @@ import com.online.edu.web.entity.letter.MsgSystem;
 
 /**
  * @description 站内信发件箱的Dao
- * @author www.inxedu.com
+ * @author
  */
 public interface MsgSystemDao {
     /**

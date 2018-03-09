@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 /**
- * @author http://www.inxedu.com
+ * @author http://
  */
 @Service("userEmailMsgService")
 public class UserEmailMsgServiceImpl implements UserEmailMsgService {

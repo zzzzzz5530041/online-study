@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * 问答评论
- *@author www.inxedu.com
+ *@author
  */
 public class QuestionsComment implements Serializable {
     private static final long serialVersionUID = -6309563892897487678L;

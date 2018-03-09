@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 后台用户
- * @author www.inxedu.com
+ * @author
  */
 public interface SysUserService {
 	/***

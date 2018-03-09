@@ -3,7 +3,7 @@ package com.online.edu.web.controller.course;
 import com.online.edu.common.controller.BaseController;
 import com.online.edu.common.util.ObjectUtils;
 import com.online.edu.common.util.StringUtils;
-import com.online.edu.common.util.inxeduvideo.InxeduVideo;
+import com.online.edu.common.util.video.Video;
 import com.online.edu.web.constants.enums.WebSiteProfileType;
 import com.online.edu.web.entity.course.Course;
 import com.online.edu.web.entity.kpoint.CourseKpoint;
@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  * CourseKpoint 课程章节管理
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 public class CourseKpointController extends BaseController {
@@ -76,14 +76,14 @@ public class CourseKpointController extends BaseController {
 				// 播放类型
 				String videotype = courseKpoint.getVideoType();
 				//查询inxeduVideo的key
-				if(courseKpoint.getVideoType().equalsIgnoreCase(WebSiteProfileType.inxeduVideo.toString())){
-					Map<String,Object> map=(Map<String,Object>)websiteProfileService.getWebsiteProfileByType(WebSiteProfileType.inxeduVideo.toString()).get(WebSiteProfileType.inxeduVideo.toString());
+				if(courseKpoint.getVideoType().equalsIgnoreCase(WebSiteProfileType.video.toString())){
+					Map<String,Object> map=(Map<String,Object>)websiteProfileService.getWebsiteProfileByType(WebSiteProfileType.video.toString()).get(WebSiteProfileType.video.toString());
 					String play_url = "http://vod.baofengcloud.com/" + map.get("UserId") + "/player/cloud.swf";
 					String url = "servicetype=1&uid="+map.get("UserId")+"&fid="+videourl;
 					play_url += "?" + url;
 					//如果因酷云的key不为空则按加密播放如果为空则不加密
 					if(StringUtils.isNotEmpty(map.get("SecretKey").toString())&&StringUtils.isNotEmpty(map.get("AccessKey").toString())){
-						String token = InxeduVideo.createPlayToken(videourl,map.get("SecretKey").toString(),map.get("AccessKey").toString());
+						String token = Video.createPlayToken(videourl,map.get("SecretKey").toString(),map.get("AccessKey").toString());
 						play_url += "&tk=" + token;
 					}
 					play_url += "&auto=" + 1;

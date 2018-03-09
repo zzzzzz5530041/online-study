@@ -20,7 +20,7 @@ import java.util.*;
 
 /**
  * @description 站内信的实现
- * @author www.inxedu.com
+ * @author
  */
 @Service("msgReceiveService")
 public class MsgReceiveServiceImpl implements MsgReceiveService {

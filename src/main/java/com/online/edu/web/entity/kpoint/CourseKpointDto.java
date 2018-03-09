@@ -3,7 +3,7 @@ package com.online.edu.web.entity.kpoint;
 import lombok.EqualsAndHashCode;
 
 /**
- * @author www.inxedu.com
+ * @author
  *
  */
 @EqualsAndHashCode(callSuper = false)

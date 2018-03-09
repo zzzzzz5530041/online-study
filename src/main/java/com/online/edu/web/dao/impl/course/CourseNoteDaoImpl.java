@@ -16,7 +16,7 @@ import com.online.edu.web.entity.course.QueryCourseNote;
 /**
  * 
  * CourseNoteDao接口实现类
- * @author www.inxedu.com
+ * @author
  */
 @Repository("courseNoteDao")
 public class CourseNoteDaoImpl extends GenericDaoImpl implements CourseNoteDao {

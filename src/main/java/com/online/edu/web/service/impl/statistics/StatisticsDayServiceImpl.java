@@ -22,7 +22,7 @@ import lombok.Setter;
 
 /**
  * StatisticsDayDay管理接口
- * @author www.inxedu.com
+ * @author
  */
 @Service("statisticsDayService")
 public class StatisticsDayServiceImpl implements StatisticsDayService{

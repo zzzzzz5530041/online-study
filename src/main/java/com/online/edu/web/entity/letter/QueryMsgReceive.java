@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * 查询站内信接收
- * @author www.inxedu.com
+ * @author
  *
  */
 @EqualsAndHashCode(callSuper = false)

@@ -8,7 +8,7 @@ import com.online.edu.common.util.DateUtils;
 
 /**
  * 问答
- * @author www.inxedu.com
+ * @author
  */
 public class Questions implements Serializable {
     private static final long serialVersionUID = 7164486172128536474L;

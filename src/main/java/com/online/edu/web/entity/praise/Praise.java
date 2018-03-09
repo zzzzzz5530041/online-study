@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 点赞表
- *@author www.inxedu.com
+ *@author
  */
 public class Praise  implements Serializable{
 	private static final long serialVersionUID = -6193393378585119763L;

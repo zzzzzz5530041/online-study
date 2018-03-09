@@ -22,7 +22,7 @@ import com.online.edu.web.service.website.WebsiteProfileService;
 
 /**
  * 网站配置管理拦截器
- * @author www.inxedu.com
+ * @author
  */
 public class LimitIntercepterForWebsite extends HandlerInterceptorAdapter{
 	 //logger

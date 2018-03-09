@@ -5,7 +5,7 @@ import com.online.edu.web.entity.course.CourseStudyhistory;
 import java.util.List;
 /**
  * CourseStudyhistory 用户课程学习记录 管理接口
- * @author www.inxedu.com
+ * @author
  */
 public interface CourseStudyhistoryService {
 

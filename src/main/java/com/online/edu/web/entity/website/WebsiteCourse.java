@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 推荐分类
- * @author www.inxedu.com
+ * @author
  */
 @EqualsAndHashCode(callSuper = false)
 public class WebsiteCourse implements Serializable {

@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 外部登录用户信息
- * @author www.inxedu.com
+ * @author
  */
 @EqualsAndHashCode(callSuper = false)
 public class WebLoginUser implements Serializable{

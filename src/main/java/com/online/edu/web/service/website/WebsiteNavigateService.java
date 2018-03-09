@@ -8,7 +8,7 @@ import com.online.edu.web.entity.website.WebsiteNavigate;
 
 /**
  * WebsiteNavigateTbl管理接口
- * @author www.inxedu.com
+ * @author
  */
 public interface WebsiteNavigateService {
 

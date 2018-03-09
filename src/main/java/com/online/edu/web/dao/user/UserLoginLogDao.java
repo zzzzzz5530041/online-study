@@ -7,7 +7,7 @@ import com.online.edu.common.entity.PageEntity;
 import com.online.edu.web.entity.user.UserLoginLog;
 
 /**
- * @author www.inxedu.com
+ * @author
  *
  */
 public interface UserLoginLogDao {

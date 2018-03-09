@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 /**
  * CourseNoteService 课程笔记 管理接口实现
- * @author www.inxedu.com
+ * @author
  */
 @Service("courseNoteService")
 public class CourseNoteServiceImpl implements CourseNoteService {

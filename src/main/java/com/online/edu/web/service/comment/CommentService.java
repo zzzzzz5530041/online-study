@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 /**
  *  评论模块service接口
- *  @author www.inxedu.com
+ *  @author
  */
 public interface CommentService {
 	/**

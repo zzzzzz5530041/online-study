@@ -2,7 +2,7 @@ package com.online.edu.web.entity.letter;
 
 /**
  * 站内信
- * @author www.inxedu.com
+ * @author
  *
  */
 public class LetterConstans {

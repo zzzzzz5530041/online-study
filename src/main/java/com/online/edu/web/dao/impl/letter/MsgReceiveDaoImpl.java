@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author www.inxedu.com
+ * @author
  */
 @Repository("msgReceiveDao")
 public class MsgReceiveDaoImpl extends GenericDaoImpl implements MsgReceiveDao {

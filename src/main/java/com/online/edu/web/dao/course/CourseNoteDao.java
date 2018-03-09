@@ -9,7 +9,7 @@ import com.online.edu.web.entity.course.QueryCourseNote;
 
 /**
  * CourseNote管理接口
- * @author www.inxedu.com
+ * @author
  */
 public interface CourseNoteDao {
 

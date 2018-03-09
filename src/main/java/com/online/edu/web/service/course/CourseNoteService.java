@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * CourseNoteService 课程笔记 管理接口
- * @author www.inxedu.com
+ * @author
  */
 public interface CourseNoteService {
 

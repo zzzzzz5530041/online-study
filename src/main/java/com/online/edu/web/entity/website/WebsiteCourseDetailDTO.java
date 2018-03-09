@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /** 推荐课程DTO
- * @author www.inxedu.com
+ * @author
  */
 @EqualsAndHashCode(callSuper = false)
 public class WebsiteCourseDetailDTO extends WebsiteCourseDetail implements Serializable {

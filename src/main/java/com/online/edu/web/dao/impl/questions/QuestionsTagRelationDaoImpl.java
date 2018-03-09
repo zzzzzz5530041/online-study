@@ -10,7 +10,7 @@ import com.online.edu.web.entity.questions.QuestionsTagRelation;
 
 /**
  * 问答和 问答标签的 关联表 实现类
- * @author www.inxedu.com
+ * @author
  */
 @Repository("questionsTagRelationDao")
 public class QuestionsTagRelationDaoImpl extends GenericDaoImpl implements QuestionsTagRelationDao {

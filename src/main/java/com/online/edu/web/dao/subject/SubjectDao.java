@@ -8,7 +8,7 @@ import com.online.edu.web.entity.subject.Subject;
 
 /**
  * 专业dao层接口
- * @author www.inxedu.com
+ * @author
  */
 public interface SubjectDao {
 	/**

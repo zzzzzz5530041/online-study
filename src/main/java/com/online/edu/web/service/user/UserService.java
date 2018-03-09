@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * 前台用户
- * @author www.inxedu.com
+ * @author
  *
  */
 public interface UserService {

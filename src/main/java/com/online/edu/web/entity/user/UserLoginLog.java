@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * 用户登录日志
- * @author www.inxedu.com
+ * @author
  */
 @Data
 public class UserLoginLog implements Serializable{

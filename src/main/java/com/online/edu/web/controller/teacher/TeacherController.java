@@ -27,7 +27,7 @@ import java.util.List;
 
 /**
  * 前台讲师
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 public class TeacherController extends BaseController {

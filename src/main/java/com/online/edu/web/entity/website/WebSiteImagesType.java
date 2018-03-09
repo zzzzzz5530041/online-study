@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 广告图片类型
- * @author www.inxedu.com
+ * @author
  */
 public class WebSiteImagesType implements Serializable{
 	private static final long serialVersionUID = -5345545736423067440L;

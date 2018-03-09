@@ -7,7 +7,7 @@ import com.online.edu.common.entity.PageEntity;
 import com.online.edu.web.entity.questions.Questions;
 /**
  * questions服务接口
- * @author www.inxedu.com
+ * @author
  */
 public interface QuestionsService {
 

@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * 学员
- * @author www.inxedu.com
+ * @author
  */
 @Data
 public class User implements Serializable{

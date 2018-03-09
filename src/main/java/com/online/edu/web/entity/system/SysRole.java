@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 角色
- * author www.inxedu.com
+ * author
  */
 public class SysRole implements Serializable{
 	

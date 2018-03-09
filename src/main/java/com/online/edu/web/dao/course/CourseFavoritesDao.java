@@ -12,7 +12,7 @@ import com.online.edu.web.entity.course.FavouriteCourseDTO;
 
 /**
  * 课程收藏管理接口
- * @author www.inxedu.com
+ * @author
  */
 public interface CourseFavoritesDao {
 	/**

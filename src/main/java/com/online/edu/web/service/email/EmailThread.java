@@ -10,7 +10,7 @@ import java.util.List;
 
 
 /**
- * @author http://www.inxedu.com
+ * @author http://
  */
 public class EmailThread implements Runnable{
     //发送邮件service

@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * 讲师 查询辅助类
- * @author www.inxedu.com
+ * @author
  *
  */
 @EqualsAndHashCode(callSuper = false)

@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  * 系统消息
- * @author http://www.inxedu.com
+ * @author http://
  */
 @Controller
 @RequestMapping("/admin")

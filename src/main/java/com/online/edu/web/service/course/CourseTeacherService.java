@@ -4,7 +4,7 @@ package com.online.edu.web.service.course;
 
 /**
  * CourseTeacher 课程讲师 管理接口
- * @author www.inxedu.com
+ * @author
  */
 public interface CourseTeacherService {
 

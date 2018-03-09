@@ -12,7 +12,7 @@ import com.online.edu.web.service.questions.QuestionsService;
 
 /**
  * questions服务接口 实现
- *@author www.inxedu.com
+ *@author
  */
 @Service("questionsService")
 public class QuestionsServiceImpl implements QuestionsService {

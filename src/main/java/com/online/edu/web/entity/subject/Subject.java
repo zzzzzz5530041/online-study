@@ -6,7 +6,7 @@ import java.util.Date;
 import lombok.EqualsAndHashCode;
 
 /**
- * @author www.inxedu.com
+ * @author
  *
  */
 @EqualsAndHashCode(callSuper = false)

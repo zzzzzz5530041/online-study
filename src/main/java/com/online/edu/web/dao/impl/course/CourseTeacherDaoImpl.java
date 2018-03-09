@@ -7,7 +7,7 @@ import com.online.edu.common.dao.GenericDaoImpl;
 import com.online.edu.web.dao.course.CourseTeacherDao;
 
 /**
- * @author www.inxedu.com
+ * @author
  *
  */
 @Repository("courseTeacherDao")

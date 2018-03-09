@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 /**
  * 前台 Course管理接口
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 public class CourseController extends BaseController {

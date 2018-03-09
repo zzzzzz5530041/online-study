@@ -4,7 +4,7 @@ import com.online.edu.web.entity.praise.Praise;
 
 /**
  * 点赞服务接口
- *@author www.inxedu.com
+ *@author
  */
 public interface PraiseService {
 	/**

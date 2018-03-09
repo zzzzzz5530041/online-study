@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * 后台系统功能权限
- * @author www.inxedu.com
+ * @author
  */
 public interface SysFunctionService {
 

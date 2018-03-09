@@ -12,7 +12,7 @@ import com.online.edu.web.entity.subject.Subject;
 
 /**
  * Subject对象操作实现类
- * @author www.inxedu.com
+ * @author
  */
 @Repository("subjectDao")
 public class SubjectDaoImpl extends GenericDaoImpl implements SubjectDao {

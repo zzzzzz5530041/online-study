@@ -5,7 +5,7 @@ import java.io.Serializable;
 import lombok.EqualsAndHashCode;
 
 /**
- * @author www.inxedu.com
+ * @author
  *
  */
 @EqualsAndHashCode(callSuper = false)

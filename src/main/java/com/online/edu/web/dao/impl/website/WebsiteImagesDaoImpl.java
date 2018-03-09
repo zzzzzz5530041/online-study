@@ -13,7 +13,7 @@ import com.online.edu.web.entity.website.WebsiteImages;
 
 /**
  *广告图Dao层实现
- *@author www.inxedu.com
+ *@author
  */
 @Repository("websiteImagesDao")
 public class WebsiteImagesDaoImpl extends GenericDaoImpl implements WebsiteImagesDao {

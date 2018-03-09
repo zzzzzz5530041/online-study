@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author www.inxedu.com
+ * @author
  * 课程查询条件
  */
 @EqualsAndHashCode(callSuper = false)

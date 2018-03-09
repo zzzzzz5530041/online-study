@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
  * 
  * @ClassName com.online.edu.edu.entity.course.QueryCourseNote
  * @description
- * @author www.inxedu.com
+ * @author
  */
 @EqualsAndHashCode(callSuper = false)
 public class QueryCourseNote implements Serializable {

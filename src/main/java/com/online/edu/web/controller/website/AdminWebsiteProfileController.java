@@ -26,7 +26,7 @@ import java.util.Map;
 
 /**
  * 网站配置管理
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 @RequestMapping("/admin")
@@ -101,7 +101,7 @@ public class AdminWebsiteProfileController extends BaseController {
 					map.put("ccappKEY", request.getParameter("ccappKEY"));
 				}
 				// 因酷云视频
-				if (type.equals(WebSiteProfileType.inxeduVideo.toString())) {
+				if (type.equals(WebSiteProfileType.video.toString())) {
 					map.put("UserId", request.getParameter("UserId"));
 					map.put("SecretKey", request.getParameter("SecretKey"));
 					map.put("AccessKey", request.getParameter("AccessKey"));

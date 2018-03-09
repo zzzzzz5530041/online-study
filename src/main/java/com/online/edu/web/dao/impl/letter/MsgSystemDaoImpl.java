@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * @description 站内信发件箱的Dao 实现
- * @author www.inxedu.com
+ * @author
  */
 @Repository("MsgSystemDao")
 public class MsgSystemDaoImpl extends GenericDaoImpl implements MsgSystemDao {

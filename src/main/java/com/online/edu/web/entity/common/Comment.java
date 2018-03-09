@@ -5,7 +5,7 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * @author www.inxedu.com
+ * @author
  *
  */
 public class Comment {

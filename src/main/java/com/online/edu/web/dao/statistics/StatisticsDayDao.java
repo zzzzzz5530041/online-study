@@ -10,7 +10,7 @@ import com.online.edu.web.entity.statistics.StatisticsDay;
 
 /**
  * StatisticsDay管理接口
- * @author www.inxedu.com
+ * @author
  */
 public interface StatisticsDayDao {
 

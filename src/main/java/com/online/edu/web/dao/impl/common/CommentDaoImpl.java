@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 /**
  * 评论dao层实现
- * @author www.inxedu.com
+ * @author
  */
 @Repository("commentDao")
 public class CommentDaoImpl extends GenericDaoImpl implements CommentDao{

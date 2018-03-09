@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * Course 课程 管理接口
- * @author www.inxedu.com
+ * @author
  */
 public interface CourseService {
 	 /**

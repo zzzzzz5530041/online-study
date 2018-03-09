@@ -11,7 +11,7 @@ import com.online.edu.web.service.website.WebsiteCourseService;
 
 /**
  * 推荐课程分类管理接口
- * @author www.inxedu.com
+ * @author
  */
 @Service("websiteCourseService")
 public class WebsiteCourseServiceImpl implements WebsiteCourseService {

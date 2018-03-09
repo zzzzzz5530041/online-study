@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * 文章DAO层接口 实现
- * @author www.inxedu.com
+ * @author
  */
 @Repository("articleDao")
 public class ArticleDaoImpl extends GenericDaoImpl implements ArticleDao {

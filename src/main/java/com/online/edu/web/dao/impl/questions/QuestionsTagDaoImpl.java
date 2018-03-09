@@ -12,7 +12,7 @@ import com.online.edu.web.entity.questions.QuestionsTag;
 
 /**
  * QuestionsTag对象操作实现类
- * @author www.inxedu.com
+ * @author
  */
 @Repository("questionsTagDao")
 public class QuestionsTagDaoImpl extends GenericDaoImpl implements QuestionsTagDao {

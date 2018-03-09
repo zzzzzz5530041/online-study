@@ -6,7 +6,7 @@ import com.online.edu.web.entity.questions.QuestionsTagRelation;
 
 /**
  * 问答和 问答标签的 关联表dao层接口
- * @author www.inxedu.com
+ * @author
  */
 public interface QuestionsTagRelationDao {
 	/**

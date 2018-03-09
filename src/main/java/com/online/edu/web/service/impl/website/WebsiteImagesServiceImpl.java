@@ -19,7 +19,7 @@ import com.online.edu.web.service.website.WebsiteImagesService;
 /**
  * 广告图service 实现
  *
- * @author www.inxedu.com
+ * @author
  */
 @Service("websiteImagesService")
 public class WebsiteImagesServiceImpl implements WebsiteImagesService {

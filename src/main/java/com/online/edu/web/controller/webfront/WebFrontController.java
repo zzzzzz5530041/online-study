@@ -48,7 +48,7 @@ import java.util.Map;
 
 /**
  * 前台 controller
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 public class WebFrontController extends BaseController {
@@ -81,8 +81,8 @@ public class WebFrontController extends BaseController {
 			Map<String, List<WebsiteImages>> websiteImages = websiteImagesService.queryImagesByType();
 			model.addAttribute("websiteImages", websiteImages);
 			//不同的主题显示不同的颜色
-//			String cacheColor=(String)EHCacheUtil.get("inxedu_index_theme_color");
-			String cacheColor=redisUtils.getByKey("inxedu_index_theme_color",String.class);
+//			String cacheColor=(String)EHCacheUtil.get("index_theme_color");
+			String cacheColor=redisUtils.getByKey("index_theme_color",String.class);
 			if(StringUtils.isNotEmpty(cacheColor)){
 				if("blue".equals(cacheColor)){
 					List<WebsiteImages> websiteImagesList = websiteImages.get("type_16");
@@ -215,7 +215,7 @@ public class WebFrontController extends BaseController {
 		}
     	
     	//放入缓存
-		redisUtils.saveWithExpireTime("inxedu_index_theme_color",colorfalg,21600L);//缓存六小时
+		redisUtils.saveWithExpireTime("index_theme_color",colorfalg,21600L);//缓存六小时
     	//获得项目根目录
 //    	String strDirPath = request.getSession().getServletContext().getRealPath("/");
     	//读取字符串

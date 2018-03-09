@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * QuestionsComment管理接口
- * @author www.inxedu.com
+ * @author
  */
 public interface QuestionsCommentDao {
 

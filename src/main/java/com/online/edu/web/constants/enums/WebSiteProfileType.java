@@ -1,7 +1,7 @@
 package com.online.edu.web.constants.enums;
 /**
  * 网站管理常量
- * @author www.inxedu.com
+ * @author
  */
 public enum WebSiteProfileType {
     web,//网站常规配置
@@ -12,6 +12,6 @@ public enum WebSiteProfileType {
     online,//在线咨询
     letv,//乐视云
     cc,//cc视频配置
-    inxeduVideo,//因酷云视频配置
+    video,//视频配置
     emailConfigure,//邮件配置
 }

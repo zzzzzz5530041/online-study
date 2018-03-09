@@ -21,7 +21,7 @@ import java.util.Map;
 
 /**
  * 后台用户登录与权限拦截器
- *@author www.inxedu.com
+ *@author
  */
 public class IntercepterAdmin extends HandlerInterceptorAdapter{
 	@Autowired

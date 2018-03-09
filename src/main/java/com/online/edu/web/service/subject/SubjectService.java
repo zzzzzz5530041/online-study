@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 专业接口
- * @author www.inxedu.com
+ * @author
  */
 public interface SubjectService {
 	/**

@@ -11,7 +11,7 @@ import com.online.edu.web.entity.questions.QuestionsComment;
 import com.online.edu.web.service.questions.QuestionsCommentService;
 
 /**
- * @author www.inxedu.com
+ * @author
  *
  */
 @Service("questionsCommentService")

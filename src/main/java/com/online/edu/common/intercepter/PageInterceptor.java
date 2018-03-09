@@ -26,7 +26,7 @@ import java.util.Properties;
         args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}
 )})
 /**
- * @author www.inxedu.com
+ * @author
  */
 public class PageInterceptor implements Interceptor {
     public PageInterceptor() {

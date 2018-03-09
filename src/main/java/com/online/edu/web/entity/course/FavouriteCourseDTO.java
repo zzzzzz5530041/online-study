@@ -8,7 +8,7 @@ import java.util.Map;
 import lombok.EqualsAndHashCode;
 
 /**
- * @author www.inxedu.com
+ * @author
  *
  */
 @EqualsAndHashCode(callSuper = false)

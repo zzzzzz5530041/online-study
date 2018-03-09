@@ -14,7 +14,7 @@ import java.io.FileWriter;
 
 /**
  * 主题颜色管理
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 @RequestMapping("/admin")

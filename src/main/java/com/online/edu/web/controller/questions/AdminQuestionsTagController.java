@@ -25,7 +25,7 @@ import com.online.edu.web.service.questions.QuestionsTagService;
 
 /**
  * 后台问答标签 Controller
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 @RequestMapping("/admin")

@@ -26,7 +26,7 @@ import java.util.List;
 
 /**
  * 文章后台管理
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 @RequestMapping("/admin/article")

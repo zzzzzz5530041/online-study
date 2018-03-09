@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * @description 站内信Dao的接口
- * @author www.inxedu.com
+ * @author
  */
 
 public interface MsgReceiveDao {

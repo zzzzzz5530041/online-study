@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * 用户邮件消息
- * @author www.inxedu.com
+ * @author
  */
 @EqualsAndHashCode(callSuper=false)
 public class UserEmailMsg implements Serializable{

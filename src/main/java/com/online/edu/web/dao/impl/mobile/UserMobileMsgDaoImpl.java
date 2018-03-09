@@ -11,7 +11,7 @@ import java.util.List;
 
 
 /**
- *@author www.inxedu.com
+ *@author
  */
 @Repository("userMobileDao")
 public class UserMobileMsgDaoImpl extends GenericDaoImpl implements UserMobileMsgDao {

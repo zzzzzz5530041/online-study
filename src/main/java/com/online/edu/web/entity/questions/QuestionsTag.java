@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 问答标签
- *@author www.inxedu.com
+ *@author
  */
 @EqualsAndHashCode(callSuper = false)
 public class QuestionsTag implements Serializable {

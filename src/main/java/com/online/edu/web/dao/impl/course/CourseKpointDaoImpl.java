@@ -16,7 +16,7 @@ import lombok.ToString;
 /**
  *
  * CourseKpoint
- * @author www.inxedu.com
+ * @author
  */
  @ToString
  @Repository("courseKpointDao")

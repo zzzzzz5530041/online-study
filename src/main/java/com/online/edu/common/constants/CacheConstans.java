@@ -3,8 +3,6 @@ package com.online.edu.common.constants;
 import com.online.edu.common.util.PropertyUtil;
 
 /**
- * @description cache缓存相关常量
- * @author www.inxedu.com
  */
 public class CacheConstans {
 	public static PropertyUtil webPropertyUtil = PropertyUtil.getInstance("memtimes");
@@ -19,12 +17,12 @@ public class CacheConstans {
 	public static final int WEBSITE_NAVIGATE_TIME = Integer.parseInt(webPropertyUtil.getProperty("WEBSITE_NAVIGATE_TIME"));
 	public static final String INDEX_STUDENT_DYNAMIC = MEMFIX + "index_student_dynamic";
 
-	/** 前台登录用户ehcache前缀 */
+	/** 前台登录用户cache */
 	public static final String WEB_USER_LOGIN_PREFIX = MEMFIX + "web_user_login_";
 	public static final int USER_TIME = Integer.parseInt(webPropertyUtil.getProperty("USER_TIME"));//前台登录用户缓存6小时
 	public static final String USER_CURRENT_LOGINTIME = MEMFIX+"USER_CURRENT_LOGINTIME_";//记录当前用户当前的登录时间，下次登录时会更新此缓存
 
-	/** 缓存后台登录用户ehcache前缀 */
+	/** 缓存后台登录用户cache前缀 */
 	public static final String LOGIN_MEMCACHE_PREFIX = MEMFIX + "login_sys_user_";
 	/** 后台所有用户权限缓存名前缀 **/
 	public static final String SYS_ALL_USER_FUNCTION_PREFIX = MEMFIX + "SYS_USER_ALL_FUNCTION_";

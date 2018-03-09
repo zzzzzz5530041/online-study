@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 /**
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 @RequestMapping("/admin")

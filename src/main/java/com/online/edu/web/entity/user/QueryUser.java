@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * 查询用户
- * @author www.inxedu.com
+ * @author
  *
  */
 public class QueryUser {

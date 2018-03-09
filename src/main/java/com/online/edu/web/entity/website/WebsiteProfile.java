@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 网站配置实体
- * @author www.inxedu.com
+ * @author
  */
 @EqualsAndHashCode(callSuper = false)
 public class WebsiteProfile implements Serializable {

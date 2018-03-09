@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * 广告图类型
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 @RequestMapping("/admin/imagetype")

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author http://www.inxedu.com
+ * @author http://
  */
 @Repository("userEmailDao")
 public class UserEmailMsgDaoImpl extends GenericDaoImpl implements UserEmailMsgDao {

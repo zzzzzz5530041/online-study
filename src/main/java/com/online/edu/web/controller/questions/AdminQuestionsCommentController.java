@@ -26,7 +26,7 @@ import com.online.edu.web.service.questions.QuestionsService;
 
 /**
  * 问答评论后台 Controller
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 @RequestMapping("/admin")

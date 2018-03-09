@@ -7,7 +7,7 @@ import com.online.edu.web.entity.questions.QuestionsTag;
 
 /**
  * 问答标签dao层接口
- * @author www.inxedu.com
+ * @author
  */
 public interface QuestionsTagDao {
 	/**

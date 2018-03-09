@@ -8,7 +8,7 @@ import com.online.edu.common.controller.BaseController;
 
 /**
  * app接口 Controller
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 @RequestMapping("/admin")

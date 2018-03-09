@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 问答和 问答标签的 关联表
- *@author www.inxedu.com
+ *@author
  */
 public class QuestionsTagRelation implements Serializable{
 	private static final long serialVersionUID = -4217124954438325439L;

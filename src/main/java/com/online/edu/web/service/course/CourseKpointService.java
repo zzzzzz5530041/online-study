@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * CourseKpoint 课程章节 管理接口
- * @author www.inxedu.com
+ * @author
  */
 public interface CourseKpointService {
 

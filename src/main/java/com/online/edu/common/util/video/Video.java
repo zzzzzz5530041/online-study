@@ -1,4 +1,4 @@
-package com.online.edu.common.util.inxeduvideo;
+package com.online.edu.common.util.video;
 
 import sun.misc.BASE64Encoder;
 
@@ -8,7 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class InxeduVideo {
+public class Video {
 	  
     private static final String MAC_NAME = "HmacSHA1";    
     private static final String ENCODING = "UTF-8";    

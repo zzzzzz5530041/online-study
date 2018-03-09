@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 后台用户角色
- * @author www.inxedu.com
+ * @author
  */
 @Repository("sysRoleDao")
 public class SysRoleDaoImpl extends GenericDaoImpl implements SysRoleDao{

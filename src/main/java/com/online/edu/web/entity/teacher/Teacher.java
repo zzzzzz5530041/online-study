@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * 讲师实体
- * @author www.inxedu.com
+ * @author
  */
 @EqualsAndHashCode(callSuper = false)
 public class Teacher implements Serializable {

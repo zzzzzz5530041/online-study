@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author http://www.inxedu.com
+ * @author http://
  */
 public interface UserEmailMsgService {
 	/**

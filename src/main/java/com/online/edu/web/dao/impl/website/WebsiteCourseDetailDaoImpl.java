@@ -15,7 +15,7 @@ import com.online.edu.web.entity.website.WebsiteCourseDetailDTO;
 /**
  *
  * 推荐课程关联Dao层
- * @author www.inxedu.com
+ * @author
  */
  @Repository("websiteCourseDetailDao")
 public class WebsiteCourseDetailDaoImpl extends GenericDaoImpl implements WebsiteCourseDetailDao {

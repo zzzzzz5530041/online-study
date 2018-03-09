@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * 后台用户登录日志
- * @author www.inxedu.com
+ * @author
  *
  */
 @Repository("sysUserLoginLogDao")

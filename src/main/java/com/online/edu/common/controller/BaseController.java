@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 public class BaseController {
     public static Gson gson = (new GsonBuilder()).setDateFormat("yyyy-MM-dd HH:mm:ss").create();
-    protected static final String SIMPLE_VIEW_PATH = "inxedu";
     private static final Logger logger = LoggerFactory.getLogger(BaseController.class);
 
     public BaseController() {
@@ -27,7 +26,7 @@ public class BaseController {
     }
 
     public static String getViewPath(String path) {
-        return path != null && !path.trim().equals("") ? "inxedu" + path : "";
+        return path != null && !path.trim().equals("") ? "" + path : "";
     }
 
     public Map<String, Object> setJson(boolean success, String message, Object entity) {

@@ -7,7 +7,7 @@ import com.online.edu.web.dao.praise.PraiseDao;
 import com.online.edu.web.entity.praise.Praise;
 
 /**
- * @author www.inxedu.com
+ * @author
  *
  */
 @Repository("praiseDao")

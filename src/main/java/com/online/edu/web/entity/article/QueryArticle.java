@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author www.inxedu.com
+ * @author
  * 文章查询条件
  */
 public class QueryArticle implements Serializable {

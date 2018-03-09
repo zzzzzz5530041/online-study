@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author www.inxedu.com
+ * @author
  *
  */
 @Component

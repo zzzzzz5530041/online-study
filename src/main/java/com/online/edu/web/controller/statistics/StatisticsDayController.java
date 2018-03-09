@@ -18,7 +18,7 @@ import java.util.*;
 
 /**
  * StatisticsDay 统计 管理接口
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 @RequestMapping("/admin")

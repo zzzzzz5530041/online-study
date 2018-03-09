@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * 缓存管理
- * @author www.inxedu.com
+ * @author
  *
  */
 @EqualsAndHashCode(callSuper=false)

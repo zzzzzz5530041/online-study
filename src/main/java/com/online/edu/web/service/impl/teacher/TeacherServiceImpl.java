@@ -14,7 +14,7 @@ import com.online.edu.web.service.teacher.TeacherService;
 
 /**
  * Teacher管理接口
- * @author www.inxedu.com
+ * @author
  */
 @Service("teacherService")
 public class TeacherServiceImpl implements TeacherService {

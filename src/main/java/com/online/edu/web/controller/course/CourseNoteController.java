@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * CourseNote 课程笔记 Controller
  *
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 public class CourseNoteController extends BaseController {

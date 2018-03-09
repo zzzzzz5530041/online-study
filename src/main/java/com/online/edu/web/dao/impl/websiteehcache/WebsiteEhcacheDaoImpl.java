@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * 缓存管理
- * @author www.inxedu.com
+ * @author
  *
  */
 @Repository("websiteEhcacheDao")

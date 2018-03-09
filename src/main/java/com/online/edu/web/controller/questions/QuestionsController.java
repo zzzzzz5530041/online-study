@@ -39,7 +39,7 @@ import com.online.edu.web.service.user.UserService;
 
 /**
  * 问答 Controller
- * @author www.inxedu.com
+ * @author
  */
 @Controller
 public class QuestionsController extends BaseController {

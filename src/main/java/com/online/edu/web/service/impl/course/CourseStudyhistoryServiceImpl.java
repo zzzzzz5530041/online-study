@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * CourseStudyhistory 用户课程学下记录 service接口实现
- * @author www.inxedu.com
+ * @author
  */
 @Service("courseStudyhistoryService")
 public class CourseStudyhistoryServiceImpl implements CourseStudyhistoryService {
