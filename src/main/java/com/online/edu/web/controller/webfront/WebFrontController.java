@@ -125,7 +125,7 @@ public class WebFrontController extends BaseController {
 		model.addAttribute("staticImage", CommonConstants.staticImage);
 		model.addAttribute("contextPath", CommonConstants.contextPath);
 
-		return getViewPath("/web/front/index");//首页页面
+		return "/web/index/index";//首页页面
 	}
 
 	// 首页为你推荐换一换功能(随机获取)
@@ -140,7 +140,7 @@ public class WebFrontController extends BaseController {
 			logger.error("WebFrontController.queryRecommenCourseListByRecommendId", e);
 			return setExceptionRequest(request, e);
 		}
-		return getViewPath("/web/front/ajax-course-recommend");
+		return "/web/index/ajax-course-recommend";
 	}
 
 	// 首页学生动态
@@ -161,7 +161,7 @@ public class WebFrontController extends BaseController {
 			logger.error("studentDynamic", e);
 			return setExceptionRequest(request, e);
 		}
-		return getViewPath("/web/front/ajax-student-dynamic");//页面
+		return "/web/index/ajax-student-dynamic";//页面
 	}
 		
 	// 首页精品课程、最新课程、全部课程
@@ -183,7 +183,7 @@ public class WebFrontController extends BaseController {
 			logger.error("WebFrontController.queryCourse", e);
 			return setExceptionRequest(request, e);
 		}
-		return getViewPath("/web/front/ajax-course-bna");
+		return "/web/index/ajax-course-bna";
 	}
 	/**
 	 * 跳转找回密码页面
