@@ -62,7 +62,7 @@
                         </span>
                     </section>
                     <section class="c-attr-mt">
-                        <a href="javascript:void(0)" title="立即观看"  th:onclick="'if(isLogin()){ window.location.href=\'/uc/play/'+${course.courseId }+'\'} else{lrFun();} '"
+                        <a href="javascript:void(0)" title="立即观看"  th:onclick="'if(isLogin()){ window.location.href=\'/web/usercenter/play/'+${course.courseId }+'\'} else{lrFun();} '"
                            class="comm-btn c-btn-3">立即观看</a>
                         <span class="ml10"><tt class="c-yellow f-fM"
                                                th:text="'*咨询 '+${websitemap.web.phone}"></tt></span>
@@ -168,17 +168,14 @@
                                     <div class="lh-menu-wrap">
                                         <menu id="lh-menu" class="lh-menu mt10 mr10">
                                             <ul>
-                                                <block th:each="parentKpoint,iterStat:${parentKpointList }">
+                                                <th:block th:with="folderIndex=1" />
+                                                <th:block th:each="parentKpoint,iterStat:${parentKpointList }">
                                                         <li th:if="${parentKpoint.kpointType==0 }" class="lh-menu-stair"><!-- 文件目录 -->
-                                                            <div th:block th:with="folderIndex=1" />
+
                                                             <a href="javascript: void(0)" th:title="${parentKpoint.name }" th:class="${iterStat.first==true}?'current-1':''">
-                                                            <span class="fr">
-																		<em class="icon14 m-tree-icon">&nbsp;</em>
-																	</span>
-                                                            <em class="lh-menu-i-1 icon24 mr5">
-                                                                <font th:text="${folderIndex}"></font>
-                                                            </em>
-                                                                <th:block th:text="${parentKpoint.name }"></th:block>
+                                                                <span class="fr"><em class="icon14 m-tree-icon">&nbsp;</em></span><em class="lh-menu-i-1 icon24 mr5"><font th:text="${folderIndex }"></font></em>
+                                                            <th:block th:text="${parentKpoint.name }" /> </a>
+
                                                             </a>
                                                             <ol class="lh-menu-ol"   th:style="${iterStat.first==true}?'display: block;':'display: none;'">
                                                                 <li class="lh-menu-second ml30" th:each="sonKpoint:${parentKpoint.kpointList}">
@@ -193,10 +190,9 @@
                                                                     </a>
                                                                 </li>
                                                         </ol>
-                                                            <div th:block th:with="folderIndex= ${folderIndex }+1" />
                                                         </li>
 
-
+                                                    <th:block th:with="folderIndex= ${folderIndex }+1" />
                                                         <li th:if="${parentKpoint.kpointType==1 }" class="lh-menu-stair">
                                                             <ul class="lh-menu-ol no-parent-node">
                                                                 <li class="lh-menu-second">

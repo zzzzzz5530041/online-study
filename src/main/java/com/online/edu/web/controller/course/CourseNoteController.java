@@ -52,7 +52,7 @@ public class CourseNoteController extends BaseController {
             logger.error("CourseNoteController.querynote()", e);
             return setExceptionRequest(request, e);
         }
-        return getViewPath("/web/ucenter/query_note");
+        return getViewPath("/web/usercenter/query_note");
     }
 
     /**

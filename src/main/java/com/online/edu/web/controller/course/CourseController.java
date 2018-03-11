@@ -220,7 +220,7 @@ private SingletonLoginUtils singletonLoginUtils;
     /**
      * 查询课程目录
      */
-    @RequestMapping("/front/ajax/courseKpointList/{courseId}/{type}")
+    @RequestMapping("/web/ajax/courseKpointList/{courseId}/{type}")
     public ModelAndView courseKpointList(HttpServletRequest request,@ModelAttribute("courseFavorites") CourseFavorites courseFavorites,@PathVariable("courseId") int courseId,@PathVariable("type") int type){
         ModelAndView model = new ModelAndView();
         try {

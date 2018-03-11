@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<div class="mt10">
+	<!-- 课程笔记 位置 -->
+	<textarea name="notesContext" onkeyup="$('#notContextId').hide();" id="notesContextId" style="width:368px;">
+		<th:block th:if="${courseNote.content!=null}" th:text="${courseNote.content}"></th:block>
+	</textarea>
+	<section class="mt5 clearfix">
+	<span class="fr">
+		<tt class="mr5 c-orange" style="display: none;" id="notContextId"></tt>
+		<a href="javascript: void(0)" onclick="addNotest()" title="保存" class="lh-reply-btn">保存</a>
+	</span>
+	</section>
+</div>
+<script>
+	$(function(){
+		initKindEditornote("notesContextId");
+	});
+</script>

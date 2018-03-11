@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+	<menu id="lh-menu" class="lh-menu" th:if="${parentKpointList!=null}">
+		<ul>
+			<th:block th:with="folderIndex=1" />
+			<th:block th:each="parentKpoint,iterStat:${parentKpointList }">
+					<li class="lh-menu-stair" th:if="${parentKpoint.kpointType==0 }">
+						<a href="javascript: void(0)" th:title="${parentKpoint.name }"
+						   th:class="${iterStat.first==true}?'current-1':''" >
+							<span class="fr"><em class="icon14 m-tree-icon">&nbsp;</em></span><em class="lh-menu-i-1 icon24 mr5">
+							<font th:text="${folderIndex }"></font></em>
+							<th:block th:text="${parentKpoint.name }"></th:block>
+						</a>
+						<ol class="lh-menu-ol" th:style="${iterStat.first==true}?'display: block;':'display: none;'">
+								<li class="lh-menu-second ml30" th:each="sonKpoint:${parentKpoint.kpointList}">
+									<a href="javascript:void(0)" th:onclick="'getPlayerHtml('+${sonKpoint.kpointId }+',\''+${sonKpoint.name }+'\',this)'" class="" title="">
+																				<span class="fr">
+																						<em th:if="${sonKpoint.playTime!=null}" class="lh-p-icon icon14 ml5">&nbsp;</em>
+																						<th:block th:text="${sonKpoint.playTime}" />
+																				</span><em class="lh-menu-i-2 icon14 mr5">&nbsp;</em><th:block th:text="${sonKpoint.name}" />
+
+									</a>
+								</li>
+						</ol>
+					</li>
+				<th:block th:with="folderIndex=${folderIndex }+1" />
+					<li class="lh-menu-stair" th:if="${parentKpoint.kpointType==1 }">
+						<ul class="lh-menu-ol no-parent-node">
+							<li class="lh-menu-second"><a title="" th:onclick="'getPlayerHtml('+${parentKpoint.kpointId }+',\''+${parentKpoint.name }+'\',this)'" href="javascript:void(0)">
+								<span class="fr">
+										<em th:if="${parentKpoint.playTime!=null}" class="lh-p-icon icon14 ml5">&nbsp;</em>
+										<th:block th:text="${parentKpoint.playTime}" />
+									</span><em class="lh-menu-i-2 icon14 mr5">&nbsp;</em><th:block th:text="${parentKpoint.name}" /></a>
+							</li>
+						</ul>
+					</li>
+			</th:block>
+		</ul>
+	</menu>
+<!-- /无数据提示 开始-->
+	<section class="no-data-wrap" th:if="${parentKpointList==null}">
+		<em class="icon30 no-data-ico">&nbsp;</em> <span class="c-666 fsize14 ml10 vam">没有相关数据，小编正在努力整理中...</span>
+	</section>
+<script>
+	$(function () {
+		/*if (isok == false) {
+			dialog('播放提示', message, 1);
+			return false;
+		} else {*/
+			// 播放第一个视频节点
+			$("#lh-menu").find("ul>li:eq(0)").find("ul>li:eq(0),ol>li:eq(0)").find("a").click();
+		//}
+	})
+</script>
