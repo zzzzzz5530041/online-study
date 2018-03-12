@@ -75,10 +75,30 @@
                                                 </ul>
                                             </article>
                                             <!-- 公共分页 开始 -->
+                                            <div>
+                                                <form action="/web/usercenter/index" method="post" id="searchForm">
+                                                    <input type="hidden" name="page.currentPage" id="pageCurrentPage" value="1">
+                                                </form>
+                                                <script type="text/javascript" th:src="@{/web/js/common/page.js}" ></script>
+                                                <div class="paging" th:if="${page != null  and page.totalResultSize>0}">
+                                                    <a href="javascript:goPage(1);" title="">首</a>
+                                                    <a id="backpage" th:if="${page.first}" class="undisable" href="javascript:void(0)" title="">&lt;</a>
+                                                    <a id="backpage" th:if="${!page.first}" th:href="'javascript:goPage('+${page.currentPage-1 }+');'" title="">&lt;</a>
+                                                    <a id="nextpage" th:if="${page.last}" href="javascript:void(0)" title="" class="undisable">&gt;</a>
+                                                    <a id="nextpage" th:if="${!page.last}" th:href="'javascript:goPage('+${page.currentPage+1}+');'" title="">&gt;</a>
+                                                    <a th:href="'javascript:goPage('+${page.totalPageSize}+');'" title="">末</a>
+                                                    <div class="clear"></div>
+                                                </div>
+                                                <script type="text/javascript" th:inline="javascript" th:with="totalPageSize=${page.totalPageSize }">
+                                                    /*<![CDATA[*/
+                                                    var totalPageSize = [[${totalPageSize}]];
+                                                    var currentPage = [[${page.currentPage-1}]]<1 ? 1 :[[${totalPageSize}]];
+                                                    var totalPage = [[${totalPageSize}]];
+                                                    showPageNumber();
+                                                    /*]]>*/
+                                                </script>
+                                            </div>
                                             <!-- 公共分页 结束 -->
-                                            <form method="post" id="searchForm" action="/usercenter/freeCourseList">
-                                                <input type="hidden" id="pageCurrentPage" name="page.currentPage" value="1" />
-                                            </form>
                                         </div>
                                     </th:block>
                                 </div>

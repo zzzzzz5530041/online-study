@@ -104,7 +104,7 @@
                         </li>
                         <li th:class="${queryCourse.order eq 'ASCENDING' or queryCourse.order eq 'DESCENDING'}?'current bg-orange':''">
                             <a title="价格"
-                               th:onclick="'submitForm(4,'+${queryCourse.order==null}?'ONE':${queryCourse.order}+')'"
+                               th:onclick="${queryCourse.order==null}?'submitForm(4,\'ONE\')':'submitForm(4,\''+${queryCourse.order}+'\')'"
                                href="javascript:void(0)">价格<span
                                     th:text="${queryCourse.order eq 'ASCENDING' }?'↑':'↓'"></a>
                         </li>
